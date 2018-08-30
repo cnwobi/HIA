@@ -5,8 +5,8 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    android:background="@drawable/screen"
-        tools:context="hwool.com.au.hermitageintelligenceagency.SplashActivity">
+         android:background="@drawable/screen"
+        tools:context="hwool.com.au.hermitageintelligenceagency.activities.SplashActivity">
 
 
 

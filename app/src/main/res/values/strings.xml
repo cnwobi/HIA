@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Hermitage Quilts</string>
     <string name="main_title">Scan QR Code</string>
+    <string name="qr_code_icon">qr code icon</string>
+
+
 </resources>

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="standard_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="card_size_width_standard">200dp</dimen>
+    <dimen name="card_saize_height_standard">200dp</dimen>
+    <dimen name="card_size_width_small">152dp</dimen>
+    <dimen name="margin_standard">20dp</dimen>
+    <dimen name="margin_top_standard">32dp</dimen>
+    <dimen name="card_corner_standard">10dp</dimen>
 </resources>
