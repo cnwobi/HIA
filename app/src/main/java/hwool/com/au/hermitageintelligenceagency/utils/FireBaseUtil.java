@@ -3,11 +3,6 @@ package hwool.com.au.hermitageintelligenceagency.utils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import hwool.com.au.hermitageintelligenceagency.quilts.Quilt;
-
 public class FireBaseUtil {
     public static FirebaseDatabase mFirebaseDatabase;
     public static DatabaseReference mDatabaseReference;
