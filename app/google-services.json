@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "80802672559",
-    "firebase_url": "https://hermitageintelligenceage-372a3.firebaseio.com",
-    "project_id": "hermitageintelligenceage-372a3",
-    "storage_bucket": "hermitageintelligenceage-372a3.appspot.com"
+    "project_number": "94126020261",
+    "firebase_url": "https://hermitage-2f4c6.firebaseio.com",
+    "project_id": "hermitage-2f4c6",
+    "storage_bucket": "hermitage-2f4c6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:80802672559:android:138a40af152a83f6",
+        "mobilesdk_app_id": "1:94126020261:android:138a40af152a83f6",
         "android_client_info": {
           "package_name": "au.com.hwool"
         }
       },
       "oauth_client": [
         {
-          "client_id": "80802672559-djg31m0ord0aq06arsni56ah6b1r2bii.apps.googleusercontent.com",
+          "client_id": "94126020261-1782s6gnpcjl2d8dn5qu78o0tbqi7knc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "au.com.hwool",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "80802672559-jod7mpo7o1dl652ia0ooo0bc8co0at3r.apps.googleusercontent.com",
+          "client_id": "94126020261-th9bcdevo7sk7oq0r3o1492o4md37v08.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCX3MKbaxVvKK7xH0Q01YWX4o_tUZkJaBM"
+          "current_key": "AIzaSyCgpw94BEypODIPxz9MhT6MDpBDcKnHQAA"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "80802672559-jod7mpo7o1dl652ia0ooo0bc8co0at3r.apps.googleusercontent.com",
+              "client_id": "94126020261-th9bcdevo7sk7oq0r3o1492o4md37v08.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

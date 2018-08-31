@@ -5,7 +5,7 @@
     <dimen name="card_size_width_standard">200dp</dimen>
     <dimen name="card_saize_height_standard">200dp</dimen>
     <dimen name="card_size_width_small">152dp</dimen>
-    <dimen name="margin_standard">20dp</dimen>
+    <dimen name="margin_standard">30dp</dimen>
     <dimen name="margin_top_standard">32dp</dimen>
     <dimen name="card_corner_standard">10dp</dimen>
 </resources>
