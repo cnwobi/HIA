@@ -6,7 +6,7 @@
 
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/primaryTextColor</item>
+        <item name="colorAccent">@color/secondaryDarkColor</item>
         <item name="android:colorSecondary">@color/secondaryColor</item>
         <item name="android:colorBackground">@color/primaryLightColor</item>
         <item name="android:navigationBarColor">@android:color/black</item>

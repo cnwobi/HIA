@@ -40,7 +40,6 @@ public class Quilt {
     public Quilt(String name, String color, String width, String height, String description) {
         this.name = name;
         this.color = color;
-
         this.description = description;
     }
 }
