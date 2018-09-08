@@ -13,9 +13,10 @@ import hwool.com.au.hermitageintelligenceagency.R;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
-private ZXingScannerView mScannerView;
-private int MY_PERMISSIONS_REQUEST_CAMERA =1;
+public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+    private ZXingScannerView mScannerView;
+    private int MY_PERMISSIONS_REQUEST_CAMERA =1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,9 @@ private int MY_PERMISSIONS_REQUEST_CAMERA =1;
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
 
-    }  @Override
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
@@ -52,6 +55,7 @@ private int MY_PERMISSIONS_REQUEST_CAMERA =1;
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -59,6 +63,7 @@ private int MY_PERMISSIONS_REQUEST_CAMERA =1;
         // Forward results to EasyPermissions
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
+
     public void requestPermission(){
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
