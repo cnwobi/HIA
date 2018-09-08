@@ -34,5 +34,15 @@
         <item name="android:colorPrimary">@android:color/black</item>
     </style>
 
+    <style name="AppTheme4" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/primaryTextColor</item>
+        <item name="android:colorSecondary">@color/secondaryColor</item>
+        <item name="android:colorBackground">@color/primaryDarkColor</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 </resources>
