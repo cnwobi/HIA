@@ -15,7 +15,7 @@ import hwool.com.au.hermitageintelligenceagency.R;
 import hwool.com.au.hermitageintelligenceagency.models.Quilt;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnScanQr;
+    //private Button btnScanQr;
     private Button btnAddNews;
     private Button btnOptions;
     public  static TextView tvQrResult;
@@ -33,18 +33,18 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseReference.push().setValue(quilt);
 
         //setTitle(R.string.main_title);
-        btnScanQr  = findViewById(R.id.btScanQr);
+        //btnScanQr  = findViewById(R.id.btScanQr);
         btnAddNews = findViewById(R.id.btAddNews);
         tvQrResult = findViewById(R.id.tvQrResult);
         btnOptions = findViewById(R.id.btnOptions);
 
-        btnScanQr.setOnClickListener(new View.OnClickListener() {
+        /*btnScanQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),ScanActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         btnAddNews.setOnClickListener(new View.OnClickListener() {
             @Override
