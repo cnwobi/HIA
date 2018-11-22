@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/btnScanQR"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/scan_qr_code" />
+        <item
+            android:id="@+id/activity_connect_quilt"
+            android:icon="@android:drawable/stat_sys_data_bluetooth"
+            android:title="Connect a Smart Quilt" />
+
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Blabla" />
+    </group>
+</menu>

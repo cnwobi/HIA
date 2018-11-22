@@ -30,6 +30,7 @@
         android:id="@+id/btnScanQR2"
         android:layout_width="230dp"
         android:layout_height="60dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="100dp"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"
