@@ -15,7 +15,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
-    private int MY_PERMISSIONS_REQUEST_CAMERA =1;
+    private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         requestPermission();
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
-
     }
+
 
     @Override
     public void onResume() {
@@ -33,6 +33,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
     }
+
 
     @Override
     public void onPause() {

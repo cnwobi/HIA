@@ -8,10 +8,10 @@
     <string name="date_created">Date Created</string>
     <string name="add_news">Add News</string>
     <string name="textview">TextView</string>
-    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="scan_qr_code">Scan a QR Code</string>
     <string name="save_news">SAVE NEWS</string>
     <string name="options">Options</string>
-    <string name="connect_quilt">Connect a quilt</string>
+    <string name="connect_quilt">Connect a Smart Quilt</string>
     <string name="newsletter">Newsletter</string>
 
 

@@ -9,9 +9,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -22,12 +21,10 @@ import hwool.com.au.hermitageintelligenceagency.R;
 import hwool.com.au.hermitageintelligenceagency.models.Quilt;
 
 
-
 public class MainActivity extends AppCompatActivity {
-    private Button btnScanQR;
-//    private Button btnAddNews;
-//    private Button btnOptions;
+
     public static TextView tvQrResult;
+    private MenuItem mScanQR;
     private DrawerLayout mDrawerLayout;
 
 
@@ -44,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseReference.push().setValue(quilt);
 
         //setTitle(R.string.main_title);
-        btnScanQR  = findViewById(R.id.btnScanQR);
+
         //btnAddNews = findViewById(R.id.btAddNews);
         //tvQrResult = findViewById(R.id.tvQrResult);
         //btnOptions = findViewById(R.id.btnOptions);
 
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if (actionbar != null) {
             actionbar.setDisplayHomeAsUpEnabled(true);
@@ -63,52 +60,46 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*btnScanQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),ScanActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-        /*btnAddNews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =  new Intent(view.getContext(),InsertNews.class);
-                startActivity(intent);
-            }
-        });*/
-
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
-
+        mScanQR = findViewById(R.id.activity_scan);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
 
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
+        if (navigationView != null) {
 
-                        return true;
-                    }
-                });
+            navigationView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                            // set item as selected to persist highlight
+                            menuItem.setChecked(true);
 
-        // buuuuuuuuuuug
-        /*btnScanQR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ScanActivity.class);
-                startActivity(intent);
-            }
-        });*/
+                            // close drawer when item is tapped
+                            mDrawerLayout.closeDrawers();
+
+                            // Add code here to update the UI based on the item selected
+                            // For example, swap UI fragments here
+                            int id = menuItem.getItemId();
+
+                            if (id == android.R.id.home) {
+                                mDrawerLayout.openDrawer(GravityCompat.START);
+                                return true;
+                            }
+
+                            if (id == R.id.nav_scanQR) {
+                                Log.i("test", "navscan");
+                                Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+                                startActivity(intent);
+                                return true;
+                            }
+
+                            return true;
+                        }
+                    });
+        }
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,14 +110,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    @Override
-    public void setTitle(int titleId) {
-        super.setTitle(titleId);
-    }
-
 
 }
 

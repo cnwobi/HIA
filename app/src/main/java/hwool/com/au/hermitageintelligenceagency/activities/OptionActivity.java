@@ -24,7 +24,7 @@ public class OptionActivity extends AppCompatActivity {
         btnScanQR2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),ScanActivity.class);
+                Intent intent = new Intent(view.getContext(), ScanActivity.class);
                 startActivity(intent);
             }
         });
