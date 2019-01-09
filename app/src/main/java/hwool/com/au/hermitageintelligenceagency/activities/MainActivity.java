@@ -2,6 +2,7 @@ package hwool.com.au.hermitageintelligenceagency.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -9,10 +10,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,8 +22,7 @@ import hwool.com.au.hermitageintelligenceagency.models.Quilt;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static TextView tvQrResult;
-    private MenuItem mScanQR;
+    public  static TextView tvQrResult;
     private DrawerLayout mDrawerLayout;
 
 
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //btnOptions = findViewById(R.id.btnOptions);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.top_toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionbar = getSupportActionBar();
@@ -61,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        mScanQR = findViewById(R.id.activity_scan);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             if (id == R.id.nav_scanQR) {
-                                Log.i("test", "navscan");
+                                //Log.i("test", "navscan");
                                 Intent intent = new Intent(MainActivity.this, ScanActivity.class);
                                 startActivity(intent);
                                 return true;
@@ -97,6 +94,28 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         }
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_graph:
+                                Intent intentGraph = new Intent(MainActivity.this, GraphActivity.class);
+                                startActivity(intentGraph);
+                                return true;
+
+                            case R.id.action_news:
+                                Intent intentNews = new Intent(MainActivity.this, NewsActivity.class);
+                                startActivity(intentNews);
+                                return true;
+                        }
+                        return true;
+                    }
+                });
 
     }
 

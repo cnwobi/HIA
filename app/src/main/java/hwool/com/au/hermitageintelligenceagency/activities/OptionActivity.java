@@ -10,8 +10,6 @@ import hwool.com.au.hermitageintelligenceagency.R;
 
 public class OptionActivity extends AppCompatActivity {
 
-    private Button btnScanQR2;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +17,7 @@ public class OptionActivity extends AppCompatActivity {
         //requestPermissions();
 
 
-        btnScanQR2 = findViewById(R.id.btnScanQR2);
+        Button btnScanQR2 = findViewById(R.id.btnScanQR2);
 
         btnScanQR2.setOnClickListener(new View.OnClickListener() {
             @Override

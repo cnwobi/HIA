@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_graph"
+        android:enabled="true"
+        android:title="@string/graph"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_news"
+        android:enabled="true"
+        android:title="@string/newsletter"
+        app:showAsAction="ifRoom" />
+</menu>
