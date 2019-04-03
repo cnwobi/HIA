@@ -11,12 +11,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_custom_circle"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <!--android:supportsRtl="true"-->
-        //android:theme="@style/AppTheme2">
+        <!--android:supportsRtl="true"
+        android:theme="@style/AppTheme2">-->
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="barcode" />
+            android:value="barcode">
+        </meta-data>
 
         <activity
             android:name=".activities.SplashActivity">
