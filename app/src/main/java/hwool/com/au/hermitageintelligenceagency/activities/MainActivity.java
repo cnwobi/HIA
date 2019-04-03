@@ -45,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
         //btnOptions = findViewById(R.id.btnOptions);
 
 
-        Toolbar toolbar = findViewById(R.id.top_toolbar);
+
+
+
+        /*Toolbar toolbar = findViewById(R.id.top_toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionbar = getSupportActionBar();
@@ -115,12 +118,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return true;
                     }
-                });
+                });*/
 
     }
 
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 }
 
