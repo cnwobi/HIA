@@ -1,4 +1,12 @@
 package hwool.com.au.hermitageintelligenceagency.activities;
 
-public class NewsActivity {
+
+import android.support.v7.app.AppCompatActivity;
+
+
+public class NewsActivity extends AppCompatActivity {
+
+
+
+
 }

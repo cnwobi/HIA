@@ -6,6 +6,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.zxing.Result;
 
@@ -49,7 +50,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         // Log.v("tag", rawResult.getText()); // Prints scan results
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 
-        MainActivity.tvQrResult.setText(rawResult.getText());
+        //MainActivity.tvQrResult.setText(rawResult.getText());
+
+        /*
+        Currently just send the result and print it to CustomiseQuiltActivity
+        In the future, check with the server if the QRCode is valid.
+         */
+        //CustomiseQuiltActivity.tvQRcodeResult.setText(rawResult.getText());
+        new CustomiseQuiltActivity().setTvQRcodeResult(rawResult.getText());
 
         onBackPressed();
 

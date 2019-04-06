@@ -15,5 +15,11 @@
     <string name="connect_quilt">Connect a Smart Quilt</string>
     <string name="newsletter">Newsletter</string>
     <string name="graph">Graphic</string>
+    <string name="customise_title">Customise your quilt</string>
+
+    <string name="address_hint">Address</string>
+    <string name="city_hint">City</string>
+    <string name="postcode_hint">Postcode</string>
+    <string name="qr_code_result">QRcode result</string>
 
 </resources>
