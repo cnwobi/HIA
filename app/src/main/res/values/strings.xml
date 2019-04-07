@@ -21,5 +21,6 @@
     <string name="city_hint">City</string>
     <string name="postcode_hint">Postcode</string>
     <string name="qr_code_result">QRcode result</string>
+    <string name="send_button">Send</string>
 
 </resources>

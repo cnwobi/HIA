@@ -10,10 +10,11 @@
         android:layout_width="match_parent">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/app_name"></android.support.v7.widget.Toolbar>
 
@@ -24,11 +25,13 @@
             app:tabMode="fixed">
 
             <android.support.design.widget.TabItem
+                android:id="@+id/tab_graph"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/graph" />
 
             <android.support.design.widget.TabItem
+                android:id="@+id/tab_news"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/newsletter" />
