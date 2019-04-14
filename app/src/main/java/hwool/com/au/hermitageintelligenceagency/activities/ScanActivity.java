@@ -6,6 +6,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.zxing.Result;
 
@@ -15,7 +16,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
-    private int MY_PERMISSIONS_REQUEST_CAMERA =1;
+    private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         requestPermission();
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
-
     }
+
 
     @Override
     public void onResume() {
@@ -33,6 +34,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
     }
+
 
     @Override
     public void onPause() {
@@ -48,7 +50,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         // Log.v("tag", rawResult.getText()); // Prints scan results
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 
-        MainActivity.tvQrResult.setText(rawResult.getText());
+        //MainActivity.tvQrResult.setText(rawResult.getText());
+
+        /*
+        Currently just send the result and print it to CustomiseQuiltActivity
+        In the future, check with the server if the QRCode is valid.
+         */
+        //CustomiseQuiltActivity.tvQRcodeResult.setText(rawResult.getText());
+        new CustomiseQuiltActivity().setTvQRcodeResult(rawResult.getText());
 
         onBackPressed();
 

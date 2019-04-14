@@ -1,11 +1,16 @@
 package hwool.com.au.hermitageintelligenceagency.activities;
 
+
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.google.firebase.database.DatabaseReference;
@@ -14,11 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import hwool.com.au.hermitageintelligenceagency.R;
 import hwool.com.au.hermitageintelligenceagency.models.Quilt;
 
+
+
 public class MainActivity extends AppCompatActivity {
-    private Button btnScanQr;
-    private Button btnAddNews;
-    private Button btnOptions;
-    public  static TextView tvQrResult;
+
+    //private DrawerLayout mDrawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,45 +39,129 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseReference.push().setValue(quilt);
 
         //setTitle(R.string.main_title);
-        btnScanQr  = findViewById(R.id.btScanQr);
-        btnAddNews = findViewById(R.id.btAddNews);
-        tvQrResult = findViewById(R.id.tvQrResult);
-        btnOptions = findViewById(R.id.btnOptions);
 
-        btnScanQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),ScanActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnAddNews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =  new Intent(view.getContext(),InsertNews.class);
-                startActivity(intent);
-            }
-        });
-
-
-       btnOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), OptionActivity.class);
-                startActivity(intent);
-            }
-        });
+        //btnAddNews = findViewById(R.id.btAddNews);
+        //tvQrResult = findViewById(R.id.tvQrResult);
+        //btnOptions = findViewById(R.id.btnOptions);
 
 
 
 
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+
+        /*ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        }
+        if (actionbar != null) {
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        }*/
+
+
+
+        /*mDrawerLayout = findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        if (navigationView != null) {
+
+            navigationView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                            // set item as selected to persist highlight
+                            menuItem.setChecked(true);
+
+                            // close drawer when item is tapped
+                            mDrawerLayout.closeDrawers();
+
+                            // Add code here to update the UI based on the item selected
+                            // For example, swap UI fragments here
+                            int id = menuItem.getItemId();
+
+                            if (id == android.R.id.home) {
+                                mDrawerLayout.openDrawer(GravityCompat.START);
+                                return true;
+                            }
+
+                            if (id == R.id.nav_scanQR) {
+                                //Log.i("test", "navscan");
+                                Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+                                startActivity(intent);
+                                return true;
+                            }
+
+                            return true;
+                        }
+                    });
+        }
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_graph:
+                                Intent intentGraph = new Intent(MainActivity.this, GraphActivity.class);
+                                startActivity(intentGraph);
+                                return true;
+
+                            case R.id.action_news:
+                                Intent intentNews = new Intent(MainActivity.this, NewsActivity.class);
+                                startActivity(intentNews);
+                                return true;
+                        }
+                        return true;
+                    }
+                });*/
+
+    }
+
+
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.overflow_menu, menu);
+        return true;
     }
 
     @Override
-    public void setTitle(int titleId) {
-        super.setTitle(titleId);
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.nav_scanQR:
+                //Log.i("test", "test_scan");
+                Intent intentScanQR = new Intent(MainActivity.this, ScanActivity.class);
+                startActivity(intentScanQR);
+                return true;
+            case R.id.nav_connect_quilt:
+                Toast.makeText(getApplicationContext(), "Smart Quilt not available", Toast.LENGTH_LONG).show();
+                //Log.i("test_toast", "test_toast");
+                return true;
+            case R.id.nav_customise:
+                Intent intentCustomise = new Intent(MainActivity.this, CustomiseQuiltActivity.class);
+                startActivity(intentCustomise);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
+
+
 
 }
 

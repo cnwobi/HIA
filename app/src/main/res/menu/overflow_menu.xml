@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.MainActivity">-->
+        <item
+            android:id="@+id/nav_scanQR"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/scan_qr_code" />
+        <item
+            android:id="@+id/nav_connect_quilt"
+            android:icon="@android:drawable/stat_sys_data_bluetooth"
+            android:title="@string/connect_quilt" />
+        <!--to remove, just for testing customisation-->
+        <item
+            android:id="@+id/nav_customise"
+            android:icon="@android:drawable/stat_sys_data_bluetooth"
+            android:title="@string/customise_title" />
+</menu>
