@@ -9,7 +9,7 @@ public class FireBaseUtil {
 
 
 
-    private static FireBaseUtil instance= null;
+
     public static FireBaseUtil getInstance(){
         if (instance==null){
             instance = new FireBaseUtil();
@@ -18,9 +18,12 @@ public class FireBaseUtil {
 
         return instance;
     }
+
+
 public static void openFirebaseReference(String ref){
     mDatabaseReference = mFirebaseDatabase.getReference().child(ref);
 }
+    private static FireBaseUtil instance= null;
     private FireBaseUtil() {
     }
 

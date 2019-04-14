@@ -11,36 +11,31 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.com.hwool.hermitageintelligenceagency.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import com.com.hwool.hermitageintelligenceagency.R;
-import com.com.hwool.models.Quilt;
 
+
+import au.com.hermitagewool.models.Quilt;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    //private DrawerLayout mDrawerLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+/*
 
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference().child("metr");
-        mDatabaseReference.setValue("news");
+        mDatabaseReference.push().setValue("news");
         mDatabaseReference = mFirebaseDatabase.getReference().child("Quilts");
-        Quilt quilt = new Quilt("Fantastis","Purple","12","32","This is a fantastic quilt");
+        Quilt quilt = new Quilt("Fantastis", "Purple", "12", "32", "This is a fantastic quilt");
         mDatabaseReference.push().setValue(quilt);
-
-        //setTitle(R.string.main_title);
-
-        //btnAddNews = findViewById(R.id.btAddNews);
-        //tvQrResult = findViewById(R.id.tvQrResult);
-        //btnOptions = findViewById(R.id.btnOptions);
+*/
 
 
 
@@ -48,88 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
-        /*ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            actionbar.setDisplayHomeAsUpEnabled(true);
-        }
-        if (actionbar != null) {
-            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
-        }*/
-
-
-
-        /*mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
-        if (navigationView != null) {
-
-            navigationView.setNavigationItemSelectedListener(
-                    new NavigationView.OnNavigationItemSelectedListener() {
-                        @Override
-                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                            // set item as selected to persist highlight
-                            menuItem.setChecked(true);
-
-                            // close drawer when item is tapped
-                            mDrawerLayout.closeDrawers();
-
-                            // Add code here to update the UI based on the item selected
-                            // For example, swap UI fragments here
-                            int id = menuItem.getItemId();
-
-                            if (id == android.R.id.home) {
-                                mDrawerLayout.openDrawer(GravityCompat.START);
-                                return true;
-                            }
-
-                            if (id == R.id.nav_scanQR) {
-                                //Log.i("test", "navscan");
-                                Intent intent = new Intent(MainActivity.this, ScanActivity.class);
-                                startActivity(intent);
-                                return true;
-                            }
-
-                            return true;
-                        }
-                    });
-        }
-
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bottom);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.action_graph:
-                                Intent intentGraph = new Intent(MainActivity.this, GraphActivity.class);
-                                startActivity(intentGraph);
-                                return true;
-
-                            case R.id.action_news:
-                                Intent intentNews = new Intent(MainActivity.this, NewsActivity.class);
-                                startActivity(intentNews);
-                                return true;
-                        }
-                        return true;
-                    }
-                });*/
-
     }
-
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -142,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.nav_scanQR:
-                //Log.i("test", "test_scan");
+
                 Intent intentScanQR = new Intent(MainActivity.this, ScanActivity.class);
                 startActivity(intentScanQR);
                 return true;

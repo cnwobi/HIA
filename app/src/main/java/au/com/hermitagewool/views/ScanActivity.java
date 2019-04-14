@@ -1,6 +1,7 @@
 package au.com.hermitagewool.views;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -56,9 +57,12 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         In the future, check with the server if the QRCode is valid.
          */
         //CustomiseQuiltActivity.tvQRcodeResult.setText(rawResult.getText());
-        new CustomiseQuiltActivity().setTvQRcodeResult(rawResult.getText());
+        Intent intent = new Intent(this,CustomiseQuiltActivity.class);
+       intent.putExtra("scan",rawResult.getText());
 
-        onBackPressed();
+        startActivity(intent);
+
+        //onBackPressed();
 
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
