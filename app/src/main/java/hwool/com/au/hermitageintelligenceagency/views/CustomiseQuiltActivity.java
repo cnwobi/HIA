@@ -1,13 +1,8 @@
-package hwool.com.au.hermitageintelligenceagency.activities;
+package hwool.com.au.hermitageintelligenceagency.views;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
-import android.support.v7.widget.AppCompatEditText;
-import android.widget.TextView;
 
 import hwool.com.au.hermitageintelligenceagency.R;
 

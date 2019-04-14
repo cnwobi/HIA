@@ -1,4 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency.activities;
+package hwool.com.au.hermitageintelligenceagency.views;
 
 import android.content.Intent;
 import android.os.Bundle;
