@@ -7,7 +7,7 @@ public class FireBaseUtil {
     public static FirebaseDatabase mFirebaseDatabase;
     public static DatabaseReference mDatabaseReference;
 
- /*   public static List<Quilt> mDeals;*/
+
 
     private static FireBaseUtil instance= null;
     public static FireBaseUtil getInstance(){
@@ -15,7 +15,7 @@ public class FireBaseUtil {
             instance = new FireBaseUtil();
             mFirebaseDatabase = FirebaseDatabase.getInstance();
         }
-      /*  mDeals = new ArrayList<>();*/
+
         return instance;
     }
 public static void openFirebaseReference(String ref){
