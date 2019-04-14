@@ -5,6 +5,6 @@
     android:id="@+id/activity_scan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hwool.com.au.hermitageintelligenceagency.activities.ScanActivity">
+    tools:context="com.com.hwool.hermitageintelligenceagency.activities.ScanActivity">
 
 </android.support.constraint.ConstraintLayout>

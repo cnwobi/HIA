@@ -7,12 +7,12 @@
 
     <activity
         android:id="@+id/mainActivity"
-        android:name="hwool.com.au.hermitageintelligenceagency.activities.MainActivity"
+        android:name="com.com.hwool.hermitageintelligenceagency.activities.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <activity
         android:id="@+id/scanActivity"
-        android:name="hwool.com.au.hermitageintelligenceagency.activities.ScanActivity"
+        android:name="com.com.hwool.hermitageintelligenceagency.activities.ScanActivity"
         android:label="activity_scan"
         tools:layout="@layout/activity_scan" />
 </navigation>

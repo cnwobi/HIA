@@ -1,4 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency.models;
+package au.com.hermitagewool.models;
 
 public class News {
     private String id;

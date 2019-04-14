@@ -1,52 +1,45 @@
 {
   "project_info": {
-    "project_number": "94126020261",
-    "firebase_url": "https://hermitage-2f4c6.firebaseio.com",
-    "project_id": "hermitage-2f4c6",
-    "storage_bucket": "hermitage-2f4c6.appspot.com"
+    "project_number": "305297327395",
+    "firebase_url": "https://hermitage-f9fc6.firebaseio.com",
+    "project_id": "hermitage-f9fc6",
+    "storage_bucket": "hermitage-f9fc6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:94126020261:android:138a40af152a83f6",
+        "mobilesdk_app_id": "1:305297327395:android:c5213aa2fcb783c4",
         "android_client_info": {
-          "package_name": "au.com.hwool"
+          "package_name": "au.com.hermitagewool"
         }
       },
       "oauth_client": [
         {
-          "client_id": "94126020261-1782s6gnpcjl2d8dn5qu78o0tbqi7knc.apps.googleusercontent.com",
+          "client_id": "305297327395-locss9pqkf1a80jrfkdqnia337vnv7s2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "au.com.hwool",
+            "package_name": "au.com.hermitagewool",
             "certificate_hash": "0038951a45af8730e71756e908c2258db07e0ca6"
           }
         },
         {
-          "client_id": "94126020261-th9bcdevo7sk7oq0r3o1492o4md37v08.apps.googleusercontent.com",
+          "client_id": "305297327395-7t860a3o9pumbfo95ch1t6jm0ou4aila.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCgpw94BEypODIPxz9MhT6MDpBDcKnHQAA"
+          "current_key": "AIzaSyAsJFrkK32HV2SQ8bZewjfIxiV8SAzqvsk"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "94126020261-th9bcdevo7sk7oq0r3o1492o4md37v08.apps.googleusercontent.com",
+              "client_id": "305297327395-7t860a3o9pumbfo95ch1t6jm0ou4aila.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

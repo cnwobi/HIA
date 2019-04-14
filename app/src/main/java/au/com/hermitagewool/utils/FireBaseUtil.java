@@ -1,4 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency.utils;
+package au.com.hermitagewool.utils;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

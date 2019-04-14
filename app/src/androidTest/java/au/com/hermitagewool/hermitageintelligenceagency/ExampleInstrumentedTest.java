@@ -1,4 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency;
+package com.com.hwool.hermitageintelligenceagency;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency.activities;
+package au.com.hermitagewool.views;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -6,11 +6,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.google.zxing.Result;
 
-import hwool.com.au.hermitageintelligenceagency.R;
+import com.com.hwool.hermitageintelligenceagency.R;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 

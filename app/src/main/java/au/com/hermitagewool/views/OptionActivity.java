@@ -1,4 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency.views;
+package au.com.hermitagewool.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import hwool.com.au.hermitageintelligenceagency.R;
+import com.com.hwool.hermitageintelligenceagency.R;
 
 public class OptionActivity extends AppCompatActivity {
 

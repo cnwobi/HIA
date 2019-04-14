@@ -1,5 +1,4 @@
-package hwool.com.au.hermitageintelligenceagency.models;
-
+package au.com.hermitagewool.models;
 public class Quilt {
     private String id;
     private String name;
