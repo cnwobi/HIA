@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-
+import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
 
 
@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
 
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference().child("metr");
@@ -35,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseReference = mFirebaseDatabase.getReference().child("Quilts");
         Quilt quilt = new Quilt("Fantastis", "Purple", "12", "32", "This is a fantastic quilt");
         mDatabaseReference.push().setValue(quilt);
-*/
+        mDatabaseReference = mFirebaseDatabase.getReference().child("QrCode");
 
-
+        for(int i = 0;i < 200;i++){
+            mDatabaseReference.push().setValue(new QrCode());
+        }
 
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
