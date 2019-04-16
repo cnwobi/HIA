@@ -15,17 +15,17 @@ private String firstName;
 private String lastName;
 private String unitNumber;
 private String streetNumber;
-private String streetAddress;
+private String streetName;
 private String state;
 private String suburbs;
 private Quilt quilt;
 
-    public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetAddress, String state, String suburbs, Quilt quilt) {
+    public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetName, String state, String suburbs, Quilt quilt) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.unitNumber = unitNumber;
         this.streetNumber = streetNumber;
-        this.streetAddress = streetAddress;
+        this.streetName = streetName;
         this.state = state;
         this.suburbs = suburbs;
         this.quilt = quilt;

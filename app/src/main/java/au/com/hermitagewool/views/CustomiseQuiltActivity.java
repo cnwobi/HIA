@@ -1,15 +1,98 @@
 package au.com.hermitagewool.views;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.com.hwool.hermitageintelligenceagency.R;
+import com.google.firebase.database.DatabaseReference;
+
+import au.com.hermitagewool.models.Order;
+import au.com.hermitagewool.models.Quilt;
+import au.com.hermitagewool.utils.FireBaseUtil;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class CustomiseQuiltActivity extends AppCompatActivity {
+    @BindView(R.id.spinner_size)
+    Spinner spinnerSize;
+    @BindView(R.id.spinner_fabric)
+    Spinner spinnerFabric;
+    @BindView(R.id.spinner_filling)
+    Spinner spinnerFilling;
+    @BindView(R.id.btn_submit)
+    Button btnSubmit;
+    Quilt quilt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customise_quilt);
+        ButterKnife.bind(this);
+        spinnerInflate(spinnerSize, R.array.size);
+        spinnerInflate(spinnerFabric, R.array.fabric);
+        spinnerInflate(spinnerFilling, R.array.filling);
+        final Order order = new Order();
+        order.setFirstName(returnStringFromIntent("firstName"));
+        order.setLastName(returnStringFromIntent("lastName"));
+        order.setUnitNumber(returnStringFromIntent("unitNumber"));
+        order.setStreetNumber(returnStringFromIntent("streetNumber"));
+        order.setStreetName(returnStringFromIntent("streetName"));
+        order.setSuburbs(returnStringFromIntent("suburb"));
+        order.setState(returnStringFromIntent("state"));
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isValidSelection(spinnerSize) && isValidSelection(spinnerFabric) && isValidSelection(spinnerFilling)) {
+                    quilt = new Quilt();
+                    quilt.setSize(spinnerSize.getSelectedItem().toString());
+                    quilt.setFabric(spinnerFabric.getSelectedItem().toString());
+                    quilt.setFilling(spinnerFilling.getSelectedItem().toString());
+                    order.setQuilt(quilt);
+                    DatabaseReference databaseReference = FireBaseUtil.openFirebaseReference("Orders");
+                    databaseReference.push().setValue(order);
+                    Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(CustomiseQuiltActivity.this,MainActivity.class);
+                    CustomiseQuiltActivity.this.startActivity(intent);
+
+                    return;
+                }
+                Toast.makeText(CustomiseQuiltActivity.this, "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+
+    public boolean isValidSelection(Spinner spinner) {
+        String selectedOption = (String) spinner.getSelectedItem();
+
+        if (selectedOption.equalsIgnoreCase("Select Size") | selectedOption.equalsIgnoreCase("Select Fabric")
+                | selectedOption.equalsIgnoreCase("Select Filling")) {
+            TextView errorText = (TextView) spinner.getSelectedView();
+            errorText.setError("Please select an option");
+            errorText.setTextColor(Color.RED);
+            return false;
+        }
+        return true;
+    }
+
+
+    private void spinnerInflate(Spinner spinner, int stringArray) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(stringArray));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+    }
+
+    private String returnStringFromIntent(String key) {
+        return getIntent().getStringExtra(key);
     }
 }
