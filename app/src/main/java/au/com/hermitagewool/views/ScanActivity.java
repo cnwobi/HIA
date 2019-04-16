@@ -4,13 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -68,12 +65,12 @@ private String keyQrCode;
         //MainActivity.tvQrResult.setText(rawResult.getText());
 
         /*
-        Currently just send the result and print it to CustomiseQuiltActivity
+        Currently just send the result and print it to AddressDetailsActivity
         In the future, check with the server if the QRCode is valid.
          */
         keyQrCode =  rawResult.getText();
 
-        //CustomiseQuiltActivity.tvQRcodeResult.setText(rawResult.getText());
+        //AddressDetailsActivity.tvQRcodeResult.setText(rawResult.getText());
         DatabaseReference databaseReference =  FireBaseUtil.openFirebaseReference("QrCode");
 
       databaseReference.addValueEventListener(new ValueEventListener() {
@@ -88,7 +85,7 @@ private String keyQrCode;
           }
       });
 
-            Intent intent = new Intent(this, CustomiseQuiltActivity.class);
+            Intent intent = new Intent(this, AddressDetailsActivity.class);
             intent.putExtra("scanResult", rawResult.getText());
 
             startActivity(intent);

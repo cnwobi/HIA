@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
+import au.com.hermitagewool.models.Order;
 import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
 
@@ -31,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference().child("metr");
         mDatabaseReference.push().setValue("news");
-        mDatabaseReference = mFirebaseDatabase.getReference().child("Quilts");
+        mDatabaseReference = mFirebaseDatabase.getReference().child("Orders");
         Quilt quilt = new Quilt("Fantastis", "Purple", "12", "32", "This is a fantastic quilt");
-        mDatabaseReference.push().setValue(quilt);
+        Order order = new Order("Chuka","Nwobi","9","16","Pascoe Street","VIC","Pascoe Vale",quilt);
+
+        mDatabaseReference.push().setValue(order);
         mDatabaseReference = mFirebaseDatabase.getReference().child("QrCode");
         for(int i = 0;i < 2;i++){
             mDatabaseReference.push().setValue(new QrCode());
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 //Log.i("test_toast", "test_toast");
                 return true;
             case R.id.nav_customise:
-                Intent intentCustomise = new Intent(MainActivity.this, CustomiseQuiltActivity.class);
+                Intent intentCustomise = new Intent(MainActivity.this, AddressDetailsActivity.class);
                 startActivity(intentCustomise);
                 return true;
             default:

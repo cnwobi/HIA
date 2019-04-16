@@ -15,7 +15,7 @@ import com.com.hwool.hermitageintelligenceagency.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CustomiseQuiltActivity extends AppCompatActivity {
+public class AddressDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.spinner_states)
     Spinner statesSpinner;
@@ -38,7 +38,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customise);
+        setContentView(R.layout.activity_address_details);
         ButterKnife.bind(this);
         spinnerInflate();
 
@@ -81,8 +81,8 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
                 !validateTextInput(textInputLayoutSuburb)){
               return;
         }
-        Intent MainIntent = new Intent(CustomiseQuiltActivity.this,MainActivity.class);
-        CustomiseQuiltActivity.this.startActivity(MainIntent);
+        Intent MainIntent = new Intent(AddressDetailsActivity.this,MainActivity.class);
+        AddressDetailsActivity.this.startActivity(MainIntent);
     }
 
 }

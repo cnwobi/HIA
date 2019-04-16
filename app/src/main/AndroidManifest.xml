@@ -22,7 +22,6 @@
             android:name="au.com.hermitagewool.views.MainActivity"
             android:theme="@style/AppTheme">
 
-
         </activity>
         <activity android:name="au.com.hermitagewool.views.ScanActivity" />
         <activity android:name="au.com.hermitagewool.views.NewsActivity"
@@ -32,13 +31,14 @@
             android:parentActivityName="au.com.hermitagewool.views.MainActivity"
             android:theme="@style/AppTheme">
         </activity>
-        <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity">
+        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
