@@ -23,5 +23,17 @@
     <string name="qr_code_result">QRcode result</string>
     <string name="send_button">Send</string>
     <string name="please_enter_your_details">Please Enter your Details</string>
-
+    <string name="order_details">Please Enter Details to Order</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="unit_number">Unit Number</string>
+    <string name="suburb">Suburb</string>
+    <string-array name="states">
+        <item>Victoria</item>
+        <item>New South Wale</item>
+        <item>Queensland</item>
+        <item>Tasmania</item>
+        <item>Western Australia</item>
+        <item>South Australia</item>
+    </string-array>
 </resources>
