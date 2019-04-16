@@ -7,38 +7,38 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_custom"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_custom_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity">
+
+
+        </activity>
+
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
 
         <activity
             android:name="au.com.hermitagewool.views.MainActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
-        <activity android:name="au.com.hermitagewool.views.ScanActivity" />
-        <activity android:name="au.com.hermitagewool.views.NewsActivity"
             android:theme="@style/AppTheme"></activity>
-
-        <activity android:name="au.com.hermitagewool.views.OptionActivity"
+        <activity android:name="au.com.hermitagewool.views.ScanActivity" />
+        <activity
+            android:name="au.com.hermitagewool.views.NewsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="au.com.hermitagewool.views.OptionActivity"
             android:parentActivityName="au.com.hermitagewool.views.MainActivity"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

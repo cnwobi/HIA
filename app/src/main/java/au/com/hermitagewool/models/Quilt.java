@@ -1,44 +1,26 @@
 package au.com.hermitagewool.models;
-public class Quilt {
-    private String id;
-    private String name;
-    private String color;
 
-    private String description;
+import java.io.Serializable;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    private String getId(){
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
+@Getter
+@Setter
+@NoArgsConstructor
+public class Quilt implements Serializable {
+ private String id;
+    private String fabric;
+    private String filling;
+    private String GSM;
+    private String size;
 
 
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Quilt(String name, String color, String width, String height, String description) {
-        this.name = name;
-        this.color = color;
-        this.description = description;
+    public Quilt(String fabric, String filling, String width, String height, String GSM) {
+        this.fabric = fabric;
+        this.filling = filling;
+        this.GSM = GSM;
     }
 }

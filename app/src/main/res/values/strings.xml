@@ -18,7 +18,7 @@
     <string name="customise_title">Customise your quilt</string>
 
     <string name="address_hint">Address</string>
-    <string name="city_hint">City</string>
+
     <string name="postcode_hint">Postcode</string>
     <string name="qr_code_result">QRcode result</string>
     <string name="send_button">Send</string>
@@ -29,6 +29,7 @@
     <string name="unit_number">Unit Number</string>
     <string name="suburb">Suburb</string>
     <string-array name="states">
+        <item>Select State</item>
         <item>Victoria</item>
         <item>New South Wale</item>
         <item>Queensland</item>
@@ -36,4 +37,13 @@
         <item>Western Australia</item>
         <item>South Australia</item>
     </string-array>
+
+    <string-array name="size">
+        <item>King - 220*240</item>
+        <item>Queen - 200*230</item>
+        <item>Double - 180*210</item>
+        <item>Single - 150*210</item>
+    </string-array>
+
+
 </resources>
