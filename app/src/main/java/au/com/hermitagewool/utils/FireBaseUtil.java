@@ -7,23 +7,24 @@ public class FireBaseUtil {
     public static FirebaseDatabase mFirebaseDatabase;
     public static DatabaseReference mDatabaseReference;
 
+    private static FireBaseUtil instance= null;
 
 
+    public static FirebaseDatabase getInstance(){
+        if (mFirebaseDatabase==null){
 
-    public static FireBaseUtil getInstance(){
-        if (instance==null){
-            instance = new FireBaseUtil();
             mFirebaseDatabase = FirebaseDatabase.getInstance();
         }
 
-        return instance;
+        return mFirebaseDatabase;
     }
 
 
-public static void openFirebaseReference(String ref){
-    mDatabaseReference = mFirebaseDatabase.getReference().child(ref);
+public static DatabaseReference openFirebaseReference(String ref){
+    mDatabaseReference = getInstance().getReference().child(ref);
+    return mDatabaseReference;
 }
-    private static FireBaseUtil instance= null;
+
     private FireBaseUtil() {
     }
 

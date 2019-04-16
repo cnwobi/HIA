@@ -28,18 +28,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     /*   FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference().child("metr");
         mDatabaseReference.push().setValue("news");
         mDatabaseReference = mFirebaseDatabase.getReference().child("Quilts");
         Quilt quilt = new Quilt("Fantastis", "Purple", "12", "32", "This is a fantastic quilt");
         mDatabaseReference.push().setValue(quilt);
         mDatabaseReference = mFirebaseDatabase.getReference().child("QrCode");
-
-        for(int i = 0;i < 200;i++){
+        for(int i = 0;i < 2;i++){
             mDatabaseReference.push().setValue(new QrCode());
         }
-*/
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);

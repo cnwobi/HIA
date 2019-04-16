@@ -4,6 +4,7 @@ package au.com.hermitagewool.models;
 
 
 public class QrCode {
+    private static final String TAG = "QrCode";
     private String id;
     private boolean used;
 
@@ -21,5 +22,13 @@ public class QrCode {
 
     public void setUsed(boolean used) {
         this.used = used;
+    }
+
+    @Override
+    public String toString() {
+        return "QrCode{" +
+                "id='" + id + '\'' +
+                ", used=" + used +
+                '}';
     }
 }

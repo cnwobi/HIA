@@ -3,21 +3,36 @@ package au.com.hermitagewool.views;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
 import com.com.hwool.hermitageintelligenceagency.R;
+
+import au.com.hermitagewool.models.QrCode;
+import au.com.hermitagewool.utils.FireBaseUtil;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+    private ChildEventListener childEventListener;
+    private QrCode qrCode;
 
+private String keyQrCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +60,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
 
     @Override
-    public void handleResult(Result rawResult) {
+    public void handleResult(final Result rawResult) {
         // Do something with the result here
         // Log.v("tag", rawResult.getText()); // Prints scan results
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
@@ -56,12 +71,45 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         Currently just send the result and print it to CustomiseQuiltActivity
         In the future, check with the server if the QRCode is valid.
          */
+        keyQrCode =  rawResult.getText();
+
         //CustomiseQuiltActivity.tvQRcodeResult.setText(rawResult.getText());
-        Intent intent = new Intent(this,CustomiseQuiltActivity.class);
-       intent.putExtra("scan",rawResult.getText());
+        DatabaseReference databaseReference =  FireBaseUtil.openFirebaseReference("QrCode");
 
-        startActivity(intent);
+      databaseReference.addValueEventListener(new ValueEventListener() {
+          @Override
+          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            showData(dataSnapshot);
+          }
 
+          @Override
+          public void onCancelled(@NonNull DatabaseError databaseError) {
+
+          }
+      });
+
+            Intent intent = new Intent(this, CustomiseQuiltActivity.class);
+            intent.putExtra("scanResult", rawResult.getText());
+
+            startActivity(intent);
+
+
+        }
+
+        public  void showData(DataSnapshot dataSnapshot){
+        for(DataSnapshot ds: dataSnapshot.getChildren()){
+            /*qrCode = new QrCode();
+            qrCode= ds.getValue(QrCode.class);
+            qrCode.toString();
+           ds.toString();*/
+
+            String dsKey = ds.getKey();
+
+            if(ds.getKey().equalsIgnoreCase(keyQrCode)){
+               keyQrCode.toString();
+            }
+
+        }
         //onBackPressed();
 
         // If you would like to resume scanning, call this method below:
