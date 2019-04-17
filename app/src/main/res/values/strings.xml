@@ -29,6 +29,11 @@
     <string name="unit_number">Unit Number</string>
     <string name="suburb">Suburb</string>
     <string name="submit">Submit</string>
+    <string name="street_number">Street Number</string>
+    <string name="street_name">Street Name</string>
+    <string name="next_button">Next</string>
+    <string name="state">state</string>
+
     <string-array name="states">
         <item>Select State</item>
         <item>Victoria</item>
@@ -49,14 +54,14 @@
 
 <string-array name="fabric">
     <item>Select Fabric</item>
-    <item>Egyptioan Cotton</item>
+    <item>Egyptian Cotton</item>
     <item>Cuprammonium Rayon</item>
 </string-array>
 
     <string-array name="filling">
         <item>Select Filling</item>
         <item>Downs Wool</item>
-        <item>Alapca Fleece</item>
+        <item>Alpaca Fleece</item>
         <item>70% Downs + 30% Merino</item>
     </string-array>
 </resources>
