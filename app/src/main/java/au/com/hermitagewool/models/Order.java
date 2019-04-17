@@ -11,14 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Order implements Serializable {
     private static final String TAG = "Order";
-private String firstName;
-private String lastName;
-private String unitNumber;
-private String streetNumber;
-private String streetName;
-private String state;
-private String suburbs;
-private Quilt quilt;
+    private String firstName;
+    private String lastName;
+    private String unitNumber;
+    private String streetNumber;
+    private String streetName;
+    private String state;
+    private String suburbs;
+    private Quilt quilt;
 
     public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetName, String state, String suburbs, Quilt quilt) {
         this.firstName = firstName;

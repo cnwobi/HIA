@@ -3,6 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    tools:context="com.com.hwool.hermitageintelligenceagency.activities.NewsActivity">
+    tools:context="au.com.hermitagewool.views.NewsActivity">
 
 </android.support.constraint.ConstraintLayout>
