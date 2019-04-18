@@ -32,7 +32,7 @@
     <string name="street_number">Street Number</string>
     <string name="street_name">Street Name</string>
     <string name="next_button">Next</string>
-    <string name="state">state</string>
+    <string name="state">State</string>
 
     <string-array name="states">
         <item>Select State</item>
