@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.com.hwool.hermitageintelligenceagency.R;
 
+import au.com.hermitagewool.models.QrCode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,6 +39,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
     TextInputLayout textInputLayoutSuburb;
 
     String selectedOption;
+    String barcode;
 
 
     @Override
@@ -47,10 +49,14 @@ public class AddressDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         spinnerInflate();
 
+
+
+
         btnNextCustomise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                confirmInput();
+
 
             }
         });
@@ -122,7 +128,8 @@ public class AddressDetailsActivity extends AppCompatActivity {
        mainIntent.putExtra("streetName",returnTextInput(textInputLayoutStreetName));
        mainIntent.putExtra("suburb",returnTextInput(textInputLayoutSuburb));
        mainIntent.putExtra("state",selectedOption);
-
+        QrCode qrCode = getIntent().getParcelableExtra("qr code");
+        mainIntent.putExtra("qr code", qrCode);
 
         AddressDetailsActivity.this.startActivity(mainIntent);
     }

@@ -12,13 +12,7 @@ import android.widget.Toast;
 
 
 import com.com.hwool.hermitageintelligenceagency.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-
-import au.com.hermitagewool.models.Order;
-import au.com.hermitagewool.models.QrCode;
-import au.com.hermitagewool.models.Quilt;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,20 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference().child("metr");
-        mDatabaseReference.push().setValue("news");
-        mDatabaseReference = mFirebaseDatabase.getReference().child("Orders");
-        Quilt quilt = new Quilt("Fantastis", "Purple", "12", "32", "This is a fantastic quilt");
-        Order order = new Order("Chuka","Nwobi","9","16","Pascoe Street","VIC","Pascoe Vale",quilt);
-
-        mDatabaseReference.push().setValue(order);
-        mDatabaseReference = mFirebaseDatabase.getReference().child("QrCode");
-        for(int i = 0;i < 2;i++){
-            mDatabaseReference.push().setValue(new QrCode());
-        }
-
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 

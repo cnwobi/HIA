@@ -1,0 +1,53 @@
+package au.com.hermitagewool.repository;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import au.com.hermitagewool.models.QrCode;
+import au.com.hermitagewool.views.AddressDetailsActivity;
+import au.com.hermitagewool.views.ScanActivity;
+
+public class QrCodeRepositoryImpl implements QrCodeRepository {
+    private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
+    @Override
+    public QrCode findQrCode(final String key) {
+        final List<QrCode>  qrCodes = new ArrayList<>();
+        qrCodeReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    if (ds.getKey().equalsIgnoreCase(key)){
+                      QrCode qrCode = ds.getValue(QrCode.class);
+                      qrCode.setId(key);
+                      qrCodes.add(qrCode);
+                      return;
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return (qrCodes.isEmpty()) ? null : qrCodes.get(0);
+    }
+
+
+    @Override
+    public QrCode updateQrCode(QrCode qrCode) {
+      return null;
+    }
+
+
+}

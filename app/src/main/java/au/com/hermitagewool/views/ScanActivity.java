@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +20,9 @@ import com.google.zxing.Result;
 import com.com.hwool.hermitageintelligenceagency.R;
 
 import au.com.hermitagewool.models.QrCode;
-import au.com.hermitagewool.utils.FireBaseUtil;
+import au.com.hermitagewool.repository.FirebaseHelper;
+import au.com.hermitagewool.repository.QrCodeRepository;
+import au.com.hermitagewool.repository.QrCodeRepositoryImpl;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -28,8 +31,9 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     private ChildEventListener childEventListener;
     private QrCode qrCode;
-
-private String keyQrCode;
+    private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
+    private QrCodeRepository qrCodeRepository;
+private String key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,7 @@ private String keyQrCode;
         requestPermission();
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
+        qrCodeRepository = new QrCodeRepositoryImpl();
     }
 
 
@@ -68,50 +73,45 @@ private String keyQrCode;
         Currently just send the result and print it to AddressDetailsActivity
         In the future, check with the server if the QRCode is valid.
          */
-        keyQrCode =  rawResult.getText();
+        key =  rawResult.getText();
 
-        //AddressDetailsActivity.tvQRcodeResult.setText(rawResult.getText());
-        DatabaseReference databaseReference =  FireBaseUtil.openFirebaseReference("QrCode");
-
-      databaseReference.addValueEventListener(new ValueEventListener() {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            showData(dataSnapshot);
-          }
-
-          @Override
-          public void onCancelled(@NonNull DatabaseError databaseError) {
-
-          }
-      });
-
-            Intent intent = new Intent(this, AddressDetailsActivity.class);
-            intent.putExtra("scanResult", rawResult.getText());
-
-            startActivity(intent);
-
-
-        }
-
-        public  void showData(DataSnapshot dataSnapshot){
+qrCodeReference.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        QrCode qrCode = null;
         for(DataSnapshot ds: dataSnapshot.getChildren()){
-            /*qrCode = new QrCode();
-            qrCode= ds.getValue(QrCode.class);
-            qrCode.toString();
-           ds.toString();*/
-
-            String dsKey = ds.getKey();
-
-            if(ds.getKey().equalsIgnoreCase(keyQrCode)){
-               keyQrCode.toString();
+            if (ds.getKey().equalsIgnoreCase(key)){
+                qrCode = ds.getValue(QrCode.class);
+                qrCode.setId(key);
+                 break;
             }
+        }
+         if(qrCode!=null) {
+             Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
+             intent.putExtra("qr code",qrCode);
+         }
+         else {
+             Toast.makeText(getApplicationContext(),"Invalid QrCOde",Toast.LENGTH_LONG).show();
+             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+             startActivity(intent);
+         }
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+});
+
 
         }
+
+
         //onBackPressed();
 
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
