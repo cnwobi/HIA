@@ -33,6 +33,7 @@
     <string name="street_name">Street Name</string>
     <string name="next_button">Next</string>
     <string name="state">State</string>
+    <string name="postcode">Postcode</string>
 
     <string-array name="states">
         <item>Select State</item>

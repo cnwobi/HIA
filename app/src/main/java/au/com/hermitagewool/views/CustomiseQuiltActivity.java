@@ -15,7 +15,12 @@ import com.com.hwool.hermitageintelligenceagency.R;
 import com.google.firebase.database.DatabaseReference;
 
 import au.com.hermitagewool.models.Order;
+import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
+import au.com.hermitagewool.repository.OrderRepository;
+import au.com.hermitagewool.repository.OrderRepositoryImpl;
+import au.com.hermitagewool.repository.QuiltRepository;
+import au.com.hermitagewool.repository.QuiltRepositoryImpl;
 import au.com.hermitagewool.utils.FireBaseUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +35,8 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     @BindView(R.id.btn_submit)
     Button btnSubmit;
     Quilt quilt;
-
+    OrderRepository orderRepository;
+    QuiltRepository quiltRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,9 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         spinnerInflate(spinnerFabric, R.array.fabric);
         spinnerInflate(spinnerFilling, R.array.filling);
         final Order order = new Order();
+        orderRepository = new OrderRepositoryImpl();
+        quiltRepository = new QuiltRepositoryImpl();
+
         order.setFirstName(returnStringFromIntent("firstName"));
         order.setLastName(returnStringFromIntent("lastName"));
         order.setUnitNumber(returnStringFromIntent("unitNumber"));
@@ -47,6 +56,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         order.setStreetName(returnStringFromIntent("streetName"));
         order.setSuburbs(returnStringFromIntent("suburb"));
         order.setState(returnStringFromIntent("state"));
+        order.setPostcode(returnStringFromIntent("postcode"));
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +66,9 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
                     quilt.setFabric(spinnerFabric.getSelectedItem().toString());
                     quilt.setFilling(spinnerFilling.getSelectedItem().toString());
                     order.setQuilt(quilt);
-                    DatabaseReference databaseReference = FireBaseUtil.openFirebaseReference("Orders");
-                    databaseReference.push().setValue(order);
+                    orderRepository.saveOrder(order);
+                    quiltRepository.saveQuilt(quilt);
+
                     Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(CustomiseQuiltActivity.this,MainActivity.class);
                     CustomiseQuiltActivity.this.startActivity(intent);

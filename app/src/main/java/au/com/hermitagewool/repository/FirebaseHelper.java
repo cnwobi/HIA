@@ -7,6 +7,7 @@ public class FirebaseHelper {
     private DatabaseReference databaseReference;
     private final static String QR_CODE_PATH = "QrCode";
     private final static String ORDER_PATH= "orders";
+    private final static String QUILT_PATH="quilt";
     private static FirebaseHelper instance;
 
     private FirebaseHelper() {
@@ -24,5 +25,8 @@ public class FirebaseHelper {
     }
     public static DatabaseReference getOrderReference(){
         return FirebaseDatabase.getInstance().getReference().child(ORDER_PATH);
+    }
+    public static DatabaseReference getQuiltReference(){
+        return FirebaseDatabase.getInstance().getReference().child(QUILT_PATH);
     }
 }

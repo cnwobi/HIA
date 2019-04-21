@@ -66,6 +66,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
         ArrayAdapter<String> statesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.states));
         statesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statesSpinner.setAdapter(statesAdapter);
+        statesSpinner.setPrompt("Select your state");
         statesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -125,6 +126,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
        mainIntent.putExtra("streetNumber",returnTextInput(textInputLayoutStreetNumber));
        mainIntent.putExtra("streetName",returnTextInput(textInputLayoutStreetName));
        mainIntent.putExtra("suburb",returnTextInput(textInputLayoutSuburb));
+       mainIntent.putExtra("postcode",returnTextInput(textInputLayoutPostcode));
        mainIntent.putExtra("state",selectedOption);
         QrCode qrCode = getIntent().getParcelableExtra("qr code");
         mainIntent.putExtra("qr code", qrCode);
