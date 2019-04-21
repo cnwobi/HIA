@@ -29,8 +29,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
-    private ChildEventListener childEventListener;
-    private QrCode qrCode;
+
     private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
     private QrCodeRepository qrCodeRepository;
 private String key;

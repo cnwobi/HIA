@@ -39,6 +39,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
     TextInputLayout textInputLayoutSuburb;
     @BindView(R.id.text_input_postcode)
     TextInputLayout textInputLayoutPostcode;
+
     String selectedOption;
 
 
@@ -56,7 +57,10 @@ public class AddressDetailsActivity extends AppCompatActivity {
         btnNextCustomise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               confirmInput();}
+     confirmInput();
+
+            }
+
         });
 
 
@@ -81,45 +85,48 @@ public class AddressDetailsActivity extends AppCompatActivity {
     }
 
 
-    private boolean isValidTextInput(TextInputLayout textInputLayout){
+    private boolean isValidTextInput(TextInputLayout textInputLayout) {
         String input =textInputLayout.getEditText().getText().toString().trim();
-        if(input.isEmpty()){
+        if (input.isEmpty()) {
             textInputLayout.setError("Field can't be empty");
             return false;
         }
-        if(input.length()>15){
+        if (input.length() > textInputLayout.getCounterMaxLength()) {
             textInputLayout.setError("Input too long");
             return false;
         }
-       textInputLayout.setError(null);
-       textInputLayout.setErrorEnabled(false);
+        textInputLayout.setError(null);
+        textInputLayout.setErrorEnabled(false);
         return true;
     }
 
-    public boolean isValidSelection(){
-       selectedOption =  (String) statesSpinner.getSelectedItem();
+    public boolean isValidSelection() {
+        selectedOption =  (String) statesSpinner.getSelectedItem();
 
-       if (selectedOption.equalsIgnoreCase("Select State")){
-       TextView errorText = (TextView)statesSpinner.getSelectedView();
-       errorText.setError("Please select a state");
-       errorText.setTextColor(Color.RED);
-       return false;
-       }
-       return true;
+        if (selectedOption.equalsIgnoreCase("Select State")) {
+            TextView errorText = (TextView)statesSpinner.getSelectedView();
+            errorText.setError("Please select a state");
+            errorText.setTextColor(Color.RED);
+            return false;
+        }
+        return true;
     }
 
-    public String returnTextInput(TextInputLayout textInputLayout){
+    public String returnTextInput(TextInputLayout textInputLayout) {
         return textInputLayout.getEditText().getText().toString().trim();
     }
+
 
     public void confirmInput (){
         if(!isValidTextInput(textInputLayoutFirstName)|!isValidTextInput(textInputLayoutLastName)
                 |!isValidTextInput(textInputLayoutStreetName)|
                 !isValidTextInput(textInputLayoutStreetNumber)|
-                !isValidTextInput(textInputLayoutSuburb) |isValidTextInput(textInputLayoutPostcode)| !isValidSelection()){
-              return;
+                !isValidTextInput(textInputLayoutSuburb) |isValidTextInput(textInputLayoutPostcode)| !isValidSelection()) {
+            return;
         }
+
         Intent mainIntent = new Intent(AddressDetailsActivity.this,CustomiseQuiltActivity.class);
+
        mainIntent.putExtra("firstName",returnTextInput(textInputLayoutFirstName));
        mainIntent.putExtra("lastName",returnTextInput(textInputLayoutLastName));
        mainIntent.putExtra("unitNumber",returnTextInput(unitNumber));
