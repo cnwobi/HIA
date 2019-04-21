@@ -37,9 +37,8 @@ public class AddressDetailsActivity extends AppCompatActivity {
     TextInputLayout textInputLayoutStreetName;
     @BindView(R.id.text_input_suburb)
     TextInputLayout textInputLayoutSuburb;
-
     String selectedOption;
-    String barcode;
+
 
 
     @Override
@@ -55,10 +54,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
         btnNextCustomise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               confirmInput();
-
-
-            }
+               confirmInput();}
         });
 
 

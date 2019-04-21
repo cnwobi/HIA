@@ -25,11 +25,7 @@
         <activity
             android:name="au.com.hermitagewool.views.MainActivity"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name="au.com.hermitagewool.views.ScanActivity" />
@@ -41,7 +37,11 @@
             android:parentActivityName="au.com.hermitagewool.views.MainActivity"
             android:theme="@style/AppTheme"></activity>
         <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

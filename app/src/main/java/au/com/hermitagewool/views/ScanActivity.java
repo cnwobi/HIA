@@ -89,6 +89,7 @@ qrCodeReference.addValueEventListener(new ValueEventListener() {
          if(qrCode!=null) {
              Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
              intent.putExtra("qr code",qrCode);
+             startActivity(intent);
          }
          else {
              Toast.makeText(getApplicationContext(),"Invalid QrCOde",Toast.LENGTH_LONG).show();

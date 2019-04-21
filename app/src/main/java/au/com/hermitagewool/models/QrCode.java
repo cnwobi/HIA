@@ -4,6 +4,9 @@ package au.com.hermitagewool.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class QrCode implements Parcelable {
     private static final String TAG = "QrCode";
     private String id;
