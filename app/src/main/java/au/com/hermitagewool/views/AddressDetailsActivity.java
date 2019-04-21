@@ -37,6 +37,8 @@ public class AddressDetailsActivity extends AppCompatActivity {
     TextInputLayout textInputLayoutStreetName;
     @BindView(R.id.text_input_suburb)
     TextInputLayout textInputLayoutSuburb;
+    @BindView(R.id.text_input_postcode)
+    TextInputLayout textInputLayoutPostcode;
     String selectedOption;
 
 
@@ -113,7 +115,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
         if(!isValidTextInput(textInputLayoutFirstName)|!isValidTextInput(textInputLayoutLastName)
                 |!isValidTextInput(textInputLayoutStreetName)|
                 !isValidTextInput(textInputLayoutStreetNumber)|
-                !isValidTextInput(textInputLayoutSuburb) | !isValidSelection()){
+                !isValidTextInput(textInputLayoutSuburb) |isValidTextInput(textInputLayoutPostcode)| !isValidSelection()){
               return;
         }
         Intent mainIntent = new Intent(AddressDetailsActivity.this,CustomiseQuiltActivity.class);
