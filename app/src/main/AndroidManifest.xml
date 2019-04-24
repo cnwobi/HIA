@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.com.hwool.hermitageintelligenceagency">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,8 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity">
-
-
         </activity>
 
         <meta-data
@@ -32,16 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name="au.com.hermitagewool.views.ScanActivity" />
+
         <activity
             android:name="au.com.hermitagewool.views.NewsActivity"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name="au.com.hermitagewool.views.OptionActivity"
-            android:parentActivityName="au.com.hermitagewool.views.MainActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity">
 
+        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity">
         </activity>
     </application>
 
