@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.com.hwool.hermitageintelligenceagency.R;
 
 import au.com.hermitagewool.models.Order;
+import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
 import au.com.hermitagewool.repository.OrderRepository;
 import au.com.hermitagewool.repository.OrderRepositoryImpl;
@@ -46,6 +47,9 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         orderRepository = new OrderRepositoryImpl();
         quiltRepository = new QuiltRepositoryImpl();
 
+        QrCode qrCode = getIntent().getParcelableExtra("qr code");
+        order.setQrcode(qrCode);
+
         order.setFirstName(returnStringFromIntent("firstName"));
         order.setLastName(returnStringFromIntent("lastName"));
         order.setUnitNumber(returnStringFromIntent("unitNumber"));
@@ -54,6 +58,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         order.setSuburbs(returnStringFromIntent("suburb"));
         order.setState(returnStringFromIntent("state"));
         order.setPostcode(returnStringFromIntent("postcode"));
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
