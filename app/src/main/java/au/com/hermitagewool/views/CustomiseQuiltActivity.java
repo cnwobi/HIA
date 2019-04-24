@@ -82,8 +82,10 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     public boolean isValidSelection(Spinner spinner) {
         String selectedOption = (String) spinner.getSelectedItem();
 
-        if (selectedOption.equalsIgnoreCase("Select Size") | selectedOption.equalsIgnoreCase("Select Fabric")
-                | selectedOption.equalsIgnoreCase("Select Filling")) {
+        if (selectedOption.equalsIgnoreCase("Select Size")
+                | selectedOption.equalsIgnoreCase("Select Fabric")
+                | selectedOption.equalsIgnoreCase("Select Filling")
+                | selectedOption.equalsIgnoreCase("Select GSM")) {
             TextView errorText = (TextView) spinner.getSelectedView();
             errorText.setError("Please select an option");
             errorText.setTextColor(Color.RED);
