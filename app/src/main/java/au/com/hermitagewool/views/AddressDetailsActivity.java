@@ -115,22 +115,26 @@ public class AddressDetailsActivity extends AppCompatActivity {
         return textInputLayout.getEditText().getText().toString().trim();
     }
 
-    public void confirmInput (){
-        if(!isValidTextInput(textInputLayoutFirstName)|!isValidTextInput(textInputLayoutLastName)
-                |!isValidTextInput(textInputLayoutStreetName)|
-                !isValidTextInput(textInputLayoutStreetNumber)|
-                !isValidTextInput(textInputLayoutSuburb) |isValidTextInput(textInputLayoutPostcode)| !isValidSelection()){
+    public void confirmInput () {
+        if(!isValidTextInput(textInputLayoutFirstName)
+                |!isValidTextInput(textInputLayoutLastName)
+                |!isValidTextInput(textInputLayoutStreetName)
+                |!isValidTextInput(textInputLayoutStreetNumber)
+                |!isValidTextInput(textInputLayoutSuburb)
+                |!isValidTextInput(textInputLayoutPostcode)
+                |!isValidSelection()) {
             return;
         }
+
         Intent mainIntent = new Intent(AddressDetailsActivity.this,CustomiseQuiltActivity.class);
-        mainIntent.putExtra("firstName",returnTextInput(textInputLayoutFirstName));
-        mainIntent.putExtra("lastName",returnTextInput(textInputLayoutLastName));
-        mainIntent.putExtra("unitNumber",returnTextInput(unitNumber));
-        mainIntent.putExtra("streetNumber",returnTextInput(textInputLayoutStreetNumber));
-        mainIntent.putExtra("streetName",returnTextInput(textInputLayoutStreetName));
-        mainIntent.putExtra("suburb",returnTextInput(textInputLayoutSuburb));
-        mainIntent.putExtra("postcode",returnTextInput(textInputLayoutPostcode));
-        mainIntent.putExtra("state",selectedOption);
+        mainIntent.putExtra("firstName", returnTextInput(textInputLayoutFirstName));
+        mainIntent.putExtra("lastName", returnTextInput(textInputLayoutLastName));
+        mainIntent.putExtra("unitNumber", returnTextInput(unitNumber));
+        mainIntent.putExtra("streetNumber", returnTextInput(textInputLayoutStreetNumber));
+        mainIntent.putExtra("streetName", returnTextInput(textInputLayoutStreetName));
+        mainIntent.putExtra("suburb", returnTextInput(textInputLayoutSuburb));
+        mainIntent.putExtra("postcode", returnTextInput(textInputLayoutPostcode));
+        mainIntent.putExtra("state", selectedOption);
         QrCode qrCode = getIntent().getParcelableExtra("qr code");
         mainIntent.putExtra("qr code", qrCode);
 
