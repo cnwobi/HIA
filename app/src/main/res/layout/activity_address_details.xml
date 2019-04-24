@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/unit_number"
-                android:inputType="number" />
+                android:inputType="textCapCharacters" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/street_number"
-                android:inputType="number" />
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 

@@ -53,16 +53,22 @@
         <item>Single - 150*210</item>
     </string-array>
 
-<string-array name="fabric">
-    <item>Select Fabric</item>
-    <item>Egyptian Cotton</item>
-    <item>Cuprammonium Rayon</item>
-</string-array>
+    <string-array name="fabric">
+        <item>Select Fabric</item>
+        <item>Egyptian Cotton</item>
+        <item>Cuprammonium Rayon</item>
+    </string-array>
 
     <string-array name="filling">
         <item>Select Filling</item>
         <item>Downs Wool</item>
         <item>Alpaca Fleece</item>
         <item>70% Downs + 30% Merino</item>
+    </string-array>
+
+    <string-array name="gsm">
+        <item>300gsm</item>
+        <item>500gsm</item>
+        <item>600gsm</item>
     </string-array>
 </resources>
