@@ -61,6 +61,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         order.setSuburbs(returnStringFromIntent("suburb"));
         order.setState(returnStringFromIntent("state"));
         order.setPostcode(returnStringFromIntent("postcode"));
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +78,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
                     quiltRepository.saveQuilt(quilt);
 
                     Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(CustomiseQuiltActivity.this,MainActivity.class);
+                    Intent intent = new Intent(CustomiseQuiltActivity.this, MainActivity.class);
                     CustomiseQuiltActivity.this.startActivity(intent);
 
                     return;

@@ -86,7 +86,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
 
 
     private boolean isValidTextInput(TextInputLayout textInputLayout) {
-        String input =textInputLayout.getEditText().getText().toString().trim();
+        String input = textInputLayout.getEditText().getText().toString().trim();
         if (input.isEmpty()) {
             textInputLayout.setError("Field can't be empty");
             return false;
