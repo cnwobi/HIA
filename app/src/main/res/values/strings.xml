@@ -18,6 +18,12 @@
     <string name="next_button">Next</string>
     <string name="postcode">Postcode</string>
 
+    <!--Toast or snackbar-->
+    <string name="invalid_qrcode">Invalid QR-Code</string>
+    <string name="no_smartquilt">Smart Quilt unavailable</string>
+    <string name="graph_fragment">Graph fragment</string>
+    <string name="news_fragment">News fragment</string>
+
     <string-array name="states">
         <item>Select State</item>
         <item>Victoria</item>

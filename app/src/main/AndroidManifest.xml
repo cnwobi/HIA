@@ -12,8 +12,7 @@
         android:roundIcon="@mipmap/ic_custom_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity">
-        </activity>
+
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -32,12 +31,10 @@
 
         <activity android:name="au.com.hermitagewool.views.ScanActivity" />
 
-        <activity
-            android:name="au.com.hermitagewool.views.NewsActivity"
-            android:theme="@style/AppTheme" />
+        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity" />
 
-        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity">
-        </activity>
+        <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity" />
+
     </application>
 
 </manifest>
