@@ -30,19 +30,26 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     Spinner spinnerFabric;
     @BindView(R.id.spinner_filling)
     Spinner spinnerFilling;
+    @BindView(R.id.spinner_gsm)
+    Spinner spinnerGSM;
     @BindView(R.id.btn_submit)
     Button btnSubmit;
+
     Quilt quilt;
     OrderRepository orderRepository;
     QuiltRepository quiltRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customise_quilt);
         ButterKnife.bind(this);
+
         spinnerInflate(spinnerSize, R.array.size);
         spinnerInflate(spinnerFabric, R.array.fabric);
         spinnerInflate(spinnerFilling, R.array.filling);
+        spinnerInflate(spinnerGSM, R.array.gsm);
+
         final Order order = new Order();
         orderRepository = new OrderRepositoryImpl();
         quiltRepository = new QuiltRepositoryImpl();
@@ -62,17 +69,20 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isValidSelection(spinnerSize) && isValidSelection(spinnerFabric) && isValidSelection(spinnerFilling)) {
+                if (isValidSelection(spinnerSize) && isValidSelection(spinnerFabric)
+                        && isValidSelection(spinnerFilling) && isValidSelection(spinnerGSM)) {
                     quilt = new Quilt();
                     quilt.setSize(spinnerSize.getSelectedItem().toString());
                     quilt.setFabric(spinnerFabric.getSelectedItem().toString());
                     quilt.setFilling(spinnerFilling.getSelectedItem().toString());
+                    quilt.setGSM(spinnerGSM.getSelectedItem().toString());
+
                     order.setQuilt(quilt);
                     orderRepository.saveOrder(order);
                     quiltRepository.saveQuilt(quilt);
 
                     Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(CustomiseQuiltActivity.this,MainActivity.class);
+                    Intent intent = new Intent(CustomiseQuiltActivity.this, MainActivity.class);
                     CustomiseQuiltActivity.this.startActivity(intent);
 
                     return;
@@ -87,8 +97,10 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     public boolean isValidSelection(Spinner spinner) {
         String selectedOption = (String) spinner.getSelectedItem();
 
-        if (selectedOption.equalsIgnoreCase("Select Size") | selectedOption.equalsIgnoreCase("Select Fabric")
-                | selectedOption.equalsIgnoreCase("Select Filling")) {
+        if (selectedOption.equalsIgnoreCase("Select Size")
+                | selectedOption.equalsIgnoreCase("Select Fabric")
+                | selectedOption.equalsIgnoreCase("Select Filling")
+                | selectedOption.equalsIgnoreCase("Select GSM")) {
             TextView errorText = (TextView) spinner.getSelectedView();
             errorText.setError("Please select an option");
             errorText.setTextColor(Color.RED);

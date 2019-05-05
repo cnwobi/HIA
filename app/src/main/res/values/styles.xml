@@ -16,35 +16,5 @@
 
     </style>
     <!---->
-    <style name="AppTheme2" parent="Theme.Design.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/primaryTextColor</item>
-        <item name="android:colorSecondary">@color/secondaryColor</item>
-        <item name="android:colorBackground">@color/primaryLightColor</item>
-        <item name="android:navigationBarColor">@android:color/black</item>
-        <item name="android:textColorPrimary">@color/primaryTextColor</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="windowNoTitle">true</item>
-
-
-    </style>
-    <style name="AppTheme3" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:colorPrimary">@android:color/black</item>
-    </style>
-
-    <style name="AppTheme4" parent="ThemeOverlay.AppCompat.Light">
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/primaryTextColor</item>
-        <item name="android:colorSecondary">@color/secondaryColor</item>
-        <item name="android:colorBackground">@color/primaryDarkColor</item>
-        <item name="android:textColorPrimary">@color/primaryTextColor</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
 
 </resources>
