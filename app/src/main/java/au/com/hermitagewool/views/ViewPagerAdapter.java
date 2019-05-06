@@ -26,14 +26,14 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return 2;
     }
 
-    /*@Override
+    @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0: return "Graphic";
             case 1: return "Newsletter";
             default: return null;
         }
-    }*/
+    }
 
 
 }
