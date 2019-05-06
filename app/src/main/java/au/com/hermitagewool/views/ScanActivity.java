@@ -32,7 +32,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
     private QrCodeRepository qrCodeRepository;
-private String key;
+    private String key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,43 +75,43 @@ private String key;
          */
         key =  rawResult.getText();
 
-qrCodeReference.addValueEventListener(new ValueEventListener() {
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        QrCode qrCode = null;
-        for(DataSnapshot ds: dataSnapshot.getChildren()){
-            if (ds.getKey().equalsIgnoreCase(key)){
-                qrCode = ds.getValue(QrCode.class);
-                qrCode.setId(key);
-                 break;
+        qrCodeReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                QrCode qrCode = null;
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    if (ds.getKey().equalsIgnoreCase(key)){
+                        qrCode = ds.getValue(QrCode.class);
+                        qrCode.setId(key);
+                        break;
+                    }
+                }
+                if(qrCode != null) {
+                    Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
+                    intent.putExtra("qr code", qrCode);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Invalid QR-Code", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                }
             }
-        }
-         if(qrCode!=null) {
-             Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
-             intent.putExtra("qr code",qrCode);
-             startActivity(intent);
-         }
-         else {
-             Toast.makeText(getApplicationContext(), "Invalid QR-Code", Toast.LENGTH_LONG).show();
-             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-             startActivity(intent);
-         }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
-    @Override
-    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-    }
-});
+    //onBackPressed();
 
-
-        }
-
-
-        //onBackPressed();
-
-        // If you would like to resume scanning, call this method below:
-        //mScannerView.resumeCameraPreview(this);
+    // If you would like to resume scanning, call this method below:
+    //mScannerView.resumeCameraPreview(this);
 
 
     @Override

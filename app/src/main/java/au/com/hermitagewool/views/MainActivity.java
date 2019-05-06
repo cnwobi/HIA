@@ -33,16 +33,15 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
 
-
-        //GraphFragment graphFragment = GraphFragment.newInstance();
-        //graphFragment.getFragmentManager().beginTransaction().add(R.id.frame_main_graph, graphFragment).commit();
-
-
+        // Tabs
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+
         //setTabs
         //TabItem   tabGraph  = findViewById(R.id.tab_graph);
         //TabItem   tabNews   = findViewById(R.id.tab_news);
+
+
 
 
 

@@ -50,8 +50,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         spinnerInflate(spinnerGSM, R.array.gsm);
 
         final Order order = new Order();
-        orderRepository = new OrderRepositoryImpl();
-        quiltRepository = new QuiltRepositoryImpl();
+
 
         order.setFirstName(returnStringFromIntent("firstName"));
         order.setLastName(returnStringFromIntent("lastName"));
@@ -74,11 +73,14 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
                     quilt.setGSM(spinnerGSM.getSelectedItem().toString());
 
                     order.setQuilt(quilt);
-                    orderRepository.saveOrder(order);
-                    quiltRepository.saveQuilt(quilt);
+                    //orderRepository.saveOrder(order);
+                    //quiltRepository.saveQuilt(quilt);
 
-                    Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(CustomiseQuiltActivity.this, MainActivity.class);
+                    //Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(CustomiseQuiltActivity.this, ConfirmOrderActivity.class);
+                    // push the object to the next activity ?
+                    intent.putExtra("order", order);
+                    //intent.putExtra("quilt", quilt);
                     CustomiseQuiltActivity.this.startActivity(intent);
 
                     return;
@@ -86,7 +88,6 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
                 Toast.makeText(CustomiseQuiltActivity.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
-
 
     }
 

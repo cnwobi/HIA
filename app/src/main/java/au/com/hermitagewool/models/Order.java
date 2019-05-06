@@ -36,7 +36,7 @@ public class Order implements Parcelable {
         postcode = in.readString();
     }
 
-    public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetName, String state, String suburbs, Quilt quilt, String postcode) {
+    public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetName, String state,  String postcode, String suburbs, Quilt quilt) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.unitNumber = unitNumber;
