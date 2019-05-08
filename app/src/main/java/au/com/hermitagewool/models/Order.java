@@ -21,7 +21,7 @@ public class Order implements Parcelable {
     private String streetName;
     private String state;
     private String suburbs;
-
+    private String qrCode;
     private Quilt quilt;
     private String postcode;
 
@@ -34,9 +34,10 @@ public class Order implements Parcelable {
         state = in.readString();
         suburbs = in.readString();
         postcode = in.readString();
+        qrCode = in.readString();
     }
 
-    public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetName, String state,  String postcode, String suburbs, Quilt quilt) {
+    public Order(String firstName, String lastName, String unitNumber, String streetNumber, String streetName, String state,  String postcode, String suburbs, Quilt quilt, String qrCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.unitNumber = unitNumber;
@@ -46,6 +47,7 @@ public class Order implements Parcelable {
         this.suburbs = suburbs;
         this.quilt = quilt;
         this.postcode = postcode;
+        this.qrCode = qrCode;
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
@@ -75,5 +77,6 @@ public class Order implements Parcelable {
         dest.writeString(state);
         dest.writeString(suburbs);
         dest.writeString(postcode);
+        dest.writeString(qrCode);
     }
 }

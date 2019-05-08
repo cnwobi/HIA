@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.com.hwool.hermitageintelligenceagency.R;
 
 import au.com.hermitagewool.models.Order;
+import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
 import au.com.hermitagewool.repository.OrderRepository;
 import au.com.hermitagewool.repository.OrderRepositoryImpl;
@@ -49,43 +50,12 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         spinnerInflate(spinnerFilling, R.array.filling);
         spinnerInflate(spinnerGSM, R.array.gsm);
 
-        final Order order = new Order();
-
-
-        order.setFirstName(returnStringFromIntent("firstName"));
-        order.setLastName(returnStringFromIntent("lastName"));
-        order.setUnitNumber(returnStringFromIntent("unitNumber"));
-        order.setStreetNumber(returnStringFromIntent("streetNumber"));
-        order.setStreetName(returnStringFromIntent("streetName"));
-        order.setSuburbs(returnStringFromIntent("suburb"));
-        order.setState(returnStringFromIntent("state"));
-        order.setPostcode(returnStringFromIntent("postcode"));
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isValidSelection(spinnerSize) && isValidSelection(spinnerFabric)
-                        && isValidSelection(spinnerFilling) && isValidSelection(spinnerGSM)) {
-                    quilt = new Quilt();
-                    quilt.setSize(spinnerSize.getSelectedItem().toString());
-                    quilt.setFabric(spinnerFabric.getSelectedItem().toString());
-                    quilt.setFilling(spinnerFilling.getSelectedItem().toString());
-                    quilt.setGSM(spinnerGSM.getSelectedItem().toString());
+                confirmQuilt();
 
-                    order.setQuilt(quilt);
-                    //orderRepository.saveOrder(order);
-                    //quiltRepository.saveQuilt(quilt);
-
-                    //Toast.makeText(CustomiseQuiltActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(CustomiseQuiltActivity.this, ConfirmOrderActivity.class);
-                    // push the object to the next activity ?
-                    intent.putExtra("order", order);
-                    //intent.putExtra("quilt", quilt);
-                    CustomiseQuiltActivity.this.startActivity(intent);
-
-                    return;
-                }
-                Toast.makeText(CustomiseQuiltActivity.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -116,5 +86,41 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
 
     private String returnStringFromIntent(String key) {
         return getIntent().getStringExtra(key);
+    }
+
+    private void confirmQuilt(){
+        if (!isValidSelection(spinnerSize) || !isValidSelection(spinnerFabric)
+                || !isValidSelection(spinnerFilling) || !isValidSelection(spinnerGSM)) {
+
+            Toast.makeText(CustomiseQuiltActivity.this, "Error", Toast.LENGTH_LONG).show();
+            return;
+        }
+        quilt = new Quilt();
+        quilt.setSize(spinnerSize.getSelectedItem().toString());
+        quilt.setFabric(spinnerFabric.getSelectedItem().toString());
+        quilt.setFilling(spinnerFilling.getSelectedItem().toString());
+        quilt.setGSM(spinnerGSM.getSelectedItem().toString());
+
+        Order order = new Order();
+
+        QrCode qrCode = getIntent().getParcelableExtra("qr code");
+        order.setQrCode(qrCode.getId());
+        order.setFirstName(returnStringFromIntent("firstName"));
+        order.setLastName(returnStringFromIntent("lastName"));
+        order.setUnitNumber(returnStringFromIntent("unitNumber"));
+        order.setStreetNumber(returnStringFromIntent("streetNumber"));
+        order.setStreetName(returnStringFromIntent("streetName"));
+        order.setSuburbs(returnStringFromIntent("suburb"));
+        order.setState(returnStringFromIntent("state"));
+        order.setPostcode(returnStringFromIntent("postcode"));
+        //order.setQuilt(quilt);
+
+        Intent mainIntent = new Intent(CustomiseQuiltActivity.this, ConfirmOrderActivity.class);
+        // push the object to the next activity ?
+        mainIntent.putExtra("quilt", quilt);
+        mainIntent.putExtra("order", order);
+
+        CustomiseQuiltActivity.this.startActivity(mainIntent);
+
     }
 }
