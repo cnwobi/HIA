@@ -54,8 +54,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
 
 
         QrCode qrCode = getIntent().getParcelableExtra("qr code");
-        order.setQrcode(qrCode);
-
+        order.setQrCode(qrCode.getId());
         order.setFirstName(returnStringFromIntent("firstName"));
         order.setLastName(returnStringFromIntent("lastName"));
         order.setUnitNumber(returnStringFromIntent("unitNumber"));
