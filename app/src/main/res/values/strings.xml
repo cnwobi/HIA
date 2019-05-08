@@ -4,19 +4,28 @@
     <string name="scan_qr_code">Scan a QR Code</string>
 
     <string name="connect_quilt">Connect a Smart Quilt</string>
-    <string name="newsletter">Newsletter</string>
-    <string name="graph">Graphic</string>
-    <string name="customise_title">Customise your quilt</string>
 
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="unit_number">Unit Number</string>
-    <string name="suburb">Suburb</string>
-    <string name="submit">Submit</string>
     <string name="street_number">Street Number</string>
     <string name="street_name">Street Name</string>
-    <string name="next_button">Next</string>
+    <string name="suburb">Suburb</string>
     <string name="postcode">Postcode</string>
+    <string name="state">State</string>
+
+    <!-- Tabs -->
+    <string name="newsletter">Newsletter</string>
+    <string name="graph">Graphic</string>
+
+    <!-- Button -->
+    <string name="next_button">Next</string>
+    <string name="submit">Submit</string>
+    <string name="confirm_button">Confirm</string>
+
+    <!-- The title for toolbar -->
+    <string name="customise_title">Customise your quilt</string>
+    <string name="title_confirm">Please confirm your order</string>
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
