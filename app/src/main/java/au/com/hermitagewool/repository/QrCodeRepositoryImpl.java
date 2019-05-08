@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import au.com.hermitagewool.models.QrCode;
 
@@ -22,12 +23,13 @@ public class QrCodeRepositoryImpl implements QrCodeRepository {
         qrCodeReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    if (ds.getKey().equalsIgnoreCase(key)){
-                      QrCode qrCode = ds.getValue(QrCode.class);
-                      qrCode.setId(key);
-                      qrCodes.add(qrCode);
-                      return;
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                    if (Objects.requireNonNull(ds.getKey()).equalsIgnoreCase(key)) {
+                        QrCode qrCode = ds.getValue(QrCode.class);
+                        assert qrCode != null;
+                        qrCode.setId(key);
+                        qrCodes.add(qrCode);
+                        return;
                     }
                 }
 
