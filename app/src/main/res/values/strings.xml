@@ -14,6 +14,11 @@
     <string name="postcode">Postcode</string>
     <string name="state">State</string>
 
+    <string name="fabric_c">Fabric</string>
+    <string name="filling_c">Filling</string>
+    <string name="size_c">Size</string>
+    <string name="gsm_c">GSM</string>
+
     <!-- Tabs -->
     <string name="newsletter">Newsletter</string>
     <string name="graph">Graphic</string>
@@ -25,7 +30,7 @@
 
     <!-- The title for toolbar -->
     <string name="customise_title">Customise your quilt</string>
-    <string name="title_confirm">Please confirm your order</string>
+    <string name="title_confirm">Order Review</string>
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>

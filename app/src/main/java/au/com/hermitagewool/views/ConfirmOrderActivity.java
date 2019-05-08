@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.com.hwool.hermitageintelligenceagency.R;
 
 import au.com.hermitagewool.models.Order;
+import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
 import au.com.hermitagewool.repository.OrderRepository;
 import au.com.hermitagewool.repository.OrderRepositoryImpl;
@@ -37,23 +38,27 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
 
         // retrieve object from the previous activity
-        Bundle bundle = getIntent().getExtras();
-        final Order order = bundle.getParcelable("order");
-        //Quilt quilt = bundle.getParcelable("quilt");
+        //Bundle bundle = getIntent().getExtras();
+        //final Order order = bundle.getParcelable("order");
+        Quilt quilt = getIntent().getParcelableExtra("quilt");
+        final  Order order = getIntent().getParcelableExtra("order");
+        order.setQuilt(quilt);
 
-        textView.append(getString(R.string.first_name)    + ": " + order.getFirstName() + "\n\n");
-        textView.append(getString(R.string.last_name)     + ": " + order.getLastName() + "\n\n");
-        textView.append(getString(R.string.unit_number)   + ": " + order.getUnitNumber() + "\n\n");
-        textView.append(getString(R.string.street_number) + ": " + order.getStreetNumber() + "\n\n");
-        textView.append(getString(R.string.street_name)   + ": " + order.getStreetName() + "\n\n");
-        textView.append(getString(R.string.suburb)        + ": " + order.getSuburbs() + "\n\n");
-        textView.append(getString(R.string.postcode)      + ": " + order.getPostcode() + "\n\n");
+        textView.append("Customer Detail:\n\n");
+        textView.append(getString(R.string.first_name)    + ": " + order.getFirstName() + "\n");
+        textView.append(getString(R.string.last_name)     + ": " + order.getLastName() + "\n");
+        textView.append(getString(R.string.unit_number)   + ": " + order.getUnitNumber() + "\n");
+        textView.append(getString(R.string.street_number) + ": " + order.getStreetNumber() + "\n");
+        textView.append(getString(R.string.street_name)   + ": " + order.getStreetName() + "\n");
+        textView.append(getString(R.string.suburb)        + ": " + order.getSuburbs() + "\n");
+        textView.append(getString(R.string.postcode)      + ": " + order.getPostcode() + "\n");
         textView.append(getString(R.string.state)         + ": " + order.getState() + "\n\n");
         // BUG BUG BUG
-        /*textView.append(quilt.getSize() + "\n");
-        textView.append(quilt.getFabric() + "\n");
-        textView.append(quilt.getFilling() + "\n");
-        textView.append(quilt.getGSM() + "\n");*/
+        textView.append("Selected Quilt:\n\n");
+        textView.append(getString(R.string.size_c)      + ":" + order.getQuilt().getSize() + "\n");
+        textView.append(getString(R.string.fabric_c)    + ":" + order.getQuilt().getFabric() + "\n");
+        textView.append(getString(R.string.filling_c)   + ":" + order.getQuilt().getFilling() + "\n");
+        textView.append(getString(R.string.gsm_c)       + ":" + order.getQuilt().getGSM() + "\n");
 
 
 
@@ -62,8 +67,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 orderRepository.saveOrder(order);
-                //quiltRepository.saveQuilt(quilt);
-
+                quiltRepository.saveQuilt(order.getQuilt());
 
                 Toast.makeText(ConfirmOrderActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ConfirmOrderActivity.this, MainActivity.class);
@@ -74,4 +78,5 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         });
 
     }
+
 }

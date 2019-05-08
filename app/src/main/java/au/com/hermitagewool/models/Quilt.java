@@ -26,6 +26,7 @@ public class Quilt implements Parcelable {
         GSM = in.readString();
     }
 
+    /*
     public static final Creator<Order> CREATOR = new Creator<Order>() {
         @Override
         public Order createFromParcel(Parcel in) {
@@ -35,6 +36,19 @@ public class Quilt implements Parcelable {
         @Override
         public Order[] newArray(int size) {
             return new Order[size];
+        }
+    };
+    */
+
+    public static final Creator<Quilt> CREATOR = new Creator<Quilt>() {
+        @Override
+        public  Quilt createFromParcel(Parcel in) {
+            return new Quilt(in);
+        }
+
+        @Override
+        public Quilt[] newArray(int size) {
+            return new Quilt[size];
         }
     };
 
