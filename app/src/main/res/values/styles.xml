@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="HIATheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="HIATheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="colorPrimary">@color/darkBackgroundColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>

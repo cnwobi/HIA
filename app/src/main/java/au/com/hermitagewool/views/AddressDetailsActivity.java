@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,7 +14,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 import com.com.hwool.hermitageintelligenceagency.R;
+
+import java.util.Objects;
 
 import au.com.hermitagewool.models.QrCode;
 import butterknife.BindView;
@@ -52,6 +56,19 @@ public class AddressDetailsActivity extends AppCompatActivity {
         spinnerInflate();
 
 
+        // add the back arrow to the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_address);
+        setSupportActionBar(toolbar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         btnNextCustomise.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +79,11 @@ public class AddressDetailsActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
+
+
+
+
 
     private void spinnerInflate() {
         ArrayAdapter<String> statesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_states));
@@ -100,6 +119,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+
     public boolean isValidSelection() {
         selectedOption =  (String) statesSpinner.getSelectedItem();
 
@@ -111,6 +131,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
         }
         return true;
     }
+
 
     public String returnTextInput(TextInputLayout textInputLayout) {
         return textInputLayout.getEditText().getText().toString().trim();

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.com.hwool.hermitageintelligenceagency.R;
+
+import java.util.Objects;
 
 import au.com.hermitagewool.models.Order;
 import au.com.hermitagewool.models.QrCode;
@@ -44,6 +47,21 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customise_quilt);
         ButterKnife.bind(this);
+
+        // add the back arrow to the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_customise);
+        setSupportActionBar(toolbar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         spinnerInflate(spinnerSize, R.array.array_size);
         spinnerInflate(spinnerFabric, R.array.array_fabric);

@@ -31,11 +31,14 @@
 
         <activity android:name="au.com.hermitagewool.views.ScanActivity" />
 
-        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity" />
+        <activity android:name="au.com.hermitagewool.views.AddressDetailsActivity"
+            android:parentActivityName="au.com.hermitagewool.views.MainActivity"/>
 
-        <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity" />
+        <activity android:name="au.com.hermitagewool.views.CustomiseQuiltActivity"
+            android:parentActivityName="au.com.hermitagewool.views.AddressDetailsActivity"/>
         
-        <activity android:name="au.com.hermitagewool.views.ConfirmOrderActivity" />
+        <activity android:name="au.com.hermitagewool.views.ConfirmOrderActivity"
+            android:parentActivityName="au.com.hermitagewool.views.CustomiseQuiltActivity"/>
 
     </application>
 

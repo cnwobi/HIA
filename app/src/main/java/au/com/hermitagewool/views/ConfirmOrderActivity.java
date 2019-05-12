@@ -3,12 +3,15 @@ package au.com.hermitagewool.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.com.hwool.hermitageintelligenceagency.R;
+
+import java.util.Objects;
 
 import au.com.hermitagewool.models.Order;
 import au.com.hermitagewool.models.QrCode;
@@ -33,6 +36,21 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
         ButterKnife.bind(this);
+
+        // add the back arrow to the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_confirm);
+        setSupportActionBar(toolbar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         final OrderRepository orderRepository = new OrderRepositoryImpl();
         final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
@@ -73,8 +91,6 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                 Toast.makeText(ConfirmOrderActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ConfirmOrderActivity.this, MainActivity.class);
                 ConfirmOrderActivity.this.startActivity(intent);
-
-                return;
             }
         });
 
