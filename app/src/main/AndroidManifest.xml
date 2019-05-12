@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_custom_circle"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/HIATheme">
 
 
         <meta-data
@@ -20,7 +20,7 @@
 
         <activity
             android:name="au.com.hermitagewool.views.MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/HIATheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

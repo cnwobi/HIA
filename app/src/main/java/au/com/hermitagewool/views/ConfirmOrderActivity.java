@@ -54,12 +54,11 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         textView.append(getString(R.string.postcode)      + ": " + order.getPostcode() + "\n");
         textView.append(getString(R.string.state)         + ": " + order.getState() + "\n\n");
 
-        // BUG BUG BUG
         textView.append("Selected Quilt:\n\n");
-        textView.append(getString(R.string.size_c)      + ":" + order.getQuilt().getSize() + "\n");
-        textView.append(getString(R.string.fabric_c)    + ":" + order.getQuilt().getFabric() + "\n");
-        textView.append(getString(R.string.filling_c)   + ":" + order.getQuilt().getFilling() + "\n");
-        textView.append(getString(R.string.gsm_c)       + ":" + order.getQuilt().getGSM() + "\n");
+        textView.append(getString(R.string.size_c)      + ": " + order.getQuilt().getSize() + "\n");
+        textView.append(getString(R.string.fabric_c)    + ": " + order.getQuilt().getFabric() + "\n");
+        textView.append(getString(R.string.filling_c)   + ": " + order.getQuilt().getFilling() + "\n");
+        textView.append(getString(R.string.gsm_c)       + ": " + order.getQuilt().getGSM() + "\n");
 
 
 

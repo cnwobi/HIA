@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scrollView2"
+    android:id="@+id/scrollView_order"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,7 +21,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Please Enter your details" />
+            app:title="Please Enter your details"
+            app:titleTextColor="@color/goldTitleColor" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -190,10 +191,12 @@
             android:layout_marginTop="128dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/darkBackgroundColor"
             android:text="@string/next_button"
+            android:textColor="@color/goldTextColor"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_input_suburb" />
 

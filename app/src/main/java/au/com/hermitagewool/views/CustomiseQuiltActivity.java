@@ -45,10 +45,10 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customise_quilt);
         ButterKnife.bind(this);
 
-        spinnerInflate(spinnerSize, R.array.size);
-        spinnerInflate(spinnerFabric, R.array.fabric);
-        spinnerInflate(spinnerFilling, R.array.filling);
-        spinnerInflate(spinnerGSM, R.array.gsm);
+        spinnerInflate(spinnerSize, R.array.array_size);
+        spinnerInflate(spinnerFabric, R.array.array_fabric);
+        spinnerInflate(spinnerFilling, R.array.array_filling);
+        spinnerInflate(spinnerGSM, R.array.array_gsm);
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {

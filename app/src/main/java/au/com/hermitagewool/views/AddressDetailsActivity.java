@@ -67,7 +67,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
     }
 
     private void spinnerInflate() {
-        ArrayAdapter<String> statesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.states));
+        ArrayAdapter<String> statesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_states));
         statesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statesSpinner.setAdapter(statesAdapter);
         statesSpinner.setPrompt("Select your state");

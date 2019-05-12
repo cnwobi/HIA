@@ -38,7 +38,7 @@
     <string name="graph_fragment">Graph fragment</string>
     <string name="news_fragment">News fragment</string>
 
-    <string-array name="states">
+    <string-array name="array_states">
         <item>Select State</item>
         <item>Victoria</item>
         <item>New South Wale</item>
@@ -48,7 +48,7 @@
         <item>South Australia</item>
     </string-array>
 
-    <string-array name="size">
+    <string-array name="array_size">
         <item>Select Size</item>
         <item>King - 220*240</item>
         <item>Queen - 200*230</item>
@@ -56,20 +56,20 @@
         <item>Single - 150*210</item>
     </string-array>
 
-    <string-array name="fabric">
+    <string-array name="array_fabric">
         <item>Select Fabric</item>
         <item>Egyptian Cotton</item>
         <item>Cuprammonium Rayon</item>
     </string-array>
 
-    <string-array name="filling">
+    <string-array name="array_filling">
         <item>Select Filling</item>
         <item>Downs Wool</item>
         <item>Alpaca Fleece</item>
         <item>70% Downs + 30% Merino</item>
     </string-array>
 
-    <string-array name="gsm">
+    <string-array name="array_gsm">
         <item>Select GSM</item>
         <item>300gsm</item>
         <item>500gsm</item>

@@ -12,5 +12,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:text="@string/graph_fragment"
-        android:textColor="@color/secondaryColor"/>
+        android:textColor="@color/goldTextColor"/>
 </FrameLayout>

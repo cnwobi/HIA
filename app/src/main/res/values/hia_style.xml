@@ -1,0 +1,34 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="HIATheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/darkBackgroundColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/whiteColor</item>
+        <item name="android:colorSecondary">@color/goldTitleColor</item>
+        <item name="android:colorBackground">@color/primaryLightColor</item>
+        <item name="android:navigationBarColor">@color/goldTextColor</item>
+        <item name="android:textColorPrimary">@color/whiteTextColor</item>
+        <item name="android:tint">@color/goldTitleColor</item>
+        <item name="android:displayOptions">showTitle|showHome|homeAsUp</item>
+        <item name="windowNoTitle">true</item>
+
+
+    </style>
+
+    <style name="ToolbarStyle" parent="HIATheme">
+
+
+    </style>
+
+    <!-- overflow menu -->
+
+
+
+
+
+
+
+
+</resources>
