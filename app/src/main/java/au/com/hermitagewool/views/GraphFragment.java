@@ -9,27 +9,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.com.hwool.hermitageintelligenceagency.R;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GraphFragment extends Fragment {
 
     private static final String TAG = "Tab1Fragment";
     private LineChart lineTemp;
+    private String currentDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,9 +47,15 @@ public class GraphFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
 
         lineTemp = rootView.findViewById(R.id.line_chart);
+        XAxis xAxis = lineTemp.getXAxis();
+        currentDate = DateFormat.getDateTimeInstance().format(new Date());
+        TextView timer = rootView.findViewById(R.id.timeLabel);
+        timer.setText("Current Time: " + currentDate);
 
         ArrayList<Entry> line1 = new ArrayList<>();
         ArrayList<Entry> line2 = new ArrayList<>();
+        ArrayList<Date> dateArrayList = new ArrayList<>();
+        ArrayList<String> timeArraylist = new ArrayList<>();
 
         String json;
 
@@ -52,14 +68,31 @@ public class GraphFragment extends Fragment {
 
             json = new String(buffer,"UTF-8");
             JSONArray jsonArray = new JSONArray(json);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
             for(int i = 0; i<jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
+                String date_str = obj.getString("local_date_time_full");
+                try {
+                    Date date = dateFormat.parse(date_str);
+                    dateArrayList.add(date);
+                    timeArraylist.add(timeFormat.format(date));
+
+                }catch (ParseException e){
+                    e.printStackTrace();
+                }
+
+                float index = Float.parseFloat(obj.getString("sort_order"));
                 float temp = Float.parseFloat(obj.getString("air_temp"));
-                line1.add(new Entry(i,temp));
+                line1.add(new Entry(index,temp));
                 float temp_apparent = Float.parseFloat(obj.getString("apparent_t"));
-                line2.add(new Entry(i,temp_apparent));
+                line2.add(new Entry(index,temp_apparent));
+
             }
+
+            System.out.println("date size"+ dateArrayList.size());
+            System.out.println("time size"+ timeArraylist.size());
 
         }catch (IOException e){
             e.printStackTrace();
@@ -75,6 +108,9 @@ public class GraphFragment extends Fragment {
         lineDataSet2.setDrawCircles(false);
         lineDataSet2.setColor(Color.RED);
 
+        XaisFormatter myFormatter = new XaisFormatter();
+        myFormatter.getAxisLabel(timeArraylist);
+        xAxis.setValueFormatter(myFormatter);
         lineDataSets.add(lineDataSet1);
         lineDataSets.add(lineDataSet2);
         lineTemp.setData(new LineData(lineDataSets));
@@ -86,6 +122,18 @@ public class GraphFragment extends Fragment {
         return rootView;
     }
 
+    private class XaisFormatter implements IAxisValueFormatter {
+        private ArrayList<String> labelList;
 
+        public void getAxisLabel(ArrayList<String> labels){
+            this.labelList = (ArrayList<String>) labels.clone();
+            System.out.println("cloned size"+ labelList.size());
+        }
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            return labelList.get(Math.round(value));
+        }
+    };
 
 }

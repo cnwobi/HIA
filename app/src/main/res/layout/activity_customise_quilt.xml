@@ -79,7 +79,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="64dp"
             android:backgroundTint="@color/darkBackgroundColor"
-            android:text="@string/confirm_button"
+            android:text="@string/btn_confirm"
             android:textColor="@color/goldTextColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -26,10 +26,10 @@
     <string name="graph">Graphic</string>
 
     <!-- Button -->
-    <string name="next_button">Next</string>
-    <string name="submit">Submit</string>
-    <string name="confirm_button">Go to Order Review</string>
-    <string name="temp_btn">Temperature</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_confirm">Go to Order Review</string>
+    <string name="btn_temp">Temperature</string>
 
     <!-- Page titles -->
     <string name="title_confirm">Order Review</string>
