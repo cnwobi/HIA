@@ -48,9 +48,10 @@ public class GraphFragment extends Fragment {
 
         lineTemp = rootView.findViewById(R.id.line_chart);
         XAxis xAxis = lineTemp.getXAxis();
-        currentDate = DateFormat.getDateTimeInstance().format(new Date());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd");
+        currentDate = dateFormat.format(new Date());
         TextView timer = rootView.findViewById(R.id.timeLabel);
-        timer.setText("Current Time: " + currentDate);
+        timer.setText("Current Date: " + currentDate);
 
         ArrayList<Entry> line1 = new ArrayList<>();
         ArrayList<Entry> line2 = new ArrayList<>();
@@ -68,14 +69,14 @@ public class GraphFragment extends Fragment {
 
             json = new String(buffer,"UTF-8");
             JSONArray jsonArray = new JSONArray(json);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
             for(int i = 0; i<jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
                 String date_str = obj.getString("local_date_time_full");
                 try {
-                    Date date = dateFormat.parse(date_str);
+                    Date date = dateTimeFormat.parse(date_str);
                     dateArrayList.add(date);
                     timeArraylist.add(timeFormat.format(date));
 
