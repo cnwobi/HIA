@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">Hermitage Quilts</string>
+    <string name="app_name">Hermitage Intelligence Agency</string>
 
+    <!-- The title for toolbar -->
+    <string name="customise_title">Customise your quilt</string>
     <string name="scan_qr_code">Scan a QR Code</string>
-
     <string name="connect_quilt">Connect a Smart Quilt</string>
 
+    <!-- form details -->
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="unit_number">Unit Number</string>
@@ -26,18 +28,22 @@
     <!-- Button -->
     <string name="next_button">Next</string>
     <string name="submit">Submit</string>
-    <string name="confirm_button">Confirm</string>
+    <string name="confirm_button">Go to Order Review</string>
+    <string name="temp_btn">Temperature</string>
 
-    <!-- The title for toolbar -->
-    <string name="customise_title">Customise your quilt</string>
+    <!-- Page titles -->
     <string name="title_confirm">Order Review</string>
+    <string name="title_quilt">Select Quilt Attributes</string>
+    <string name="title_address">Please Enter Address Details</string>
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
-    <string name="no_smartquilt">Smart Quilt unavailable</string>
+    <string name="no_smartquilt">Smart Quilt Unavailable</string>
+    <string name="invalid_selection">Please select an option</string>
     <string name="graph_fragment">Graph fragment</string>
     <string name="news_fragment">News fragment</string>
 
+    <!-- dropdown menus -->
     <string-array name="array_states">
         <item>Select State</item>
         <item>Victoria</item>
