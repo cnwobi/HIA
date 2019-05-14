@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="?attr/homeAsUpIndicator"
-            app:title="Please Enter your details"
+            app:title="@string/title_address"
             app:titleTextColor="@color/goldTitleColor" />
 
 
@@ -193,7 +193,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/darkBackgroundColor"
-            android:text="@string/next_button"
+            android:text="@string/btn_next"
             android:textColor="@color/goldTextColor"
 
             app:layout_constraintBottom_toBottomOf="parent"
