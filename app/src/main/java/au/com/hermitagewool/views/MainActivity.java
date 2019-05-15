@@ -37,24 +37,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
-        //setTabs
-        //TabItem   tabGraph  = findViewById(R.id.tab_graph);
-        //TabItem   tabNews   = findViewById(R.id.tab_news);
-
-
-
-
-
-        /*tabLayout.addOnLayoutChangeListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 1) {
-
-                }
-            }b
-        });*/
-
     }
 
     @Override
