@@ -14,9 +14,7 @@
         android:theme="@style/HIATheme">
 
 
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="barcode" />
+
 
         <activity
             android:name="au.com.hermitagewool.views.MainActivity"
@@ -28,6 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name="au.com.hermitagewool.services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <activity android:name="au.com.hermitagewool.views.ScanActivity" />
 
