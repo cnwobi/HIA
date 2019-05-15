@@ -15,12 +15,17 @@
 
         <EditText
             android:id="@+id/timeLabel"
-            android:layout_width="0dp"
+            android:layout_width="123dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:inputType="date"
+            android:gravity="center"
+            android:inputType="datetime"
+            android:keyboardNavigationCluster="false"
+            android:textColor="@color/blackTextColor"
+            android:textColorLink="@color/goldTextColor"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/line_chart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
