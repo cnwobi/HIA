@@ -1,8 +1,11 @@
 package au.com.hermitagewool.views;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,18 +16,29 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import au.com.hermitagewool.models.News;
 import au.com.hermitagewool.repository.FirebaseHelper;
 
 public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.NewsViewHolder>  {
+    private static final String TAG = "NewsLetterAdapter";
     private DatabaseReference newsLetterReference;
     private ChildEventListener childEventListener;
+    List<News> newsLetter = new ArrayList<>();
 
     public NewsLetterAdapter(){
         newsLetterReference = FirebaseHelper.getNewsLetterReference();
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                News news =  dataSnapshot.getValue(News.class);
+                news.setId(dataSnapshot.getKey());
+                newsLetter.add(news);
+                Log.d(TAG, "onChildAdded: "+ news);
+                notifyItemInserted(newsLetter.size()-1);
 
             }
 
@@ -48,23 +62,28 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
 
             }
         };
+        newsLetterReference.addChildEventListener(childEventListener);
     }
 
 
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+        Context context =  viewGroup.getContext();
+        View itemView = LayoutInflater.from(context).inflate(R.layout.rv_row,viewGroup,false);
+        return new NewsViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, int i) {
+        News news = newsLetter.get(i);
+     newsViewHolder.bind(news);
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return newsLetter.size();
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder{

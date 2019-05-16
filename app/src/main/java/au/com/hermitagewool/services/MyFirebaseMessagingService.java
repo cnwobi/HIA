@@ -36,4 +36,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification click_action: "+ clickAction);
         }
     }
+
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+    }
 }

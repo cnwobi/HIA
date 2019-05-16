@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
-        /*News news1 = new News();
-        news1.setmTitle("New Bluetooth Update");
-        news1.setmBody("We have added a bluetooth module to our new product  ");
+     /*   News news1 = new News();
+        news1.setmTitle("Second Bluetooth Update");
+        news1.setmBody("We have added a bluetooth module to our new product.In the getting started section you’ll get to know the course structure, get familiarized with the virtual learning environment, complete your profile, meet your fellow students and the e-moderator. These introductory tasks should be completed in the beginning of the course, after your first login.  ");
         news1.setmAuthor("Juliet Muonanu ");
-        news1.setmCreationDate("12/03/2019");
+        news1.setmCreationDate("14/03/2019");
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
 
         newsRepositiory.saveNews(news1);*/

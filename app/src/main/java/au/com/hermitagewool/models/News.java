@@ -9,6 +9,14 @@ public class News {
     private String mCategory;
     private String mCreationDate;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getmAuthor() {
         return mAuthor;
     }
