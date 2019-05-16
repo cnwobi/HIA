@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
+        <TextView
             android:id="@+id/timeLabel"
-            android:layout_width="148dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:gravity="center"
             android:inputType="datetime"
@@ -42,8 +42,8 @@
             android:id="@+id/temp_label"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/goldTitleColor"
             android:text="@string/btn_temp"
             android:textColor="@color/darkBackgroundColor"

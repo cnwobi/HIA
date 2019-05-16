@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -62,6 +63,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         final  Order order = getIntent().getParcelableExtra("order");
         order.setQuilt(quilt);
 
+        SpannableStringBuilder ssb = new SpannableStringBuilder();
+
         textView.append("Customer Detail:\n\n");
         textView.append(getString(R.string.first_name)    + ": " + order.getFirstName() + "\n");
         textView.append(getString(R.string.last_name)     + ": " + order.getLastName() + "\n");
@@ -77,8 +80,6 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         textView.append(getString(R.string.fabric_c)    + ": " + order.getQuilt().getFabric() + "\n");
         textView.append(getString(R.string.filling_c)   + ": " + order.getQuilt().getFilling() + "\n");
         textView.append(getString(R.string.gsm_c)       + ": " + order.getQuilt().getGSM() + "\n");
-
-
 
 
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
