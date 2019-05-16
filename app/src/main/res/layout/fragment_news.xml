@@ -13,4 +13,9 @@
         android:layout_gravity="center_horizontal|center_vertical"
         android:text="@string/news_fragment" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>
