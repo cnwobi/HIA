@@ -17,6 +17,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.com.hwool.hermitageintelligenceagency.R;
 
+import au.com.hermitagewool.models.News;
+import au.com.hermitagewool.repository.NewsRepositiory;
+import au.com.hermitagewool.repository.NewsRepositoryImpl;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
+        /*News news1 = new News();
+        news1.setmTitle("New Bluetooth Update");
+        news1.setmBody("We have added a bluetooth module to our new product  ");
+        news1.setmAuthor("Juliet Muonanu ");
+        news1.setmCreationDate("12/03/2019");
+        NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
+
+        newsRepositiory.saveNews(news1);*/
     }
 
     @Override
