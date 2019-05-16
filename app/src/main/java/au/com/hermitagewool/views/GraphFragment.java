@@ -69,7 +69,7 @@ public class GraphFragment extends Fragment {
                 int mMonth = c.get(Calendar.MONTH); // current month
                 int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
-                datePickerDialog = new DatePickerDialog(getContext(),
+                datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -80,6 +80,7 @@ public class GraphFragment extends Fragment {
                                         + (monthOfYear + 1) + "/" + year);
                             }
                         }, mYear, mMonth, mDay);
+                //datePickerDialog.getDatePicker().setMaxDate(mMonth+"/"+mDay+"/"+mYear);
                 datePickerDialog.show();
             }
         });
