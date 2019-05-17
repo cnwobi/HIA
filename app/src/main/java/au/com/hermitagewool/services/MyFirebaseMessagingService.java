@@ -14,11 +14,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if(remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "onMessageReceived: "+remoteMessage.getData());
-            JSONObject data =  new JSONObject(remoteMessage.getData());
+            Log.d(TAG, "onMessageReceived: " + remoteMessage.getData());
+            JSONObject data = new JSONObject(remoteMessage.getData());
 
             try {
-                String jsonMessage= data.getString("extra_information");
+                String jsonMessage = data.getString("extra_information");
                 Log.d(TAG, "onMessageReceived: \n" + "Extra Information "+ jsonMessage);
             } catch (JSONException e) {
                 e.printStackTrace();

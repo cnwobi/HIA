@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +26,8 @@ import au.com.hermitagewool.repository.NewsRepositoryImpl;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.nav_connect_quilt:
-                Toast.makeText(getApplicationContext(), R.string.no_smartquilt, Toast.LENGTH_LONG).show();
-                //Log.i("test_toast", "test_toast");
+                Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                startActivity(bluetoothIntent);
+                //Log.d(TAG, "bluetooth");
                 return true;
 
             case R.id.nav_customise:
