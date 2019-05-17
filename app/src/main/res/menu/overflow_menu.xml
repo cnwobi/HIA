@@ -5,11 +5,11 @@
     tools:context=".activities.MainActivity">-->
         <item
             android:id="@+id/nav_scanQR"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_camera"
             android:title="@string/scan_qr_code" />
         <item
             android:id="@+id/nav_connect_quilt"
-            android:icon="@android:drawable/stat_sys_data_bluetooth"
+            android:icon="@drawable/ic_bluetooth"
             android:title="@string/connect_quilt" />
         <!--to remove, just for testing customisation-->
         <item
