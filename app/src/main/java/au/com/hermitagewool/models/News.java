@@ -9,6 +9,14 @@ public class News {
     private String mCategory;
     private String mCreationDate;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getmAuthor() {
         return mAuthor;
     }
@@ -57,6 +65,8 @@ public class News {
         this.mCreationDate = mCreationDate;
     }
 
+    public News() {
+    }
 
     public News(String mAuthor, String mTitle, String mBody, String mCreationDate) {
         this.mAuthor = mAuthor;
