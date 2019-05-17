@@ -47,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
 
-        News news1 = new News();
+     /*   News news1 = new News();
         news1.setmTitle("Automated Notification is now live");
         news1.setmBody("We have added a bluetooth module to our new product.In the getting started section you’ll get to know the course structure, get familiarized with the virtual learning environment, complete your profile, meet your fellow students and the e-moderator. These introductory tasks should be completed in the beginning of the course, after your first login.  ");
         news1.setmAuthor("Juliet Muonanu ");
         news1.setmCreationDate("14/03/2019");
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
 
-        newsRepositiory.saveNews(news1);
+        newsRepositiory.saveNews(news1);*/
     }
 
     @Override
