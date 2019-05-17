@@ -70,7 +70,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context =  viewGroup.getContext();
-        View itemView = LayoutInflater.from(context).inflate(R.layout.rv_row,viewGroup,false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.rv_cardview,viewGroup,false);
         return new NewsViewHolder(itemView);
     }
 
@@ -87,15 +87,18 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder{
-        TextView tvTitle;
+    //    TextView tvTitle;
+        TextView tvTitleCard;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle =  itemView.findViewById(R.id.tvTitle);
+          //  tvTitle =  itemView.findViewById(R.id.tvTitle);
+            tvTitleCard= itemView.findViewById(R.id.tvTitleCard);
         }
 
         public void bind(News news){
-            tvTitle.setText(news.getmTitle());
+         //   tvTitle.setText(news.getmTitle());
+            tvTitleCard.setText(news.getmTitle());
         }
     }
 }
