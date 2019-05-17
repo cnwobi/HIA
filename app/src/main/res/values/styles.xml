@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/goldTextColor</item>
         <item name="android:colorSecondary">@color/goldTitleColor</item>
         <item name="android:colorBackground">@color/backgroundColor</item>
-        <item name="android:navigationBarColor">@color/goldTextColor</item>
+        <item name="android:navigationBarColor">@color/blackTextColor</item>
         <item name="android:scrollbarThumbVertical">@color/goldTextColor</item>
         <item name="android:textColorPrimary">@color/blackTextColor</item>
         <item name="android:tint">@color/goldTitleColor</item>

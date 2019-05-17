@@ -36,6 +36,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
 
                 News news =  dataSnapshot.getValue(News.class);
                 news.setId(dataSnapshot.getKey());
+                newsLetterReference.child(dataSnapshot.getKey()).setValue(news);
                 newsLetter.add(news);
                 Log.d(TAG, "onChildAdded: "+ news);
                 notifyItemInserted(newsLetter.size()-1);
@@ -86,7 +87,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
         return newsLetter.size();
     }
 
-    public class NewsViewHolder extends RecyclerView.ViewHolder{
+    public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     //    TextView tvTitle;
         TextView tvTitleCard;
 
@@ -94,11 +95,18 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
             super(itemView);
           //  tvTitle =  itemView.findViewById(R.id.tvTitle);
             tvTitleCard= itemView.findViewById(R.id.tvTitleCard);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(News news){
          //   tvTitle.setText(news.getmTitle());
             tvTitleCard.setText(news.getmTitle());
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Log.d(TAG, "\n\n\n\n\nonClick Position: "+position);
         }
     }
 }
