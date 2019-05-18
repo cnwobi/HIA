@@ -1,10 +1,15 @@
 package au.com.hermitagewool.views;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,17 +43,21 @@ public class GraphFragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     private LineChart lineTemp;
     private String currentDate;
-    DatePickerDialog datePickerDialog;
+    private String selectedDate;
     private TextView dateView;
     private ArrayList<Entry> line1 = new ArrayList<>();
     private ArrayList<Entry> line2 = new ArrayList<>();
     private ArrayList<Date> dateArrayList = new ArrayList<>();
     private ArrayList<String> timeArraylist = new ArrayList<>();
+    public static final int REQUEST_CODE = 11; // Used to identify the result
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
+
+        // get fragment manager so we can launch from fragment
+        final FragmentManager fm = (getActivity()).getSupportFragmentManager();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         currentDate = dateFormat.format(new Date());
@@ -58,25 +67,12 @@ public class GraphFragment extends Fragment {
         dateView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
-                datePickerDialog = new DatePickerDialog(getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-                                dateView.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
-                            }
-                        }, mYear, mMonth, mDay);
-                //datePickerDialog.getDatePicker().setMaxDate(mMonth+"/"+mDay+"/"+mYear);
-                datePickerDialog.show();
+                // create the datePickerFragment
+                AppCompatDialogFragment newFragment = new DatePickerFragment();
+                // set the targetFragment to receive the results, specifying the request code
+                newFragment.setTargetFragment(GraphFragment.this, REQUEST_CODE);
+                // show the datePicker
+                newFragment.show(fm, "datePicker");
             }
         });
 
@@ -84,7 +80,7 @@ public class GraphFragment extends Fragment {
         lineTemp = rootView.findViewById(R.id.line_chart);
         XAxis xAxis = lineTemp.getXAxis();
 
-        readJson();
+        readJson(selectedDate);
 
         // put data into line chart
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
@@ -107,6 +103,17 @@ public class GraphFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // check for the results
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // get date from string
+            selectedDate = data.getStringExtra("selectedDate");
+            // set the value of the editText
+            dateView.setText(data.getStringExtra("displayDate"));
+        }
+    }
+
     // make x axis labels
     private class XaisFormatter implements IAxisValueFormatter {
         private ArrayList<String> labelList;
@@ -122,7 +129,8 @@ public class GraphFragment extends Fragment {
         }
     }
 
-    private void readJson(){
+
+    private void readJson(String selectedDate){
         // read local json file
         String json;
         try {
@@ -140,6 +148,7 @@ public class GraphFragment extends Fragment {
             // setup line values
             for(int i = 0; i<jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
+
                 String date_str = obj.getString("local_date_time_full");
                 try {
                     Date date = dateTimeFormat.parse(date_str);
