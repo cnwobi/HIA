@@ -23,10 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:textColor="@color/blackTextColor"
             android:textSize="18sp"
-
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tvDateCreated"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +41,7 @@
             android:textColor="@color/whiteColor"
             android:textSize="14sp"
             android:textStyle="italic"
-
+            android:text="Click to view details"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleCard"
