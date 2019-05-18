@@ -21,7 +21,7 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintBottom_toTopOf="@+id/tvDetailsTitle"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:title="@string/app_name"
+            app:title="@string/newsletter"
             app:titleTextColor="@color/goldTitleColor" />
 
         <TextView
