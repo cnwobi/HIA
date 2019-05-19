@@ -28,7 +28,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     private DatabaseReference newsLetterReference;
     private ChildEventListener childEventListener;
 
-    List<News> newsLetter = new ArrayList<>();
+    List<News> newsLetter= new ArrayList<>();
 
     public NewsLetterAdapter(){
         newsLetterReference = FirebaseHelper.getNewsLetterReference();
@@ -103,7 +103,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
         }
 
         public void bind(News news){
-         //   tvTitle.setText(news.getmTitle());
+
             tvTitleCard.setText(news.getmTitle());
             tvDateCreated.setText(news.getmCreationDate());
         }

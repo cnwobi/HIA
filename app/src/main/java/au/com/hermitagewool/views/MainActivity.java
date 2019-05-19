@@ -54,13 +54,12 @@ public class MainActivity extends AppCompatActivity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
-
-       /* News news1 = new News();
-        news1.setmTitle("Bill Shorten Wins Election");
+  /*      News news1 = new News();
+        news1.setmTitle("uOttawa University Education");
         news1.setmBody("Barr specifically was referring to the early January 2017 briefing intelligence officials gave then-president-elect Trump at Trump Tower, and “the leaking of information subsequent to that meeting.”\n" +
                 "\n" +
                 "At that meeting, Trump was briefed by intelligence and law enforcement officials on Russian election meddling -- and was also informed by former FBI Director James Comey about the now-infamous anti-Trump dossier which included salacious allegations against him. Details later leaked to the press.");
-        news1.setmAuthor("Juliet Muonanu ");
+        news1.setmAuthor("Dennis Ezechi ");
         news1.setmCreationDate(formattedDate);
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
 
