@@ -27,6 +27,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     private static final String TAG = "NewsLetterAdapter";
     private DatabaseReference newsLetterReference;
     private ChildEventListener childEventListener;
+
     List<News> newsLetter = new ArrayList<>();
 
     public NewsLetterAdapter(){
@@ -91,17 +92,20 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     //    TextView tvTitle;
         TextView tvTitleCard;
+        TextView tvDateCreated;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
           //  tvTitle =  itemView.findViewById(R.id.tvTitle);
             tvTitleCard= itemView.findViewById(R.id.tvTitleCard);
+            tvDateCreated = itemView.findViewById(R.id.tvDateCreated);
             itemView.setOnClickListener(this);
         }
 
         public void bind(News news){
          //   tvTitle.setText(news.getmTitle());
             tvTitleCard.setText(news.getmTitle());
+            tvDateCreated.setText(news.getmCreationDate());
         }
 
         @Override
