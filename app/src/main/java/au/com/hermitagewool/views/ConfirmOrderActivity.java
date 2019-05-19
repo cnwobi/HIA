@@ -26,10 +26,8 @@ import butterknife.ButterKnife;
 
 public class ConfirmOrderActivity extends AppCompatActivity {
 
-    @BindView(R.id.textView_confirm)
-    TextView textView;
-    @BindView(R.id.button_confirm)
-    Button buttonConfirm;
+    @BindView(R.id.textView_confirm) TextView textView;
+    @BindView(R.id.button_confirm)   Button   buttonConfirm;
 
 
     @Override

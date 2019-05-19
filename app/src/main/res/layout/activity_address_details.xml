@@ -189,6 +189,7 @@
 
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
+            android:background="@color/goldTextColor"
             android:scrollbarStyle="insideInset"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -211,9 +212,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_input_suburb" />
-
-
-        <!--app:layout_constraintTop_toBottomOf="@id/constraint_spinner_label" />-->
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

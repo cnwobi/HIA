@@ -113,8 +113,8 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
             int position = getAdapterPosition();
             Log.d(TAG, "\n\n\n\n\nonClick Position: "+position);
             News selectedNews = newsLetter.get(position);
-            Intent intent =  new Intent(v.getContext(),NewsDetailActivity.class);
-            intent.putExtra("news",selectedNews);
+            Intent intent =  new Intent(v.getContext(), NewsDetailActivity.class);
+            intent.putExtra("news", selectedNews);
             v.getContext().startActivity(intent);
         }
     }
