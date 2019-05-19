@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentCustomise = new Intent(MainActivity.this, AddressDetailsActivity.class);
                 startActivity(intentCustomise);
                 return true;
-
             default: return super.onOptionsItemSelected(item);
         }
     }
