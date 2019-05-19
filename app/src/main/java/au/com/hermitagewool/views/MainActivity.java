@@ -1,25 +1,19 @@
 package au.com.hermitagewool.views;
 
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
-import android.support.design.widget.TabItem;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 import com.com.hwool.hermitageintelligenceagency.R;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Date;
@@ -41,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         //Create the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
@@ -75,19 +68,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.nav_scanQR:
                 Intent intentScanQR = new Intent(MainActivity.this, ScanActivity.class);
                 startActivity(intentScanQR);
                 return true;
-
             case R.id.nav_connect_quilt:
                 Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
                 startActivity(bluetoothIntent);
                 //Log.d(TAG, "bluetooth");
                 return true;
-
             case R.id.nav_customise:
                 Intent intentCustomise = new Intent(MainActivity.this, AddressDetailsActivity.class);
                 startActivity(intentCustomise);
