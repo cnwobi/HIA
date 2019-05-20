@@ -134,7 +134,7 @@ public class GraphFragment extends Fragment {
         // read local json file
         String json;
         try {
-            InputStream inputStream = getContext().getAssets().open("test.json");
+            InputStream inputStream = getContext().getAssets().open("sensor.json");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);
@@ -162,7 +162,7 @@ public class GraphFragment extends Fragment {
                 float index = Float.parseFloat(obj.getString("sort_order"));
                 float temp = Float.parseFloat(obj.getString("air_temp"));
                 line1.add(new Entry(index,temp));
-                float temp_apparent = Float.parseFloat(obj.getString("apparent_t"));
+                float temp_apparent = Float.parseFloat(obj.getString("quilt_t"));
                 line2.add(new Entry(index,temp_apparent));
 
             }

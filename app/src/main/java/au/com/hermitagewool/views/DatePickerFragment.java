@@ -41,7 +41,7 @@ public class DatePickerFragment extends AppCompatDialogFragment implements DateP
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
         String selectedDate = new SimpleDateFormat("ddMMyyyy",Locale.UK).format(c.getTime());
-        String displayDate = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+        String displayDate = new SimpleDateFormat("EEE, MMM d, yyyy").format(c.getTime());
         Intent intent = new Intent();
         intent.putExtra("selectedDate", selectedDate);
         intent.putExtra("displayDate", displayDate);
