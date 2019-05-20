@@ -90,7 +90,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/unit_number" />
+                android:hint="@string/unit_number"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -112,7 +113,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/street_number" />
+                android:hint="@string/street_number"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -133,7 +135,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/street_name" />
+                android:hint="@string/street_name"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -155,7 +158,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/suburb" />
+                android:hint="@string/suburb"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -185,6 +189,7 @@
 
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
+            android:background="@color/goldTextColor"
             android:scrollbarStyle="insideInset"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -207,9 +212,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_input_suburb" />
-
-
-        <!--app:layout_constraintTop_toBottomOf="@id/constraint_spinner_label" />-->
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -28,7 +28,7 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0: return "Graphic";
+            case 0: return "Smart Quilt";
             case 1: return "Newsletter";
             default: return null;
         }

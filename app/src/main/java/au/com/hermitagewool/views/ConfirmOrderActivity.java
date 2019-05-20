@@ -26,10 +26,8 @@ import butterknife.ButterKnife;
 
 public class ConfirmOrderActivity extends AppCompatActivity {
 
-    @BindView(R.id.textView_confirm)
-    TextView textView;
-    @BindView(R.id.button_confirm)
-    Button buttonConfirm;
+    @BindView(R.id.textView_confirm) TextView textView;
+    @BindView(R.id.button_confirm)   Button   buttonConfirm;
 
 
     @Override
@@ -57,10 +55,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
 
         // retrieve object from the previous activity
-        //Bundle bundle = getIntent().getExtras();
-        //final Order order = bundle.getParcelable("order");
         Quilt quilt = getIntent().getParcelableExtra("quilt");
-        final  Order order = getIntent().getParcelableExtra("order");
+        final Order order = getIntent().getParcelableExtra("order");
         order.setQuilt(quilt);
 
         SpannableStringBuilder ssb = new SpannableStringBuilder();
@@ -89,9 +85,9 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                 orderRepository.saveOrder(order);
                 quiltRepository.saveQuilt(order.getQuilt());
 
-                Toast.makeText(ConfirmOrderActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ConfirmOrderActivity.this, MainActivity.class);
                 ConfirmOrderActivity.this.startActivity(intent);
+                Toast.makeText(ConfirmOrderActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
             }
         });
 

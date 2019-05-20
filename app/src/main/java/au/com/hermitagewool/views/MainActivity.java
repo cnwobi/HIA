@@ -1,24 +1,22 @@
 package au.com.hermitagewool.views;
 
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.design.widget.TabItem;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.app.AppCompatActivity;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 import com.com.hwool.hermitageintelligenceagency.R;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.Date;
 
 import au.com.hermitagewool.models.News;
 import au.com.hermitagewool.repository.NewsRepositiory;
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         //Create the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
@@ -47,11 +44,16 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
 
-     /*   News news1 = new News();
-        news1.setmTitle("Automated Notification is now live");
-        news1.setmBody("We have added a bluetooth module to our new product.In the getting started section you’ll get to know the course structure, get familiarized with the virtual learning environment, complete your profile, meet your fellow students and the e-moderator. These introductory tasks should be completed in the beginning of the course, after your first login.  ");
-        news1.setmAuthor("Juliet Muonanu ");
-        news1.setmCreationDate("14/03/2019");
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+  /*      News news1 = new News();
+        news1.setmTitle("uOttawa University Education");
+        news1.setmBody("Barr specifically was referring to the early January 2017 briefing intelligence officials gave then-president-elect Trump at Trump Tower, and “the leaking of information subsequent to that meeting.”\n" +
+                "\n" +
+                "At that meeting, Trump was briefed by intelligence and law enforcement officials on Russian election meddling -- and was also informed by former FBI Director James Comey about the now-infamous anti-Trump dossier which included salacious allegations against him. Details later leaked to the press.");
+        news1.setmAuthor("Dennis Ezechi ");
+        news1.setmCreationDate(formattedDate);
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
 
         newsRepositiory.saveNews(news1);*/
@@ -66,19 +68,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.nav_scanQR:
                 Intent intentScanQR = new Intent(MainActivity.this, ScanActivity.class);
                 startActivity(intentScanQR);
                 return true;
-
             case R.id.nav_connect_quilt:
                 Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
                 startActivity(bluetoothIntent);
                 //Log.d(TAG, "bluetooth");
                 return true;
-
             case R.id.nav_customise:
                 Intent intentCustomise = new Intent(MainActivity.this, AddressDetailsActivity.class);
                 startActivity(intentCustomise);

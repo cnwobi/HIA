@@ -27,20 +27,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CustomiseQuiltActivity extends AppCompatActivity {
-    @BindView(R.id.spinner_size)
-    Spinner spinnerSize;
-    @BindView(R.id.spinner_fabric)
-    Spinner spinnerFabric;
-    @BindView(R.id.spinner_filling)
-    Spinner spinnerFilling;
-    @BindView(R.id.spinner_gsm)
-    Spinner spinnerGSM;
-    @BindView(R.id.btn_submit)
-    Button btnSubmit;
+    @BindView(R.id.spinner_size)    Spinner spinnerSize;
+    @BindView(R.id.spinner_fabric)  Spinner spinnerFabric;
+    @BindView(R.id.spinner_filling) Spinner spinnerFilling;
+    @BindView(R.id.spinner_gsm)     Spinner spinnerGSM;
+    @BindView(R.id.btn_submit)      Button  btnSubmit;
 
     Quilt quilt;
     OrderRepository orderRepository;
     QuiltRepository quiltRepository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +75,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
 
     }
 
+
     public boolean isValidSelection(Spinner spinner) {
         String selectedOption = (String) spinner.getSelectedItem();
 
@@ -99,20 +96,22 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(stringArray));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
     }
+
 
     private String returnStringFromIntent(String key) {
         return getIntent().getStringExtra(key);
     }
 
-    private void confirmQuilt(){
+
+    private void confirmQuilt() {
         if (!isValidSelection(spinnerSize) || !isValidSelection(spinnerFabric)
                 || !isValidSelection(spinnerFilling) || !isValidSelection(spinnerGSM)) {
 
             Toast.makeText(CustomiseQuiltActivity.this, "Error", Toast.LENGTH_LONG).show();
             return;
         }
+
         quilt = new Quilt();
         quilt.setSize(spinnerSize.getSelectedItem().toString());
         quilt.setFabric(spinnerFabric.getSelectedItem().toString());
@@ -139,6 +138,5 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
         mainIntent.putExtra("order", order);
 
         CustomiseQuiltActivity.this.startActivity(mainIntent);
-
     }
 }

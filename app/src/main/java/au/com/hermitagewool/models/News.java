@@ -1,6 +1,8 @@
 package au.com.hermitagewool.models;
 
-public class News {
+import java.io.Serializable;
+
+public class News implements Serializable {
     private String id;
     private String mAuthor;
     private String mImageUrl;
