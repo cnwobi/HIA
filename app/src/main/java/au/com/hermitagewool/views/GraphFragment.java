@@ -231,7 +231,7 @@ public class GraphFragment extends Fragment {
                     lineTemp.invalidate();
 
                     lineTemp.setVisibleXRangeMaximum(8f);
-                    Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
                     //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
 
 

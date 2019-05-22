@@ -134,7 +134,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent(CustomiseQuiltActivity.this, ConfirmOrderActivity.class);
         // push the object to the next activity ?
-
+        mainIntent.putExtra("qrCode",qrCode);
         mainIntent.putExtra("quilt", quilt);
         mainIntent.putExtra("order", order);
 
