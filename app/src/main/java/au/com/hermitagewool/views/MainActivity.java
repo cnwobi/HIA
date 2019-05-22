@@ -60,23 +60,20 @@ public class MainActivity extends AppCompatActivity {
         String formattedDate = df.format(c);
 
         News news1 = new News();
-        news1.setmTitle("Why so serious ?!?");
-        news1.setmBody("ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
+        news1.setmTitle("Test4");
+        news1.setmBody("Test\n" +
+                "Test\n" +
+                "Test\n" +
+                "Test\n" +
+                "Test\n" +
+                "Test\n" +
+                "Test\n" +
                 "\n\n\n\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
+                "Test\n" +
+                "Test\n" +
                 "\n\n\n\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaan\n");
+                "Test\n" +
+                "Test\n" +
         news1.setmAuthor("The Joker");
         news1.setmCreationDate(formattedDate);
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
@@ -102,15 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.nav_connect_quilt:
-                Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
-                startActivity(bluetoothIntent);
+                //Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                //startActivity(bluetoothIntent);
+                Intent quiltList = new Intent(MainActivity.this, QuiltList.class);
+                startActivity(quiltList);
                 //Log.d(TAG, "bluetooth");
                 return true;
 
-            case R.id.nav_customise:
+            /*case R.id.nav_customise:
                 Intent intentCustomise = new Intent(MainActivity.this, AddressDetailsActivity.class);
                 startActivity(intentCustomise);
-                return true;
+                return true;*/
 
             default: return super.onOptionsItemSelected(item);
         }

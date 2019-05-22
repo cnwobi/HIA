@@ -29,12 +29,14 @@
     <string name="btn_next">Next</string>
     <string name="btn_submit">Submit</string>
     <string name="btn_confirm">Confirm</string>
+    <string name="btn_rewiew">Review</string>
     <string name="btn_temp">Temperature</string>
 
     <!-- Page titles -->
     <string name="title_quilt">Select Quilt Attributes</string>
     <string name="title_address">Please Enter Address Details</string>
     <string name="title_confirm">Order Review</string>
+    <string name="title_quilt_list">Select a quilt</string>
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
@@ -81,6 +83,13 @@
         <item>500gsm</item>
         <item>600gsm</item>
     </string-array>
+
+    <!-- The different string for the fake quilt list -->
+    <string name="quilt_connected">Connected quilt:</string>
+    <string name="quilt_not_connected">Not connected quilt:</string>
+    <string name="quilt_fake1">Bedroom 1 Quilt</string>
+    <string name="quilt_fake2">Bedroom 2 Quilt</string>
+    <string name="quilt_fake3">Bedroom 3 Quilt</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

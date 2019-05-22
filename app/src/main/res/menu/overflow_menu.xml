@@ -4,11 +4,13 @@
     <item
         android:id="@+id/nav_scanQR"
         android:title="@string/scan_qr_code" />
-        <item
-            android:id="@+id/nav_connect_quilt"
-            android:title="@string/connect_quilt" />
-        <!--to be removed, just for testing customisation-->
-        <item
-            android:id="@+id/nav_customise"
-            android:title="@string/customise_title" />
+    <item
+        android:id="@+id/nav_connect_quilt"
+        android:title="@string/connect_quilt" />
+    <!--to be removed, just for testing customisation-->
+    <!--
+    <item
+        android:id="@+id/nav_customise"
+        android:title="@string/customise_title" />
+    -->
 </menu>
