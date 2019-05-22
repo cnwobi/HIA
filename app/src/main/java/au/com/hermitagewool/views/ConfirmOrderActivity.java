@@ -44,10 +44,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         // add the back arrow to the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_confirm);
         setSupportActionBar(toolbar);
-
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +59,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         // retrieve object from the previous activity
         Quilt quilt = getIntent().getParcelableExtra("quilt");
         final Order order = getIntent().getParcelableExtra("order");
-        QrCode qrCode = getIntent().getParcelableExtra("qr code");
+        final QrCode qrCode = getIntent().getParcelableExtra("qr code");
         order.setQuilt(quilt);
 
         SpannableStringBuilder ssb = new SpannableStringBuilder();
@@ -89,8 +87,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
                 orderRepository.saveOrder(order);
                 quiltRepository.saveQuilt(order.getQuilt());
-
-
+                qrCodeRepository.saveQrCode(qrCode);
                 Intent intent = new Intent(ConfirmOrderActivity.this, MainActivity.class);
                 ConfirmOrderActivity.this.startActivity(intent);
                 Toast.makeText(ConfirmOrderActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
