@@ -1,10 +1,10 @@
 package au.com.hermitagewool.views;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,8 +13,8 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.com.hwool.hermitageintelligenceagency.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -25,6 +25,10 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,8 +39,13 @@ import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import au.com.hermitagewool.models.Sensor;
+import au.com.hermitagewool.repository.FirebaseHelper;
+import au.com.hermitagewool.repository.SensorRepository;
+import au.com.hermitagewool.repository.SensorRepositoryImpl;
 
 public class GraphFragment extends Fragment {
 
@@ -50,16 +59,19 @@ public class GraphFragment extends Fragment {
     private ArrayList<Date> dateArrayList = new ArrayList<>();
     private ArrayList<String> timeArraylist = new ArrayList<>();
     public static final int REQUEST_CODE = 11; // Used to identify the result
+    private DatabaseReference sensorReference = FirebaseHelper.getSensorDataReference();
+    private SensorRepository sensorRepository;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
+        sensorRepository = new SensorRepositoryImpl();
 
         // get fragment manager so we can launch from fragment
         final FragmentManager fm = (getActivity()).getSupportFragmentManager();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         currentDate = dateFormat.format(new Date());
         dateView = rootView.findViewById(R.id.timeLabel);
         dateView.setText(currentDate);
@@ -77,17 +89,19 @@ public class GraphFragment extends Fragment {
         });
 
         // line chart components
-        lineTemp = rootView.findViewById(R.id.line_chart);
-        XAxis xAxis = lineTemp.getXAxis();
+        //lineTemp = rootView.findViewById(R.id.line_chart);
+        //XAxis xAxis = lineTemp.getXAxis();
 
-        readJson(selectedDate);
+        //readJson(selectedDate);
+        //addData(selectedDate);
+        setData(selectedDate, rootView);
 
-        // put data into line chart
+        /*// put data into line chart
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
         LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
         lineDataSet1.setDrawCircles(false);
         lineDataSet1.setColor(Color.BLUE);
-        LineDataSet lineDataSet2 = new LineDataSet(line2,"Apparent Temperature");
+        LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
         lineDataSet2.setDrawCircles(false);
         lineDataSet2.setColor(Color.RED);
 
@@ -98,7 +112,10 @@ public class GraphFragment extends Fragment {
         lineDataSets.add(lineDataSet2);
         lineTemp.setData(new LineData(lineDataSets));
 
-        lineTemp.setVisibleXRangeMaximum(7f);
+        lineTemp.setVisibleXRangeMaximum(8f);
+        */
+
+
 
         return rootView;
     }
@@ -127,6 +144,106 @@ public class GraphFragment extends Fragment {
         public String getFormattedValue(float value, AxisBase axis) {
             return labelList.get(Math.round(value));
         }
+    }
+
+    private void addData(String selctedDate) {
+        ArrayList<Sensor> dataSet = sensorRepository.findData(selctedDate);
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        if (dataSet != null) {
+            for (int i = 0; i < dataSet.size(); i++) {
+                Sensor dataPoint = dataSet.get(i);
+
+                String date_str = dataPoint.getLocal_date_time_full();
+                try {
+                    Date date = dateTimeFormat.parse(date_str);
+                    dateArrayList.add(date);
+                    timeArraylist.add(timeFormat.format(date));
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                float index = dataPoint.getSort_order();
+                float temp = dataPoint.getAir_temp();
+                line1.add(new Entry(index, temp));
+                float quilt_t = dataPoint.getQuilt_t();
+                line2.add(new Entry(index, quilt_t));
+
+            }
+
+        } else {
+
+        }
+    }
+
+    private void setData(final String selectedDate, final View rootView){
+        //final List<Sensor> dataSet = new ArrayList<>();
+
+        final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        sensorReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                    //Sensor data = ds.getValue(Sensor.class);
+                    //dataSet.add(data);
+                    //if (ds.child("local_date_time_full").getValue(String.class).equals(selectedDate)) {
+                    String date_str = ds.child("local_date_time_full").getValue(String.class);
+                    float index = ds.child("sort_order").getValue(Integer.class);
+                    float temp = ds.child("air_temp").getValue(float.class);
+                    float quilt_t = ds.child("quilt_t").getValue(float.class);
+
+                    try {
+                        Date date = dateTimeFormat.parse(date_str);
+                        dateArrayList.add(date);
+                        timeArraylist.add(timeFormat.format(date));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    line1.add(new Entry(index, temp));
+                    line2.add(new Entry(index, quilt_t));
+
+
+                        //break;
+
+                    }
+
+                    ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+                    LineDataSet lineDataSet1 = new LineDataSet(line1, "Air Temperature");
+                    lineDataSet1.setDrawCircles(false);
+                    lineDataSet1.setColor(Color.BLUE);
+                    LineDataSet lineDataSet2 = new LineDataSet(line2, "Temperature inside the Quilt");
+                    lineDataSet2.setDrawCircles(false);
+                    lineDataSet2.setColor(Color.RED);
+
+                    lineTemp = rootView.findViewById(R.id.line_chart);
+                    final XAxis xAxis = lineTemp.getXAxis();
+                    XaisFormatter myFormatter = new XaisFormatter();
+                    myFormatter.getAxisLabel(timeArraylist);
+                    xAxis.setValueFormatter(myFormatter);
+                    lineDataSets.add(lineDataSet1);
+                    lineDataSets.add(lineDataSet2);
+                    lineTemp.setData(new LineData(lineDataSets));
+                    lineTemp.invalidate();
+
+                    lineTemp.setVisibleXRangeMaximum(8f);
+                    Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), "Read data failed", Toast.LENGTH_LONG).show();
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
     }
 
 
