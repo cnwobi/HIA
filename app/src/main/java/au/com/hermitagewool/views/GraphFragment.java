@@ -89,14 +89,17 @@ public class GraphFragment extends Fragment {
         });
 
         // line chart components
-        //lineTemp = rootView.findViewById(R.id.line_chart);
-        //XAxis xAxis = lineTemp.getXAxis();
+        lineTemp = rootView.findViewById(R.id.line_chart);
 
-        //readJson(selectedDate);
+
+        //read defualt local data
+        readJson();
         //addData(selectedDate);
-        setData(selectedDate, rootView);
+        //setData(selectedDate, rootView);
 
-        /*// put data into line chart
+        // put data into line chart
+        setGraph();
+        /*
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
         LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
         lineDataSet1.setDrawCircles(false);
@@ -105,17 +108,17 @@ public class GraphFragment extends Fragment {
         lineDataSet2.setDrawCircles(false);
         lineDataSet2.setColor(Color.RED);
 
+        XAxis xAxis = lineTemp.getXAxis();
         XaisFormatter myFormatter = new XaisFormatter();
         myFormatter.getAxisLabel(timeArraylist);
         xAxis.setValueFormatter(myFormatter);
         lineDataSets.add(lineDataSet1);
         lineDataSets.add(lineDataSet2);
         lineTemp.setData(new LineData(lineDataSets));
-
-        lineTemp.setVisibleXRangeMaximum(8f);
+        lineTemp.invalidate();
         */
 
-
+        lineTemp.setVisibleXRangeMaximum(22f);
 
         return rootView;
     }
@@ -134,6 +137,7 @@ public class GraphFragment extends Fragment {
     // make x axis labels
     private class XaisFormatter implements IAxisValueFormatter {
         private ArrayList<String> labelList;
+        //private int maxIndex;
 
         public void getAxisLabel(ArrayList<String> labels){
             this.labelList = (ArrayList<String>) labels.clone();
@@ -142,6 +146,7 @@ public class GraphFragment extends Fragment {
 
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
+            //this.maxIndex = labelList.size()-1;
             return labelList.get(Math.round(value));
         }
     }
@@ -207,33 +212,33 @@ public class GraphFragment extends Fragment {
                     line1.add(new Entry(index, temp));
                     line2.add(new Entry(index, quilt_t));
 
-
                         //break;
 
-                    }
+                }
+                setGraph();
 
-                    ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
-                    LineDataSet lineDataSet1 = new LineDataSet(line1, "Air Temperature");
-                    lineDataSet1.setDrawCircles(false);
-                    lineDataSet1.setColor(Color.BLUE);
-                    LineDataSet lineDataSet2 = new LineDataSet(line2, "Temperature inside the Quilt");
-                    lineDataSet2.setDrawCircles(false);
-                    lineDataSet2.setColor(Color.RED);
+                /*ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+                LineDataSet lineDataSet1 = new LineDataSet(line1, "Air Temperature");
+                lineDataSet1.setDrawCircles(false);
+                lineDataSet1.setColor(Color.BLUE);
+                LineDataSet lineDataSet2 = new LineDataSet(line2, "Temperature inside the Quilt");
+                lineDataSet2.setDrawCircles(false);
+                lineDataSet2.setColor(Color.RED);
 
-                    lineTemp = rootView.findViewById(R.id.line_chart);
-                    final XAxis xAxis = lineTemp.getXAxis();
-                    XaisFormatter myFormatter = new XaisFormatter();
-                    myFormatter.getAxisLabel(timeArraylist);
-                    xAxis.setValueFormatter(myFormatter);
-                    lineDataSets.add(lineDataSet1);
-                    lineDataSets.add(lineDataSet2);
-                    lineTemp.setData(new LineData(lineDataSets));
-                    lineTemp.invalidate();
+                //lineTemp = rootView.findViewById(R.id.line_chart);
+                XAxis xAxis = lineTemp.getXAxis();
+                XaisFormatter myFormatter = new XaisFormatter();
+                myFormatter.getAxisLabel(timeArraylist);
+                xAxis.setValueFormatter(myFormatter);
+                lineDataSets.add(lineDataSet1);
+                lineDataSets.add(lineDataSet2);
+                lineTemp.setData(new LineData(lineDataSets));
+                lineTemp.invalidate();
+                */
 
-                    lineTemp.setVisibleXRangeMaximum(8f);
-                    Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
-                    //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
-
+                //lineTemp.setVisibleXRangeMaximum(8f);
+                //Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
 
             }
 
@@ -246,12 +251,11 @@ public class GraphFragment extends Fragment {
 
     }
 
-
-    private void readJson(String selectedDate){
+    private void readJson(){
         // read local json file
         String json;
         try {
-            InputStream inputStream = getContext().getAssets().open("sensor.json");
+            InputStream inputStream = getContext().getAssets().open("sensor_local.json");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);
@@ -261,10 +265,11 @@ public class GraphFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(json);
             SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            int maxIndex = jsonArray.length();
 
             // setup line values
-            for(int i = 0; i<jsonArray.length(); i++){
-                JSONObject obj = jsonArray.getJSONObject(i);
+            for(int i = 0; i<maxIndex; i++){
+                JSONObject obj = jsonArray.getJSONObject(maxIndex-1-i);
 
                 String date_str = obj.getString("local_date_time_full");
                 try {
@@ -279,16 +284,38 @@ public class GraphFragment extends Fragment {
                 float index = Float.parseFloat(obj.getString("sort_order"));
                 float temp = Float.parseFloat(obj.getString("air_temp"));
                 line1.add(new Entry(index,temp));
-                float temp_apparent = Float.parseFloat(obj.getString("quilt_t"));
-                line2.add(new Entry(index,temp_apparent));
+                float tempQuilt = Float.parseFloat(obj.getString("quilt_t"));
+                line2.add(new Entry(index,tempQuilt));
+
 
             }
+            Toast.makeText(getActivity(), "check data: " + line2.get(49).toString(), Toast.LENGTH_LONG).show();
 
         }catch (IOException e){
             e.printStackTrace();
         }catch (JSONException e){
             e.printStackTrace();
         }
+    }
+
+    private void setGraph(){
+
+        ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+        LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
+        lineDataSet1.setDrawCircles(false);
+        lineDataSet1.setColor(Color.BLUE);
+        LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
+        lineDataSet2.setDrawCircles(false);
+        lineDataSet2.setColor(Color.RED);
+
+        XAxis xAxis = lineTemp.getXAxis();
+        XaisFormatter myFormatter = new XaisFormatter();
+        myFormatter.getAxisLabel(timeArraylist);
+        xAxis.setValueFormatter(myFormatter);
+        lineDataSets.add(lineDataSet1);
+        lineDataSets.add(lineDataSet2);
+        lineTemp.setData(new LineData(lineDataSets));
+        lineTemp.invalidate();
     }
 
 }
