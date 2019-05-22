@@ -20,9 +20,9 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-
         return inflater.inflate(R.layout.fragment_news, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -30,15 +30,8 @@ public class NewsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.rvNews);
         final NewsLetterAdapter newsLetterAdapter = new NewsLetterAdapter();
         recyclerView.setAdapter(newsLetterAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
-/*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Toast.makeText(NewsFragment.this, "News", Toast.LENGTH_LONG).show();
-
-    }*/
 
 }

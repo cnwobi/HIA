@@ -20,10 +20,10 @@ public class Quilt implements Parcelable {
     private String size;
 
     protected Quilt(Parcel in) {
-        size = in.readString();
-        fabric = in.readString();
+        size    = in.readString();
+        fabric  = in.readString();
         filling = in.readString();
-        GSM = in.readString();
+        GSM     = in.readString();
     }
 
     /*

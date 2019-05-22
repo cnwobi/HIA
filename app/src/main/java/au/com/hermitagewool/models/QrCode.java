@@ -9,16 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QrCode implements Parcelable {
     private static final String TAG = "QrCode";
-    private String id;
+    private String  id;
     private boolean used;
 
     public QrCode(String id, boolean used) {
-        this.id = id;
+        this.id   = id;
         this.used = used;
     }
 
     protected QrCode(Parcel in) {
-        id = in.readString();
+        id   = in.readString();
         used = in.readByte() != 0;
     }
 
