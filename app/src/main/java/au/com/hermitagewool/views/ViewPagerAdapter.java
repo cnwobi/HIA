@@ -14,8 +14,8 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         switch (i) {
-            case  0: return new GraphFragment();
-            case  1: return new NewsFragment();
+            case  0: return new NewsFragment();
+            case  1: return new GraphFragment();
             default: return null;
         }
     }
@@ -28,8 +28,8 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0: return "Smart Quilt";
-            case 1: return "Newsletter";
+            case 0: return "Newsletter";
+            case 1: return "Smart Quilt";
             default: return null;
         }
     }
