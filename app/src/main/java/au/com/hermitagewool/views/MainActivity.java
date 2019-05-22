@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         String formattedDate = df.format(c);
 
         News news1 = new News();
-        news1.setmTitle("Test4");
+        news1.setmTitle("Test5");
         news1.setmBody("Test\n" +
                 "Test\n" +
                 "Test\n" +
@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
                 "Test\n" +
                 "Test\n" +
                 "Test\n" +
-                "\n\n\n\n" +
+                "\n\n\n" +
                 "Test\n" +
                 "Test\n" +
-                "\n\n\n\n" +
+                "\n\n\n" +
                 "Test\n" +
-                "Test\n" +
+                "Test\n");
         news1.setmAuthor("The Joker");
         news1.setmCreationDate(formattedDate);
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
