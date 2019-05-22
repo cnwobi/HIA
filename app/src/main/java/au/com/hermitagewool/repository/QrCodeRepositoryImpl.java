@@ -17,6 +17,8 @@ import au.com.hermitagewool.models.QrCode;
 
 public class QrCodeRepositoryImpl implements QrCodeRepository {
     private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
+
+
     @Override
     public QrCode findQrCode(final String key) {
         final List<QrCode>  qrCodes = new ArrayList<>();
@@ -32,8 +34,6 @@ public class QrCodeRepositoryImpl implements QrCodeRepository {
                         return;
                     }
                 }
-
-
             }
 
             @Override
@@ -47,10 +47,10 @@ public class QrCodeRepositoryImpl implements QrCodeRepository {
 
     @Override
     public QrCode updateQrCode(QrCode qrCode) {
-        if(qrCode !=null){
+        if(qrCode != null){
             qrCodeReference.child(qrCode.getId()).setValue(qrCode);
         }
-      return qrCode;
+        return qrCode;
     }
 
     @Override

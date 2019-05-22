@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Quilt implements Parcelable {
+    private static final String TAG = "Quilt";
     private String id;
     private String fabric;
     private String filling;
@@ -20,25 +21,11 @@ public class Quilt implements Parcelable {
     private String size;
 
     protected Quilt(Parcel in) {
-        size = in.readString();
-        fabric = in.readString();
+        size    = in.readString();
+        fabric  = in.readString();
         filling = in.readString();
-        GSM = in.readString();
+        GSM     = in.readString();
     }
-
-    /*
-    public static final Creator<Order> CREATOR = new Creator<Order>() {
-        @Override
-        public Order createFromParcel(Parcel in) {
-            return new Order(in);
-        }
-
-        @Override
-        public Order[] newArray(int size) {
-            return new Order[size];
-        }
-    };
-    */
 
     public static final Creator<Quilt> CREATOR = new Creator<Quilt>() {
         @Override
