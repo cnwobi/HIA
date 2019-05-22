@@ -99,25 +99,6 @@ public class GraphFragment extends Fragment {
 
         // put data into line chart
         setGraph();
-        /*
-        ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
-        LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
-        lineDataSet1.setDrawCircles(false);
-        lineDataSet1.setColor(Color.BLUE);
-        LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
-        lineDataSet2.setDrawCircles(false);
-        lineDataSet2.setColor(Color.RED);
-
-        XAxis xAxis = lineTemp.getXAxis();
-        XaisFormatter myFormatter = new XaisFormatter();
-        myFormatter.getAxisLabel(timeArraylist);
-        xAxis.setValueFormatter(myFormatter);
-        lineDataSets.add(lineDataSet1);
-        lineDataSets.add(lineDataSet2);
-        lineTemp.setData(new LineData(lineDataSets));
-        lineTemp.invalidate();
-        */
-
         lineTemp.setVisibleXRangeMaximum(22f);
 
         return rootView;
@@ -216,25 +197,6 @@ public class GraphFragment extends Fragment {
 
                 }
                 setGraph();
-
-                /*ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
-                LineDataSet lineDataSet1 = new LineDataSet(line1, "Air Temperature");
-                lineDataSet1.setDrawCircles(false);
-                lineDataSet1.setColor(Color.BLUE);
-                LineDataSet lineDataSet2 = new LineDataSet(line2, "Temperature inside the Quilt");
-                lineDataSet2.setDrawCircles(false);
-                lineDataSet2.setColor(Color.RED);
-
-                //lineTemp = rootView.findViewById(R.id.line_chart);
-                XAxis xAxis = lineTemp.getXAxis();
-                XaisFormatter myFormatter = new XaisFormatter();
-                myFormatter.getAxisLabel(timeArraylist);
-                xAxis.setValueFormatter(myFormatter);
-                lineDataSets.add(lineDataSet1);
-                lineDataSets.add(lineDataSet2);
-                lineTemp.setData(new LineData(lineDataSets));
-                lineTemp.invalidate();
-                */
 
                 //lineTemp.setVisibleXRangeMaximum(8f);
                 //Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
