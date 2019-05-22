@@ -28,8 +28,20 @@ import butterknife.ButterKnife;
 
 public class ConfirmOrderActivity extends AppCompatActivity {
 
-    @BindView(R.id.textView_confirm) TextView textView;
+
     @BindView(R.id.button_confirm)   Button   buttonConfirm;
+    @BindView(R.id.tvConfirmFirstName) TextView tvConfirmFirstName;
+    @BindView(R.id.tvConfirmLastName)  TextView tvConfirmLastName;
+    @BindView(R.id.tvConfirmUnitNumber) TextView tvConfirmUnitNumber;
+    @BindView(R.id.tvConfirmStreetNumber) TextView tvConfirmStreetNumber;
+    @BindView(R.id.tvConfirmStreetName) TextView tvConfirmStreetName;
+    @BindView(R.id.tvConfirmSuburb) TextView tvConfirmSuburb;
+    @BindView(R.id.tvConfirmPostcode) TextView tvConfirmPostcode;
+    @BindView(R.id.tvConfirmState) TextView tvConfirmState;
+    @BindView(R.id.tvConfirmSize) TextView tvConfirmSize;
+    @BindView(R.id.tvConfirmFabric) TextView tvConfirmFabric;
+    @BindView(R.id.tvConfirmFilling) TextView tvConfirmFilling;
+    @BindView(R.id.tvConfirmGsm) TextView tvConfirmGsm;
     final OrderRepository orderRepository = new OrderRepositoryImpl();
     final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
     final QrCodeRepository qrCodeRepository =  new QrCodeRepositoryImpl();
@@ -57,28 +69,30 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
 
         // retrieve object from the previous activity
+
         Quilt quilt = getIntent().getParcelableExtra("quilt");
         final Order order = getIntent().getParcelableExtra("order");
         final QrCode qrCode = getIntent().getParcelableExtra("qrCode");
-        order.setQuilt(quilt);
 
-        SpannableStringBuilder ssb = new SpannableStringBuilder();
+           order.setQuilt(quilt);
 
-        textView.append("Customer Detail:\n\n");
-        textView.append(getString(R.string.first_name)    + ": " + order.getFirstName() + "\n");
-        textView.append(getString(R.string.last_name)     + ": " + order.getLastName() + "\n");
-        textView.append(getString(R.string.unit_number)   + ": " + order.getUnitNumber() + "\n");
-        textView.append(getString(R.string.street_number) + ": " + order.getStreetNumber() + "\n");
-        textView.append(getString(R.string.street_name)   + ": " + order.getStreetName() + "\n");
-        textView.append(getString(R.string.suburb)        + ": " + order.getSuburbs() + "\n");
-        textView.append(getString(R.string.postcode)      + ": " + order.getPostcode() + "\n");
-        textView.append(getString(R.string.state)         + ": " + order.getState() + "\n\n");
+           tvConfirmFirstName.setText(order.getFirstName());
+           tvConfirmLastName.setText(order.getLastName());
+           tvConfirmUnitNumber.setText(order.getUnitNumber());
+           tvConfirmStreetNumber.setText(order.getStreetNumber());
+           tvConfirmStreetName.setText(order.getStreetName());
+           tvConfirmSuburb.setText(order.getSuburbs());
+           tvConfirmPostcode.setText(order.getPostcode());
+           tvConfirmState.setText(order.getState());
 
-        textView.append("Selected Quilt:\n\n");
-        textView.append(getString(R.string.size_c)      + ": " + order.getQuilt().getSize() + "\n");
-        textView.append(getString(R.string.fabric_c)    + ": " + order.getQuilt().getFabric() + "\n");
-        textView.append(getString(R.string.filling_c)   + ": " + order.getQuilt().getFilling() + "\n");
-        textView.append(getString(R.string.gsm_c)       + ": " + order.getQuilt().getGSM() + "\n");
+
+           tvConfirmSize.setText(quilt.getSize());
+           tvConfirmFabric.setText(quilt.getFabric());
+           tvConfirmFilling.setText(quilt.getFilling());
+           tvConfirmGsm.setText(quilt.getGSM());
+               SpannableStringBuilder ssb = new SpannableStringBuilder();
+
+
 
 
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
