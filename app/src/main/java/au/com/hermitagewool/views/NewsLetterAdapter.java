@@ -33,6 +33,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
 
     public NewsLetterAdapter() {
         newsLetterReference = FirebaseHelper.getNewsLetterReference();
+
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -73,8 +74,8 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        Context context =  viewGroup.getContext();
-        View itemView = LayoutInflater.from(context).inflate(R.layout.rv_cardview,viewGroup,false);
+        Context context  = viewGroup.getContext();
+        View    itemView = LayoutInflater.from(context).inflate(R.layout.rv_cardview,viewGroup,false);
         return new NewsViewHolder(itemView);
     }
 

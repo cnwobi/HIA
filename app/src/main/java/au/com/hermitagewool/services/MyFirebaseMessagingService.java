@@ -1,5 +1,6 @@
 package au.com.hermitagewool.services;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -19,7 +20,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             try {
                 String jsonMessage = data.getString("extra_information");
-                Log.d(TAG, "onMessageReceived: \n" + "Extra Information "+ jsonMessage);
+                Log.d(TAG, "onMessageReceived: \n" + "Extra Information " + jsonMessage);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -32,8 +33,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
             Log.d(TAG, "Message Title: " + title);
-            Log.d(TAG, "Message Notification Body:"+ message);
-            Log.d(TAG, "Message Notification click_action: "+ clickAction);
+            Log.d(TAG, "Message Notification Body:" + message);
+            Log.d(TAG, "Message Notification click_action: " + clickAction);
         }
     }
 
