@@ -21,6 +21,8 @@ import au.com.hermitagewool.repository.OrderRepository;
 import au.com.hermitagewool.repository.OrderRepositoryImpl;
 import au.com.hermitagewool.repository.QuiltRepository;
 import au.com.hermitagewool.repository.QuiltRepositoryImpl;
+import au.com.hermitagewool.repository.QrCodeRepository;
+import au.com.hermitagewool.repository.QrCodeRepositoryImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,6 +30,9 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
     @BindView(R.id.textView_confirm) TextView textView;
     @BindView(R.id.button_confirm)   Button   buttonConfirm;
+    final OrderRepository orderRepository = new OrderRepositoryImpl();
+    final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
+    final QrCodeRepository qrCodeRepository =  new QrCodeRepositoryImpl();
 
 
     @Override
@@ -51,12 +56,12 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         });
 
 
-        final OrderRepository orderRepository = new OrderRepositoryImpl();
-        final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
+
 
         // retrieve object from the previous activity
         Quilt quilt = getIntent().getParcelableExtra("quilt");
         final Order order = getIntent().getParcelableExtra("order");
+        QrCode qrCode = getIntent().getParcelableExtra("qr code");
         order.setQuilt(quilt);
 
         SpannableStringBuilder ssb = new SpannableStringBuilder();
@@ -84,6 +89,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
 
                 orderRepository.saveOrder(order);
                 quiltRepository.saveQuilt(order.getQuilt());
+
 
                 Intent intent = new Intent(ConfirmOrderActivity.this, MainActivity.class);
                 ConfirmOrderActivity.this.startActivity(intent);

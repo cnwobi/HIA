@@ -86,11 +86,18 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         break;
                     }
                 }
-                if(qrCode != null) {
+                if(qrCode != null && !qrCode.isUsed() ) {
                     Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
-                    intent.putExtra("qr code", qrCode);
+                    intent.putExtra("qrCode", qrCode);
                     startActivity(intent);
                 }
+                else if(qrCode!=null && qrCode.isUsed()){
+                    Toast.makeText(getApplicationContext(), "QR-Code has been used! Please contact issuing store", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+
+                }
+
                 else {
                     Toast.makeText(getApplicationContext(), "Invalid QR-Code", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
