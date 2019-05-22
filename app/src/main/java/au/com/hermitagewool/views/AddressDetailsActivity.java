@@ -159,8 +159,8 @@ public class AddressDetailsActivity extends AppCompatActivity {
         mainIntent.putExtra("suburb",returnTextInput(textInputLayoutSuburb));
         mainIntent.putExtra("postcode",returnTextInput(textInputLayoutPostcode));
         mainIntent.putExtra("state",selectedOption);
-        QrCode qrCode = getIntent().getParcelableExtra("qr code");
-        mainIntent.putExtra("qr code", qrCode);
+        QrCode qrCode = getIntent().getParcelableExtra("qrCode");
+        mainIntent.putExtra("qrCode", qrCode);
 
         AddressDetailsActivity.this.startActivity(mainIntent);
     }

@@ -34,6 +34,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     private QrCodeRepository qrCodeRepository;
     private String key;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
         qrCodeRepository = new QrCodeRepositoryImpl();
+
+
     }
 
 
@@ -63,6 +66,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(final Result rawResult) {
+
         // Do something with the result here
         // Log.v("tag", rawResult.getText()); // Prints scan results
         // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
@@ -86,12 +90,21 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         break;
                     }
                 }
-                if(qrCode != null) {
+                if(qrCode != null && !qrCode.isUsed() ) {
                     Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
-                    intent.putExtra("qr code", qrCode);
+                    intent.putExtra("qrCode", qrCode);
                     startActivity(intent);
+                    key= null;
                 }
-                else {
+                else if(qrCode!=null && qrCode.isUsed()){
+                    Toast.makeText(getApplicationContext(), "QR-Code has been used! Please contact issuing store", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+
+                }
+
+
+                else if(qrCode==null && key!=null) {
                     Toast.makeText(getApplicationContext(), "Invalid QR-Code", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);

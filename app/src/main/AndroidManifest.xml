@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_custom_circle"
         android:supportsRtl="true"
         android:theme="@style/HIATheme">
-        <activity android:name="au.com.hermitagewool.views.NewsDetailActivity"></activity>
+
         <activity
             android:name="au.com.hermitagewool.views.MainActivity"
             android:theme="@style/HIATheme">
@@ -33,16 +33,27 @@
             </intent-filter>
         </service>
 
-        <activity android:name="au.com.hermitagewool.views.ScanActivity" />
+
         <activity
             android:name="au.com.hermitagewool.views.AddressDetailsActivity"
             android:parentActivityName="au.com.hermitagewool.views.MainActivity" />
         <activity
             android:name="au.com.hermitagewool.views.CustomiseQuiltActivity"
             android:parentActivityName="au.com.hermitagewool.views.AddressDetailsActivity" />
+
+
         <activity
             android:name="au.com.hermitagewool.views.ConfirmOrderActivity"
-            android:parentActivityName="au.com.hermitagewool.views.CustomiseQuiltActivity" />
+            android:parentActivityName="au.com.hermitagewool.views.CustomiseQuiltActivity" >
+
+        </activity>
+        <activity
+            android:name="au.com.hermitagewool.views.NewsDetailActivity"
+            android:parentActivityName="au.com.hermitagewool.views.MainActivity"/>
+        <activity
+            android:name="au.com.hermitagewool.views.QuiltList"
+            android:parentActivityName="au.com.hermitagewool.views.MainActivity" />
+        <activity android:name="au.com.hermitagewool.views.ScanActivity" />
     </application>
 
 </manifest>

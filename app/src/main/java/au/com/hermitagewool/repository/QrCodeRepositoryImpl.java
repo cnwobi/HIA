@@ -53,5 +53,8 @@ public class QrCodeRepositoryImpl implements QrCodeRepository {
         return qrCode;
     }
 
-
+    @Override
+    public void saveQrCode(QrCode qrCode) {
+        qrCodeReference.push().setValue(qrCode);
+    }
 }

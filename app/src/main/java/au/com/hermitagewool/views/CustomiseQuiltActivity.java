@@ -120,7 +120,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
 
         Order order = new Order();
 
-        QrCode qrCode = getIntent().getParcelableExtra("qr code");
+        QrCode qrCode = getIntent().getParcelableExtra("qrCode");
         order.setQrCode(qrCode.getId());
         order.setFirstName(returnStringFromIntent("firstName"));
         order.setLastName(returnStringFromIntent("lastName"));
@@ -134,6 +134,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent(CustomiseQuiltActivity.this, ConfirmOrderActivity.class);
         // push the object to the next activity ?
+        mainIntent.putExtra("qrCode",qrCode);
         mainIntent.putExtra("quilt", quilt);
         mainIntent.putExtra("order", order);
 

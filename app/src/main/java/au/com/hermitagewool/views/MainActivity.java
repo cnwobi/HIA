@@ -54,35 +54,21 @@ public class MainActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
 
 
-        /* * / // remove the space before the last / to uncomment
+
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
 
-        News news1 = new News();
-        news1.setmTitle("Why so serious ?!?");
-        news1.setmBody("ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "\n\n\n\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaa”\n" +
-                "\n\n\n\n" +
-                "ahaHaHHahaHaHHAHaHAHaHaHaHaHaHaHaHAHAHAaaan\n");
+        /*News news1 = new News();
+        news1.setmTitle("Test More than 40 CAPS");
+        news1.setmBody("LOREM IPSUM GENERATOR\n" +
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
         news1.setmAuthor("The Joker");
         news1.setmCreationDate(formattedDate);
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
 
         newsRepositiory.saveNews(news1);
-        /* */
+*/
     }
 
     @Override
@@ -94,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.nav_scanQR:
                 Intent intentScanQR = new Intent(MainActivity.this, ScanActivity.class);
@@ -102,15 +87,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.nav_connect_quilt:
-                Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
-                startActivity(bluetoothIntent);
+                //Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                //startActivity(bluetoothIntent);
+                Intent quiltList = new Intent(MainActivity.this, QuiltList.class);
+                startActivity(quiltList);
                 //Log.d(TAG, "bluetooth");
                 return true;
 
-            case R.id.nav_customise:
-                Intent intentCustomise = new Intent(MainActivity.this, AddressDetailsActivity.class);
-                startActivity(intentCustomise);
-                return true;
 
             default: return super.onOptionsItemSelected(item);
         }
