@@ -32,11 +32,13 @@
     <string name="btn_rewiew">Review</string>
     <string name="btn_temp">Temperature</string>
 
-    <!-- Page titles -->
+    <!-- All titles -->
     <string name="title_quilt">Select Quilt Attributes</string>
     <string name="title_address">Please Enter Address Details</string>
     <string name="title_confirm">Order Review</string>
     <string name="title_quilt_list">Select a quilt</string>
+    <string name="title_personal_details">Personal Details</string>
+    <string name="title_selected_quilt">Selected Quilt</string>
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
@@ -49,7 +51,7 @@
     <string-array name="array_states">
         <item>Select State</item>
         <item>Victoria</item>
-        <item>New South Wale</item>
+        <item>New South Wales</item>
         <item>Queensland</item>
         <item>Tasmania</item>
         <item>Western Australia</item>
