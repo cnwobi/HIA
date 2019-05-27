@@ -96,7 +96,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                     startActivity(intent);
                     key= null;
                 }
-                else if(qrCode!=null && qrCode.isUsed()){
+                else if(qrCode!=null && qrCode.isUsed()&& key==null){
                     Toast.makeText(getApplicationContext(), "QR-Code has been used! Please contact issuing store", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
