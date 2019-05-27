@@ -68,6 +68,13 @@ public class GraphFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
         sensorRepository = new SensorRepositoryImpl();
 
+        lineTemp = rootView.findViewById(R.id.line_chart);
+        //read defualt local data
+        readJson();
+        // put data into line chart
+        setGraph(line1,line2,timeArraylist);
+
+
         // get fragment manager so we can launch from fragment
         final FragmentManager fm = (getActivity()).getSupportFragmentManager();
 
@@ -88,18 +95,8 @@ public class GraphFragment extends Fragment {
             }
         });
 
-        // line chart components
-        lineTemp = rootView.findViewById(R.id.line_chart);
-
-
-        //read defualt local data
-        readJson();
         //addData(selectedDate);
         //setData(selectedDate, rootView);
-
-        // put data into line chart
-        setGraph();
-        lineTemp.setVisibleXRangeMaximum(22f);
 
         return rootView;
     }
@@ -112,23 +109,26 @@ public class GraphFragment extends Fragment {
             selectedDate = data.getStringExtra("selectedDate");
             // set the value of the editText
             dateView.setText(data.getStringExtra("displayDate"));
+            //Toast.makeText(getActivity(), "check datePicker: " + selectedDate, Toast.LENGTH_LONG).show();
+            changeData(selectedDate);
         }
     }
 
     // make x axis labels
     private class XaisFormatter implements IAxisValueFormatter {
         private ArrayList<String> labelList;
-        //private int maxIndex;
+
 
         public void getAxisLabel(ArrayList<String> labels){
             this.labelList = (ArrayList<String>) labels.clone();
-            System.out.println("cloned size"+ labelList.size());
+
         }
 
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
-            //this.maxIndex = labelList.size()-1;
+
             return labelList.get(Math.round(value));
+
         }
     }
 
@@ -164,7 +164,7 @@ public class GraphFragment extends Fragment {
         }
     }
 
-    private void setData(final String selectedDate, final View rootView){
+    private void setData(final String selectedDate){
         //final List<Sensor> dataSet = new ArrayList<>();
 
         final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -196,10 +196,67 @@ public class GraphFragment extends Fragment {
                         //break;
 
                 }
-                setGraph();
+                setGraph(line1,line2,timeArraylist);
 
                 //lineTemp.setVisibleXRangeMaximum(8f);
                 //Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), "Read data failed", Toast.LENGTH_LONG).show();
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+    }
+
+    private void changeData(String selectedDate){
+        //final List<Sensor> dataSet = new ArrayList<>();
+
+        final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        final ArrayList<Entry> line1 = new ArrayList<>();
+        final ArrayList<Entry> line2 = new ArrayList<>();
+        final ArrayList<String> timeArrayList = new ArrayList<>();
+        final ArrayList<Float>  x = new ArrayList<>();
+
+        sensorReference.orderByChild("local_date_time_full").startAt(selectedDate).limitToFirst(48).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                    //Sensor data = ds.getValue(Sensor.class);
+                    //dataSet.add(data);
+                    //if (ds.child("local_date_time_full").getValue(String.class).equals(selectedDate)) {
+                    String date_str = ds.child("local_date_time_full").getValue(String.class);
+                    float index = ds.child("sort_order").getValue(Integer.class);
+                    float temp = ds.child("air_temp").getValue(float.class);
+                    float quilt_t = ds.child("quilt_t").getValue(float.class);
+
+                    try {
+                        Date date = dateTimeFormat.parse(date_str);
+                        //dateArrayList.add(date);
+                        timeArrayList.add(timeFormat.format(date));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    x.add(index);
+                    line1.add(new Entry(index-x.get(0), temp));
+                    line2.add(new Entry(index-x.get(0), quilt_t));
+
+
+                    //break;
+
+                }
+                lineTemp.clearValues();
+                lineTemp.invalidate();
+                setGraph(line1,line2,timeArrayList);
+
+                //lineTemp.setVisibleXRangeMaximum(8f);
+                //Toast.makeText(getActivity(), "check: " + x.get(0)+ x.get(47), Toast.LENGTH_LONG).show();
                 //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
 
             }
@@ -249,9 +306,7 @@ public class GraphFragment extends Fragment {
                 float tempQuilt = Float.parseFloat(obj.getString("quilt_t"));
                 line2.add(new Entry(index,tempQuilt));
 
-
             }
-            Toast.makeText(getActivity(), "check data: " + line2.get(49).toString(), Toast.LENGTH_LONG).show();
 
         }catch (IOException e){
             e.printStackTrace();
@@ -260,24 +315,31 @@ public class GraphFragment extends Fragment {
         }
     }
 
-    private void setGraph(){
+    private void setGraph(ArrayList<Entry> line1, ArrayList<Entry> line2, ArrayList<String> labelList){
 
-        ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
-        LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
-        lineDataSet1.setDrawCircles(false);
-        lineDataSet1.setColor(Color.BLUE);
-        LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
-        lineDataSet2.setDrawCircles(false);
-        lineDataSet2.setColor(Color.RED);
+        if(labelList.size() != 0) {
+            ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+            LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
+            lineDataSet1.setDrawCircles(false);
+            lineDataSet1.setColor(Color.BLUE);
+            LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
+            lineDataSet2.setDrawCircles(false);
+            lineDataSet2.setColor(Color.RED);
 
-        XAxis xAxis = lineTemp.getXAxis();
-        XaisFormatter myFormatter = new XaisFormatter();
-        myFormatter.getAxisLabel(timeArraylist);
-        xAxis.setValueFormatter(myFormatter);
-        lineDataSets.add(lineDataSet1);
-        lineDataSets.add(lineDataSet2);
-        lineTemp.setData(new LineData(lineDataSets));
+            XAxis xAxis = lineTemp.getXAxis();
+            XaisFormatter myFormatter = new XaisFormatter();
+            myFormatter.getAxisLabel(labelList);
+            xAxis.setValueFormatter(myFormatter);
+            lineDataSets.add(lineDataSet1);
+            lineDataSets.add(lineDataSet2);
+            lineTemp.setData(new LineData(lineDataSets));
+        }
+        else {
+            Toast.makeText(getActivity(), "No data to display on this day", Toast.LENGTH_LONG).show();
+        }
+
         lineTemp.invalidate();
+        lineTemp.setVisibleXRangeMaximum(22f);
     }
 
 }
