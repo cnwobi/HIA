@@ -95,8 +95,6 @@ public class GraphFragment extends Fragment {
             }
         });
 
-        //addData(selectedDate);
-        //setData(selectedDate, rootView);
 
         return rootView;
     }
@@ -164,54 +162,6 @@ public class GraphFragment extends Fragment {
         }
     }
 
-    private void setData(final String selectedDate){
-        //final List<Sensor> dataSet = new ArrayList<>();
-
-        final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-
-        sensorReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                    //Sensor data = ds.getValue(Sensor.class);
-                    //dataSet.add(data);
-                    //if (ds.child("local_date_time_full").getValue(String.class).equals(selectedDate)) {
-                    String date_str = ds.child("local_date_time_full").getValue(String.class);
-                    float index = ds.child("sort_order").getValue(Integer.class);
-                    float temp = ds.child("air_temp").getValue(float.class);
-                    float quilt_t = ds.child("quilt_t").getValue(float.class);
-
-                    try {
-                        Date date = dateTimeFormat.parse(date_str);
-                        dateArrayList.add(date);
-                        timeArraylist.add(timeFormat.format(date));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                    line1.add(new Entry(index, temp));
-                    line2.add(new Entry(index, quilt_t));
-
-                        //break;
-
-                }
-                setGraph(line1,line2,timeArraylist);
-
-                //lineTemp.setVisibleXRangeMaximum(8f);
-                //Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
-                //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Read data failed", Toast.LENGTH_LONG).show();
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
-    }
 
     private void changeData(String selectedDate){
         //final List<Sensor> dataSet = new ArrayList<>();
