@@ -87,8 +87,8 @@
     </string-array>
 
     <!-- The different string for the fake quilt list -->
-    <string name="quilt_connected">Connected quilt:</string>
-    <string name="quilt_not_connected">Not connected quilt:</string>
+    <string name="quilt_connected">Quilt connected</string>
+    <string name="quilt_not_connected">Quilt not connected</string>
     <string name="quilt_fake1">Bedroom 1 Quilt</string>
     <string name="quilt_fake2">Bedroom 2 Quilt</string>
     <string name="quilt_fake3">Bedroom 3 Quilt</string>
