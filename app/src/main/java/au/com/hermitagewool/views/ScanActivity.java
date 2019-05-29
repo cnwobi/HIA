@@ -43,8 +43,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
         qrCodeRepository = new QrCodeRepositoryImpl();
-
-
     }
 
 
@@ -77,7 +75,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         Currently just send the result and print it to AddressDetailsActivity
         In the future, check with the server if the QRCode is valid.
          */
-        key =  rawResult.getText();
+        key = rawResult.getText();
 
         qrCodeReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,27 +88,25 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         break;
                     }
                 }
-                if(qrCode != null && !qrCode.isUsed() ) {
+
+                if(qrCode != null && !qrCode.isUsed()) {
                     Intent intent = new Intent(getApplicationContext(), AddressDetailsActivity.class);
                     intent.putExtra("qrCode", qrCode);
                     startActivity(intent);
-                    key= null;
+                    key = null;
                 }
-                else if(qrCode!=null && qrCode.isUsed()&& key!=null){
+                else if(qrCode != null && qrCode.isUsed()){
                     Toast.makeText(getApplicationContext(), "QR-Code has been used! Please contact issuing store", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
-                    key = null;
-
                 }
-
-
-                else if(qrCode==null && key!=null) {
+                else if(qrCode == null && key != null) {
                     Toast.makeText(getApplicationContext(), "Invalid QR-Code", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

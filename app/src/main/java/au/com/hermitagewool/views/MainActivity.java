@@ -8,6 +8,7 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
+        /*Fragment fragment = new GraphFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.tab_graph, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();*/
 
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
 
