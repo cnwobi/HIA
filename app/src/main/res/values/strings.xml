@@ -31,6 +31,7 @@
     <string name="btn_confirm">Confirm</string>
     <string name="btn_rewiew">Review</string>
     <string name="btn_temp">Temperature</string>
+    <string name="btn_humi">Humidity</string>
 
     <!-- All titles -->
     <string name="title_quilt">Select Quilt Attributes</string>
