@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 
 import com.com.hwool.hermitageintelligenceagency.R;
 
-
+/**
+ * News fragment
+ */
 public class NewsFragment extends Fragment {
 
     @Override

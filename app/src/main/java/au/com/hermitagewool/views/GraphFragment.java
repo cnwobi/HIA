@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,13 +41,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import au.com.hermitagewool.models.Sensor;
 import au.com.hermitagewool.repository.FirebaseHelper;
 import au.com.hermitagewool.repository.SensorRepository;
 import au.com.hermitagewool.repository.SensorRepositoryImpl;
 
+/**
+ * This fragment contains the smart quilt data plot
+ */
 public class GraphFragment extends Fragment {
 
     private static final String TAG = "Tab1Fragment";

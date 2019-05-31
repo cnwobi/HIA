@@ -14,7 +14,10 @@ import java.util.Objects;
 
 public class QuiltList extends AppCompatActivity {
 
-
+    /**
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
