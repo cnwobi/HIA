@@ -15,6 +15,9 @@ import au.com.hermitagewool.models.News;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * This activity displays the details of a news article
+ */
 public class NewsDetailActivity extends AppCompatActivity {
     @BindView(R.id.tvDetailsTitle) TextView tvDetailsTitle;
     @BindView(R.id.tvDetailsBody)  TextView tvDetailsBody;

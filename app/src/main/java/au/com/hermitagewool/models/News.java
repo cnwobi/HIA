@@ -1,6 +1,9 @@
 package au.com.hermitagewool.models;
 
 import java.io.Serializable;
+/**
+ * News class
+ */
 
 public class News implements Serializable {
     private String id;

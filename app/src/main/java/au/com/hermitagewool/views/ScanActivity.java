@@ -26,6 +26,9 @@ import au.com.hermitagewool.repository.QrCodeRepositoryImpl;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pub.devrel.easypermissions.EasyPermissions;
 
+/**
+ * This activity contains qr code logic and uses external library ZXingScannerView
+ */
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
@@ -61,21 +64,14 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
 
-
+    /**
+     * This method contains logic for processing the details from the scanner or camera
+     * @param rawResult
+     */
     @Override
     public void handleResult(final Result rawResult) {
 
-        // Do something with the result here
-        // Log.v("tag", rawResult.getText()); // Prints scan results
-        // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
-
-        //MainActivity.tvQrResult.setText(rawResult.getText());
-
-        /*
-        Currently just send the result and print it to AddressDetailsActivity
-        In the future, check with the server if the QRCode is valid.
-         */
-        key = rawResult.getText();
+         key = rawResult.getText();
 
         qrCodeReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -122,12 +118,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
 
-    //onBackPressed();
-
-    // If you would like to resume scanning, call this method below:
-    //mScannerView.resumeCameraPreview(this);
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -136,6 +126,9 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
+    /**
+     * This method is used to request permission from android before the camera can be used
+     */
     public void requestPermission(){
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)

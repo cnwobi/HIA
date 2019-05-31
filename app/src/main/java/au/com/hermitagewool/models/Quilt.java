@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Quilt class implement parcelable
+ */
 @Getter
 @Setter
 @NoArgsConstructor

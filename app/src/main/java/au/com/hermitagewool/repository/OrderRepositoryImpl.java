@@ -4,7 +4,9 @@ import com.google.firebase.database.DatabaseReference;
 
 import au.com.hermitagewool.models.Order;
 
-
+/**
+ * Concrete OrderRepo implementation
+ */
 public class OrderRepositoryImpl implements OrderRepository {
     DatabaseReference databaseReference = FirebaseHelper.getOrderReference();
 

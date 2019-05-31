@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Order class
+ */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -4,6 +4,9 @@ import com.google.firebase.database.DatabaseReference;
 
 import au.com.hermitagewool.models.Quilt;
 
+/**
+ * Quilt repository to connect to firebase
+ */
 public class QuiltRepositoryImpl implements QuiltRepository {
 
     @Override

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 import au.com.hermitagewool.models.Sensor;
 
+/**
+ * @author Ye Hung
+ */
 public class SensorRepositoryImpl implements SensorRepository {
     private DatabaseReference sensorReference = FirebaseHelper.getSensorDataReference();
 

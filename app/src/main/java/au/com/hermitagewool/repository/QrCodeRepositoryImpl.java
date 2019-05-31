@@ -14,7 +14,9 @@ import java.util.Objects;
 
 import au.com.hermitagewool.models.QrCode;
 
-
+/**
+ * QRCode Repository implementation
+ */
 public class QrCodeRepositoryImpl implements QrCodeRepository {
     private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
 

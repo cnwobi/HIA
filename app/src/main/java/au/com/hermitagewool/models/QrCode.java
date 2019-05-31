@@ -6,6 +6,9 @@ import android.os.Parcelable;
 
 import lombok.NoArgsConstructor;
 
+/**
+ * Qrcode class
+ */
 @NoArgsConstructor
 public class QrCode implements Parcelable {
     private static final String TAG = "QrCode";

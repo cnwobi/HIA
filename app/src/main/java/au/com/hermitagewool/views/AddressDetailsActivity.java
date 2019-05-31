@@ -22,6 +22,9 @@ import java.util.Objects;
 import au.com.hermitagewool.models.QrCode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+/**
+ * Used to capture address details of the client from the form
+ */
 
 public class AddressDetailsActivity extends AppCompatActivity {
 
@@ -103,7 +106,8 @@ public class AddressDetailsActivity extends AppCompatActivity {
         });
     }
 
-
+/**
+ *Validate input to ensure no blanks or input too long*/
     private boolean isValidTextInput(TextInputLayout textInputLayout) {
         String input = Objects.requireNonNull(textInputLayout.getEditText()).getText().toString().trim();
         if (input.isEmpty()) {
@@ -119,7 +123,8 @@ public class AddressDetailsActivity extends AppCompatActivity {
         return true;
     }
 
-
+/**
+ * Validate that an option is selected from the state drop down menu*/
     private boolean isValidSelection() {
         selectedOption =  (String) statesSpinner.getSelectedItem();
 

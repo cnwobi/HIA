@@ -23,6 +23,9 @@ import java.util.List;
 import au.com.hermitagewool.models.News;
 import au.com.hermitagewool.repository.FirebaseHelper;
 
+/**
+ * Newsletter adapter listens to the newsletter reference and update
+ */
 public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.NewsViewHolder>  {
     private static final String TAG = "NewsLetterAdapter";
     private DatabaseReference  newsLetterReference;

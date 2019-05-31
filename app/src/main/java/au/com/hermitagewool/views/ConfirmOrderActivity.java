@@ -26,6 +26,9 @@ import au.com.hermitagewool.repository.QrCodeRepositoryImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Activity that displays the order details
+ */
 public class ConfirmOrderActivity extends AppCompatActivity {
 
     @BindView(R.id.button_confirm)   Button   buttonConfirm;

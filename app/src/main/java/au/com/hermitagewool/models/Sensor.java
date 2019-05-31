@@ -1,15 +1,13 @@
 package au.com.hermitagewool.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import lombok.Getter;
-
 import lombok.Setter;
 
 @Getter
 @Setter
-
+/**
+ * Sensor class
+ */
 public class Sensor {
     private static final String TAG = "SensorData";
     private String name;
@@ -42,52 +40,6 @@ public class Sensor {
         this.hrt_bt = heartRate;
     }
 
-    /*protected Sensor(Parcel in) {
-        location = in.readString();
-        localTime = in.readString();
-        localDateFull = in.readString();
-        timeUTC = in.readString();
-        index = in.readInt();
-        lat = in.readDouble();
-        lon = in.readDouble();
-        airTemp = in.readFloat();
-        quiltTemp = in.readFloat();
-        humidity = in.readInt();
-        heartRate = in.readInt();
-    }
-
-    public static final Creator<Sensor> CREATOR = new Creator<Sensor>() {
-        @Override
-        public Sensor createFromParcel(Parcel in) {
-            return new Sensor(in);
-        }
-
-        @Override
-        public Sensor[] newArray(int size) {
-            return new Sensor[size];
-        }
-    };
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(location);
-        dest.writeString(localTime);
-        dest.writeString(localDateFull);
-        dest.writeString(timeUTC);
-        dest.writeDouble(lat);
-        dest.writeDouble(lon);
-        dest.writeDouble(airTemp);
-        dest.writeDouble(quiltTemp);
-        dest.writeInt(index);
-        dest.writeInt(humidity);
-        dest.writeInt(heartRate);
-    }
-
-     @Override
-    public int describeContents() {
-        return 0;
-    }
-    */
 
 
     public void setLocalTime(String local_date_time){

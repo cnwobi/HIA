@@ -19,11 +19,13 @@ import java.util.Objects;
 import au.com.hermitagewool.models.Order;
 import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
-import au.com.hermitagewool.repository.OrderRepository;
-import au.com.hermitagewool.repository.QuiltRepository;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * This activity allows user to specificy the characteristics of their order
+ * eg. size, fabric type etc...
+ */
 public class CustomiseQuiltActivity extends AppCompatActivity {
     @BindView(R.id.spinner_size)    Spinner spinnerSize;
     @BindView(R.id.spinner_fabric)  Spinner spinnerFabric;
@@ -32,8 +34,6 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     @BindView(R.id.btn_submit)      Button  btnSubmit;
 
     private Quilt quilt;
-    OrderRepository orderRepository;
-    QuiltRepository quiltRepository;
 
 
     @Override
