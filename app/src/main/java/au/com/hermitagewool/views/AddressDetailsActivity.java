@@ -44,7 +44,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
     @BindView(R.id.text_input_postcode)
     TextInputLayout textInputLayoutPostcode;
 
-    String selectedOption;
+    private String selectedOption;
 
 
 
@@ -105,7 +105,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
 
 
     private boolean isValidTextInput(TextInputLayout textInputLayout) {
-        String input = textInputLayout.getEditText().getText().toString().trim();
+        String input = Objects.requireNonNull(textInputLayout.getEditText()).getText().toString().trim();
         if (input.isEmpty()) {
             textInputLayout.setError("Field can't be empty");
             return false;
@@ -120,7 +120,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
     }
 
 
-    public boolean isValidSelection() {
+    private boolean isValidSelection() {
         selectedOption =  (String) statesSpinner.getSelectedItem();
 
         if (selectedOption.equalsIgnoreCase("Select State")) {
@@ -133,12 +133,12 @@ public class AddressDetailsActivity extends AppCompatActivity {
     }
 
 
-    public String returnTextInput(TextInputLayout textInputLayout) {
-        return textInputLayout.getEditText().getText().toString().trim();
+    private String returnTextInput(TextInputLayout textInputLayout) {
+        return Objects.requireNonNull(textInputLayout.getEditText()).getText().toString().trim();
     }
 
 
-    public void confirmInput() {
+    private void confirmInput() {
         if(!isValidTextInput(textInputLayoutFirstName)
                 |!isValidTextInput(textInputLayoutLastName)
                 |!isValidTextInput(textInputLayoutStreetName)

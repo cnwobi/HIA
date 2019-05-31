@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="standard_top_margin">8dp</dimen>
-    <dimen name="large_top_margin">64dp</dimen>
-    <dimen name="confirm_layout_width">150dp</dimen>
-    <dimen name="confirm_text_size">20sp</dimen>
+    <dimen name="confirm_layout_width">130dp</dimen>
+    <dimen name="confirm_quilt_width">80dp</dimen>
 </resources>

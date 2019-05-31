@@ -16,7 +16,7 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
         switch (i) {
             case  0: return new NewsFragment();
             case  1: return new GraphFragment();
-            default: return null;
+            default: return new NewsFragment();
         }
     }
 

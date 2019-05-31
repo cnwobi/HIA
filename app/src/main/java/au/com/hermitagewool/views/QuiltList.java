@@ -2,18 +2,16 @@ package au.com.hermitagewool.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.com.hwool.hermitageintelligenceagency.R;
 
 import java.util.Objects;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class QuiltList extends AppCompatActivity {
@@ -49,5 +47,16 @@ public class QuiltList extends AppCompatActivity {
                 startActivity(bluetoothIntent);
             }
         });
+
+        TextView textViewBedroomQuilt1 = findViewById(R.id.quilt_list_quilt1);
+
+        /*textViewBedroomQuilt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new GraphFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_graph, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+            }
+        });*/
     }
 }

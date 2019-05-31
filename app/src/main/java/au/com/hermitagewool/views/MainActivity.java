@@ -8,6 +8,7 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +18,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 import com.com.hwool.hermitageintelligenceagency.R;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -50,27 +50,34 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
+        /*Fragment fragment = new GraphFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.tab_graph, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();*/
 
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
 
 
 
-        Date c = Calendar.getInstance().getTime();
+        /*Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
 
-        /*News news1 = new News();
-        news1.setmTitle("Test More than 40 CAPS");
-        news1.setmBody("LOREM IPSUM GENERATOR\n" +
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-        news1.setmAuthor("The Joker");
+        News news1 = new News();
+        news1.setmTitle("THE HERMITAGE STORY");
+        news1.setmBody("Hermitage produces only the highest quality Australian downs wool quilts, while being quintessentially Australian.\n"
+                + "Hermitage’s goal is to create products of which have never existed in the world before. Using a combination of skilled human hands and state-of-the-art technologies, we constantly advance our luxury products in order to improve the quality of people’s lives.\n");
+        news1.setmAuthor("Hermitage");
         news1.setmCreationDate(formattedDate);
         NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
 
-        newsRepositiory.saveNews(news1);
-*/
+        newsRepositiory.saveNews(news1);*/
+
     }
 
+
+    /*
+        Create and shows the overflow menu on top right.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -87,19 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.nav_connect_quilt:
-                //Intent bluetoothIntent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
-                //startActivity(bluetoothIntent);
                 Intent quiltList = new Intent(MainActivity.this, QuiltList.class);
                 startActivity(quiltList);
-                //Log.d(TAG, "bluetooth");
                 return true;
-
 
             default: return super.onOptionsItemSelected(item);
         }
     }
-
-
 
 }
 

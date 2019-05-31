@@ -20,9 +20,7 @@ import au.com.hermitagewool.models.Order;
 import au.com.hermitagewool.models.QrCode;
 import au.com.hermitagewool.models.Quilt;
 import au.com.hermitagewool.repository.OrderRepository;
-import au.com.hermitagewool.repository.OrderRepositoryImpl;
 import au.com.hermitagewool.repository.QuiltRepository;
-import au.com.hermitagewool.repository.QuiltRepositoryImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,7 +31,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     @BindView(R.id.spinner_gsm)     Spinner spinnerGSM;
     @BindView(R.id.btn_submit)      Button  btnSubmit;
 
-    Quilt quilt;
+    private Quilt quilt;
     OrderRepository orderRepository;
     QuiltRepository quiltRepository;
 
@@ -76,7 +74,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     }
 
 
-    public boolean isValidSelection(Spinner spinner) {
+    private boolean isValidSelection(Spinner spinner) {
         String selectedOption = (String) spinner.getSelectedItem();
 
         if (selectedOption.equalsIgnoreCase("Select Size")

@@ -17,6 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/humi_label"
+                android:layout_width="150dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/goldTitleColor"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/btn_humi"
+                android:textColor="@color/darkBackgroundColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timeLabel" />
+
             <TextView
                 android:id="@+id/timeLabel"
                 android:layout_width="wrap_content"
@@ -24,7 +36,6 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="datetime"
                 android:keyboardNavigationCluster="false"
                 android:textColor="@color/blackTextColor"
                 android:textColorLink="@color/goldTextColor"
@@ -45,7 +56,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/temp_label"></com.github.mikephil.charting.charts.LineChart>
+                app:layout_constraintTop_toBottomOf="@+id/temp_label" />
 
             <Button
                 android:id="@+id/temp_label"

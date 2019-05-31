@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,12 +54,16 @@ public class GraphFragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     private LineChart lineTemp;
     private String currentDate;
-    private String selectedDate;
+    private String selectedDate = "20180713";
     private TextView dateView;
     private ArrayList<Entry> line1 = new ArrayList<>();
     private ArrayList<Entry> line2 = new ArrayList<>();
+    private ArrayList<Entry> lineHumi = new ArrayList<>();
     private ArrayList<Date> dateArrayList = new ArrayList<>();
     private ArrayList<String> timeArraylist = new ArrayList<>();
+    private Boolean dataChoice = false;  // false show temperature graph
+    private Button btnTemp;
+    private Button btnHumi;
     public static final int REQUEST_CODE = 11; // Used to identify the result
     private DatabaseReference sensorReference = FirebaseHelper.getSensorDataReference();
     private SensorRepository sensorRepository;
@@ -67,6 +73,21 @@ public class GraphFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         final View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
         sensorRepository = new SensorRepositoryImpl();
+
+        btnTemp = rootView.findViewById(R.id.temp_label);
+        btnHumi = rootView.findViewById(R.id.humi_label);
+        lineTemp = rootView.findViewById(R.id.line_chart);
+        //read defualt local data
+        readJson();
+        // put data into line chart
+        if(dataChoice == false){
+
+            setTwoLineGraph(line1,line2,timeArraylist);
+        } else {
+
+            setOneLineGraph(lineHumi,timeArraylist);
+        }
+
 
         // get fragment manager so we can launch from fragment
         final FragmentManager fm = (getActivity()).getSupportFragmentManager();
@@ -88,37 +109,29 @@ public class GraphFragment extends Fragment {
             }
         });
 
-        // line chart components
-        //lineTemp = rootView.findViewById(R.id.line_chart);
-        //XAxis xAxis = lineTemp.getXAxis();
+        btnTemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dataChoice = false;
+                lineTemp.clearValues();
+                lineTemp.invalidate();
+                changeTempData(selectedDate);
+            }
+        } );
 
-        //readJson(selectedDate);
-        //addData(selectedDate);
-        setData(selectedDate, rootView);
-
-        /*// put data into line chart
-        ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
-        LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
-        lineDataSet1.setDrawCircles(false);
-        lineDataSet1.setColor(Color.BLUE);
-        LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
-        lineDataSet2.setDrawCircles(false);
-        lineDataSet2.setColor(Color.RED);
-
-        XaisFormatter myFormatter = new XaisFormatter();
-        myFormatter.getAxisLabel(timeArraylist);
-        xAxis.setValueFormatter(myFormatter);
-        lineDataSets.add(lineDataSet1);
-        lineDataSets.add(lineDataSet2);
-        lineTemp.setData(new LineData(lineDataSets));
-
-        lineTemp.setVisibleXRangeMaximum(8f);
-        */
-
-
+        btnHumi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dataChoice = true;
+                lineTemp.clearValues();
+                lineTemp.invalidate();
+                changeHumiData(selectedDate);
+            }
+        } );
 
         return rootView;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -128,6 +141,11 @@ public class GraphFragment extends Fragment {
             selectedDate = data.getStringExtra("selectedDate");
             // set the value of the editText
             dateView.setText(data.getStringExtra("displayDate"));
+            if(dataChoice == false) {
+                changeTempData(selectedDate);
+            } else {
+                changeHumiData(selectedDate);
+            }
         }
     }
 
@@ -137,7 +155,6 @@ public class GraphFragment extends Fragment {
 
         public void getAxisLabel(ArrayList<String> labels){
             this.labelList = (ArrayList<String>) labels.clone();
-            System.out.println("cloned size"+ labelList.size());
         }
 
         @Override
@@ -146,51 +163,21 @@ public class GraphFragment extends Fragment {
         }
     }
 
-    private void addData(String selctedDate) {
-        ArrayList<Sensor> dataSet = sensorRepository.findData(selctedDate);
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
-        if (dataSet != null) {
-            for (int i = 0; i < dataSet.size(); i++) {
-                Sensor dataPoint = dataSet.get(i);
-
-                String date_str = dataPoint.getLocal_date_time_full();
-                try {
-                    Date date = dateTimeFormat.parse(date_str);
-                    dateArrayList.add(date);
-                    timeArraylist.add(timeFormat.format(date));
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                float index = dataPoint.getSort_order();
-                float temp = dataPoint.getAir_temp();
-                line1.add(new Entry(index, temp));
-                float quilt_t = dataPoint.getQuilt_t();
-                line2.add(new Entry(index, quilt_t));
-
-            }
-
-        } else {
-
-        }
-    }
-
-    private void setData(final String selectedDate, final View rootView){
-        //final List<Sensor> dataSet = new ArrayList<>();
+    private void changeTempData(String selectedDate){
 
         final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        final ArrayList<Entry> line1 = new ArrayList<>();
+        final ArrayList<Entry> line2 = new ArrayList<>();
+        final ArrayList<String> timeArrayList = new ArrayList<>();
+        final ArrayList<Float>  x = new ArrayList<>();
 
-        sensorReference.addValueEventListener(new ValueEventListener() {
+        sensorReference.orderByChild("local_date_time_full").startAt(selectedDate).limitToFirst(48).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                    //Sensor data = ds.getValue(Sensor.class);
-                    //dataSet.add(data);
-                    //if (ds.child("local_date_time_full").getValue(String.class).equals(selectedDate)) {
+
                     String date_str = ds.child("local_date_time_full").getValue(String.class);
                     float index = ds.child("sort_order").getValue(Integer.class);
                     float temp = ds.child("air_temp").getValue(float.class);
@@ -198,48 +185,26 @@ public class GraphFragment extends Fragment {
 
                     try {
                         Date date = dateTimeFormat.parse(date_str);
-                        dateArrayList.add(date);
-                        timeArraylist.add(timeFormat.format(date));
+                        timeArrayList.add(timeFormat.format(date));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
 
-                    line1.add(new Entry(index, temp));
-                    line2.add(new Entry(index, quilt_t));
+                    x.add(index);
+                    line1.add(new Entry(index-x.get(0), temp));
+                    line2.add(new Entry(index-x.get(0), quilt_t));
 
 
-                        //break;
-
-                    }
-
-                    ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
-                    LineDataSet lineDataSet1 = new LineDataSet(line1, "Air Temperature");
-                    lineDataSet1.setDrawCircles(false);
-                    lineDataSet1.setColor(Color.BLUE);
-                    LineDataSet lineDataSet2 = new LineDataSet(line2, "Temperature inside the Quilt");
-                    lineDataSet2.setDrawCircles(false);
-                    lineDataSet2.setColor(Color.RED);
-
-                    lineTemp = rootView.findViewById(R.id.line_chart);
-                    final XAxis xAxis = lineTemp.getXAxis();
-                    XaisFormatter myFormatter = new XaisFormatter();
-                    myFormatter.getAxisLabel(timeArraylist);
-                    xAxis.setValueFormatter(myFormatter);
-                    lineDataSets.add(lineDataSet1);
-                    lineDataSets.add(lineDataSet2);
-                    lineTemp.setData(new LineData(lineDataSets));
-                    lineTemp.invalidate();
-
-                    lineTemp.setVisibleXRangeMaximum(8f);
-                   // Toast.makeText(getActivity(), "check" + timeArraylist.get(49), Toast.LENGTH_LONG).show();
-                    //Toast.makeText(getActivity(), "Read data finish", Toast.LENGTH_LONG).show();
-
+                }
+                lineTemp.clearValues();
+                lineTemp.invalidate();
+                setTwoLineGraph(line1,line2,timeArrayList);
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Read data failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.read_data_failed), Toast.LENGTH_LONG).show();
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
@@ -247,24 +212,69 @@ public class GraphFragment extends Fragment {
     }
 
 
-    private void readJson(String selectedDate){
+    private void changeHumiData(String selectedDate){
+
+        final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        final SimpleDateFormat timeFormat     = new SimpleDateFormat("HH:mm");
+        final ArrayList<Entry> line1 = new ArrayList<>();
+        final ArrayList<String> timeArrayList = new ArrayList<>();
+        final ArrayList<Float>  x = new ArrayList<>();
+
+        sensorReference.orderByChild("local_date_time_full").startAt(selectedDate).limitToFirst(48).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+
+                    String date_str = ds.child("local_date_time_full").getValue(String.class);
+                    float index = ds.child("sort_order").getValue(Integer.class);
+                    float humi = ds.child("rel_hum").getValue(float.class);
+
+                    try {
+                        Date date = dateTimeFormat.parse(date_str);
+                        timeArrayList.add(timeFormat.format(date));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    x.add(index);
+                    line1.add(new Entry(index-x.get(0), humi));
+
+                }
+                lineTemp.clearValues();
+                lineTemp.invalidate();
+                setOneLineGraph(line1,timeArrayList);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.read_data_failed), Toast.LENGTH_LONG).show();
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+    }
+
+
+    private void readJson(){
         // read local json file
         String json;
         try {
-            InputStream inputStream = getContext().getAssets().open("sensor.json");
+            InputStream inputStream = getContext().getAssets().open("sensor_local.json");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);
             inputStream.close();
 
-            json = new String(buffer,"UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
             JSONArray jsonArray = new JSONArray(json);
             SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            int maxIndex = jsonArray.length();
 
             // setup line values
-            for(int i = 0; i<jsonArray.length(); i++){
-                JSONObject obj = jsonArray.getJSONObject(i);
+            for(int i = 0; i<maxIndex; i++){
+                JSONObject obj = jsonArray.getJSONObject(maxIndex-1-i);
 
                 String date_str = obj.getString("local_date_time_full");
                 try {
@@ -279,8 +289,10 @@ public class GraphFragment extends Fragment {
                 float index = Float.parseFloat(obj.getString("sort_order"));
                 float temp = Float.parseFloat(obj.getString("air_temp"));
                 line1.add(new Entry(index,temp));
-                float temp_apparent = Float.parseFloat(obj.getString("quilt_t"));
-                line2.add(new Entry(index,temp_apparent));
+                float tempQuilt = Float.parseFloat(obj.getString("quilt_t"));
+                line2.add(new Entry(index,tempQuilt));
+                float humi = Float.parseFloat(obj.getString("rel_hum"));
+                lineHumi.add(new Entry(index,humi));
 
             }
 
@@ -289,6 +301,58 @@ public class GraphFragment extends Fragment {
         }catch (JSONException e){
             e.printStackTrace();
         }
+    }
+
+
+    private void setTwoLineGraph(ArrayList<Entry> line1, ArrayList<Entry> line2, ArrayList<String> labelList){
+
+        if(labelList.size() != 0) {
+            ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+            LineDataSet lineDataSet1 = new LineDataSet(line1,"Air Temperature");
+            lineDataSet1.setDrawCircles(false);
+            lineDataSet1.setColor(Color.BLUE);
+            LineDataSet lineDataSet2 = new LineDataSet(line2,"Temperature inside the Quilt");
+            lineDataSet2.setDrawCircles(false);
+            lineDataSet2.setColor(Color.RED);
+
+            XAxis xAxis = lineTemp.getXAxis();
+            XaisFormatter myFormatter = new XaisFormatter();
+            myFormatter.getAxisLabel(labelList);
+            xAxis.setValueFormatter(myFormatter);
+            lineDataSets.add(lineDataSet1);
+            lineDataSets.add(lineDataSet2);
+            lineTemp.setData(new LineData(lineDataSets));
+        }
+        else {
+            Toast.makeText(getActivity(), getContext().getResources().getString(R.string.no_data_this_day), Toast.LENGTH_LONG).show();
+        }
+
+        lineTemp.invalidate();
+        lineTemp.setVisibleXRangeMaximum(22f);
+    }
+
+
+    private void setOneLineGraph(ArrayList<Entry> line1, ArrayList<String> labelList){
+
+        if(labelList.size() != 0) {
+            ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+            LineDataSet lineDataSet1 = new LineDataSet(line1,"Relative Humidity in the Quilt");
+            lineDataSet1.setDrawCircles(false);
+            lineDataSet1.setColor(Color.BLUE);
+
+            XAxis xAxis = lineTemp.getXAxis();
+            XaisFormatter myFormatter = new XaisFormatter();
+            myFormatter.getAxisLabel(labelList);
+            xAxis.setValueFormatter(myFormatter);
+            lineDataSets.add(lineDataSet1);
+            lineTemp.setData(new LineData(lineDataSets));
+        }
+        else {
+            Toast.makeText(getActivity(), getContext().getResources().getString(R.string.no_data_this_day), Toast.LENGTH_LONG).show();
+        }
+
+        lineTemp.invalidate();
+        lineTemp.setVisibleXRangeMaximum(22f);
     }
 
 }

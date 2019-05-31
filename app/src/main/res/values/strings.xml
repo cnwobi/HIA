@@ -2,7 +2,6 @@
     <string name="app_name">Hermitage Intelligence Agency</string>
 
     <!-- Menu overflow -->
-    <string name="customise_title">Customise your quilt</string>
     <string name="scan_qr_code">Scan a QR Code</string>
     <string name="connect_quilt">Connect a Smart Quilt</string>
 
@@ -28,28 +27,30 @@
     <!-- Button -->
     <string name="btn_next">Next</string>
     <string name="btn_submit">Submit</string>
-    <string name="btn_confirm">Confirm</string>
-    <string name="btn_rewiew">Review</string>
+    <string name="btn_review">Review</string>
     <string name="btn_temp">Temperature</string>
+    <string name="btn_humi">Humidity</string>
 
-    <!-- Page titles -->
+    <!-- All titles -->
     <string name="title_quilt">Select Quilt Attributes</string>
     <string name="title_address">Please Enter Address Details</string>
     <string name="title_confirm">Order Review</string>
     <string name="title_quilt_list">Select a quilt</string>
+    <string name="title_personal_details">Personal Details</string>
+    <string name="title_selected_quilt">Selected Quilt</string>
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
-    <string name="no_smartquilt">Smart Quilt Unavailable</string>
-    <string name="invalid_selection">Please select an option</string>
-    <string name="graph_fragment">Graph fragment</string>
-    <string name="news_fragment">News fragment</string>
+    <string name="used_qrcode">QR-Code has been used! Please contact issuing store</string>
+    <string name="thank_choosing_hermitage">Thank you for choosing Hermitage Wool</string>
+    <string name="no_data_this_day">No data to display on this day</string>
+    <string name="read_data_failed">Read data failed</string>
 
     <!-- dropdown menus -->
     <string-array name="array_states">
         <item>Select State</item>
         <item>Victoria</item>
-        <item>New South Wale</item>
+        <item>New South Wales</item>
         <item>Queensland</item>
         <item>Tasmania</item>
         <item>Western Australia</item>
@@ -85,12 +86,10 @@
     </string-array>
 
     <!-- The different string for the fake quilt list -->
-    <string name="quilt_connected">Connected quilt:</string>
-    <string name="quilt_not_connected">Not connected quilt:</string>
+    <string name="quilt_connected">Quilt connected</string>
+    <string name="quilt_not_connected">Quilt not connected</string>
     <string name="quilt_fake1">Bedroom 1 Quilt</string>
     <string name="quilt_fake2">Bedroom 2 Quilt</string>
     <string name="quilt_fake3">Bedroom 3 Quilt</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
