@@ -83,7 +83,7 @@ public class GraphFragment extends Fragment {
         if(dataChoice == false){
 
             setTwoLineGraph(line1,line2,timeArraylist);
-        }else {
+        } else {
 
             setOneLineGraph(lineHumi,timeArraylist);
         }
@@ -129,10 +129,9 @@ public class GraphFragment extends Fragment {
             }
         } );
 
-
-
         return rootView;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -163,6 +162,7 @@ public class GraphFragment extends Fragment {
             return labelList.get(Math.round(value));
         }
     }
+
 
     private void changeTempData(String selectedDate){
 
@@ -211,6 +211,7 @@ public class GraphFragment extends Fragment {
 
     }
 
+
     private void changeHumiData(String selectedDate){
 
         final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -253,6 +254,7 @@ public class GraphFragment extends Fragment {
         });
 
     }
+
 
     private void readJson(){
         // read local json file
@@ -301,6 +303,7 @@ public class GraphFragment extends Fragment {
         }
     }
 
+
     private void setTwoLineGraph(ArrayList<Entry> line1, ArrayList<Entry> line2, ArrayList<String> labelList){
 
         if(labelList.size() != 0) {
@@ -327,6 +330,7 @@ public class GraphFragment extends Fragment {
         lineTemp.invalidate();
         lineTemp.setVisibleXRangeMaximum(22f);
     }
+
 
     private void setOneLineGraph(ArrayList<Entry> line1, ArrayList<String> labelList){
 

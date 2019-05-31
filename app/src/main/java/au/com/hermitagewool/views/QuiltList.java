@@ -50,13 +50,13 @@ public class QuiltList extends AppCompatActivity {
 
         TextView textViewBedroomQuilt1 = findViewById(R.id.quilt_list_quilt1);
 
-        textViewBedroomQuilt1.setOnClickListener(new View.OnClickListener() {
+        /*textViewBedroomQuilt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new GraphFragment();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_graph, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
             }
-        });
+        });*/
     }
 }
