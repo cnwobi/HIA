@@ -204,7 +204,7 @@ public class GraphFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Read data failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.read_data_failed), Toast.LENGTH_LONG).show();
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
@@ -215,7 +215,7 @@ public class GraphFragment extends Fragment {
     private void changeHumiData(String selectedDate){
 
         final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        final SimpleDateFormat timeFormat     = new SimpleDateFormat("HH:mm");
         final ArrayList<Entry> line1 = new ArrayList<>();
         final ArrayList<String> timeArrayList = new ArrayList<>();
         final ArrayList<Float>  x = new ArrayList<>();
@@ -248,7 +248,7 @@ public class GraphFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Read data failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.read_data_failed), Toast.LENGTH_LONG).show();
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
@@ -324,7 +324,7 @@ public class GraphFragment extends Fragment {
             lineTemp.setData(new LineData(lineDataSets));
         }
         else {
-            Toast.makeText(getActivity(), "No data to display on this day", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getContext().getResources().getString(R.string.no_data_this_day), Toast.LENGTH_LONG).show();
         }
 
         lineTemp.invalidate();
@@ -348,7 +348,7 @@ public class GraphFragment extends Fragment {
             lineTemp.setData(new LineData(lineDataSets));
         }
         else {
-            Toast.makeText(getActivity(), "No data to display on this day", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getContext().getResources().getString(R.string.no_data_this_day), Toast.LENGTH_LONG).show();
         }
 
         lineTemp.invalidate();

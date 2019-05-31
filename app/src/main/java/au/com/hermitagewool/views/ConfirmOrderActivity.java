@@ -106,7 +106,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                 qrCodeRepository.updateQrCode(qrCode);
                 Intent intent = new Intent(ConfirmOrderActivity.this, MainActivity.class);
                 ConfirmOrderActivity.this.startActivity(intent);
-                Toast.makeText(ConfirmOrderActivity.this, "Thank you for choosing Hermitage Wool", Toast.LENGTH_LONG).show();
+                Toast.makeText(ConfirmOrderActivity.this, getApplicationContext().getResources().getString(R.string.thank_choosing_hermitage), Toast.LENGTH_LONG).show();
             }
         });
 

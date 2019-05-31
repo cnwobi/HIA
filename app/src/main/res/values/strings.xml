@@ -42,6 +42,9 @@
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
     <string name="used_qrcode">QR-Code has been used! Please contact issuing store</string>
+    <string name="thank_choosing_hermitage">Thank you for choosing Hermitage Wool</string>
+    <string name="no_data_this_day">No data to display on this day</string>
+    <string name="read_data_failed">Read data failed</string>
 
     <!-- dropdown menus -->
     <string-array name="array_states">
