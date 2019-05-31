@@ -105,6 +105,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
 
                 else if(qrCode==null && key!=null) {
+
                     Toast.makeText(getApplicationContext(), "Invalid QR-Code", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
