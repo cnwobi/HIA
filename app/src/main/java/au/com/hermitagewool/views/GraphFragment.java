@@ -37,6 +37,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -141,9 +142,9 @@ public class GraphFragment extends Fragment {
             selectedDate = data.getStringExtra("selectedDate");
             // set the value of the editText
             dateView.setText(data.getStringExtra("displayDate"));
-            if(dataChoice == false){
+            if(dataChoice == false) {
                 changeTempData(selectedDate);
-            }else {
+            } else {
                 changeHumiData(selectedDate);
             }
         }
@@ -263,7 +264,7 @@ public class GraphFragment extends Fragment {
             inputStream.read(buffer);
             inputStream.close();
 
-            json = new String(buffer,"UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
             JSONArray jsonArray = new JSONArray(json);
             SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");

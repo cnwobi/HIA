@@ -28,7 +28,6 @@ import butterknife.ButterKnife;
 
 public class ConfirmOrderActivity extends AppCompatActivity {
 
-
     @BindView(R.id.button_confirm)   Button   buttonConfirm;
     @BindView(R.id.tvConfirmFirstName) TextView tvConfirmFirstName;
     @BindView(R.id.tvConfirmLastName)  TextView tvConfirmLastName;
@@ -42,9 +41,9 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     @BindView(R.id.tvConfirmFabric) TextView tvConfirmFabric;
     @BindView(R.id.tvConfirmFilling) TextView tvConfirmFilling;
     @BindView(R.id.tvConfirmGsm) TextView tvConfirmGsm;
-    final OrderRepository orderRepository = new OrderRepositoryImpl();
-    final QuiltRepository quiltRepository = new QuiltRepositoryImpl();
-    final QrCodeRepository qrCodeRepository =  new QrCodeRepositoryImpl();
+    private final OrderRepository orderRepository   = new OrderRepositoryImpl();
+    private final QuiltRepository quiltRepository   = new QuiltRepositoryImpl();
+    private final QrCodeRepository qrCodeRepository =  new QrCodeRepositoryImpl();
 
 
     @Override

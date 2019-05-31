@@ -29,7 +29,7 @@
     <string name="btn_next">Next</string>
     <string name="btn_submit">Submit</string>
     <string name="btn_confirm">Confirm</string>
-    <string name="btn_rewiew">Review</string>
+    <string name="btn_review">Review</string>
     <string name="btn_temp">Temperature</string>
     <string name="btn_humi">Humidity</string>
 
@@ -43,10 +43,6 @@
 
     <!--Toast or snackbar-->
     <string name="invalid_qrcode">Invalid QR-Code</string>
-    <string name="no_smartquilt">Smart Quilt Unavailable</string>
-    <string name="invalid_selection">Please select an option</string>
-    <string name="graph_fragment">Graph fragment</string>
-    <string name="news_fragment">News fragment</string>
 
     <!-- dropdown menus -->
     <string-array name="array_states">
@@ -94,6 +90,4 @@
     <string name="quilt_fake2">Bedroom 2 Quilt</string>
     <string name="quilt_fake3">Bedroom 3 Quilt</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

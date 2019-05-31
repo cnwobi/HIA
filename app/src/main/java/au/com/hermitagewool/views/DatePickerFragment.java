@@ -25,9 +25,9 @@ public class DatePickerFragment extends AppCompatDialogFragment implements DateP
 
         // Set the current date as the default date
         final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
+        int year  = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
+        int day   = c.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), DatePickerFragment.this, year, month, day);
         datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
@@ -41,7 +41,8 @@ public class DatePickerFragment extends AppCompatDialogFragment implements DateP
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
         String selectedDate = new SimpleDateFormat("yyyyMMdd").format(c.getTime());
-        String displayDate = new SimpleDateFormat("dd-MMM-yyyy").format(c.getTime());
+        String displayDate  = new SimpleDateFormat("dd-MMM-yyyy").format(c.getTime());
+
         Intent intent = new Intent();
         intent.putExtra("selectedDate", selectedDate);
         intent.putExtra("displayDate", displayDate);
