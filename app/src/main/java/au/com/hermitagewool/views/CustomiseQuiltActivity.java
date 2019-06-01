@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * This activity allows user to specificy the characteristics of their order
+ * This activity allows user to specify the characteristics of their order
  * eg. size, fabric type etc...
  */
 public class CustomiseQuiltActivity extends AppCompatActivity {

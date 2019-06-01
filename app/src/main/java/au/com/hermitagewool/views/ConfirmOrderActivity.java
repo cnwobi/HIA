@@ -48,7 +48,10 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     private final QuiltRepository quiltRepository   = new QuiltRepositoryImpl();
     private final QrCodeRepository qrCodeRepository =  new QrCodeRepositoryImpl();
 
-
+    /**
+     * Set the layout for the activity
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

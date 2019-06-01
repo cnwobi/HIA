@@ -15,7 +15,8 @@ import java.util.Objects;
 public class QuiltList extends AppCompatActivity {
 
     /**
-     *
+     * Create the view for the activity. The button send the user to the phone's bluetooth
+     * parameter.
      * @param savedInstanceState
      */
 

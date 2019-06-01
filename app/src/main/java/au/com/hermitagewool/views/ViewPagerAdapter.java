@@ -5,12 +5,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 
+/**
+ * This class provides the transition effect between the two tabs
+ * which are two fragment in the MainActivity.
+ * The FragmentPagerAdapter keeps the data in memory.
+ */
 class ViewPagerAdapter extends FragmentPagerAdapter {
 
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
+    /**
+     * Execute the fragment depending on the tab index.
+     * @param i
+     * @return
+     */
     @Override
     public Fragment getItem(int i) {
         switch (i) {
@@ -20,11 +30,20 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
         }
     }
 
+    /**
+     * Return the number of tabs
+     * @return
+     */
     @Override
     public int getCount() {
         return 2;
     }
 
+    /**
+     * Return the title depending on the tab index.
+     * @param position
+     * @return
+     */
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {

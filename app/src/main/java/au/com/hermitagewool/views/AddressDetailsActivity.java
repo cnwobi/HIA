@@ -22,10 +22,10 @@ import java.util.Objects;
 import au.com.hermitagewool.models.QrCode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 /**
  * Used to capture address details of the client from the form
  */
-
 public class AddressDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.spinner_states)
@@ -50,7 +50,10 @@ public class AddressDetailsActivity extends AppCompatActivity {
     private String selectedOption;
 
 
-
+    /**
+     * Set the layout for the activity.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

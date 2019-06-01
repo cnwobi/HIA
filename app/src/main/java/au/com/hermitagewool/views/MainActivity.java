@@ -1,22 +1,35 @@
 package au.com.hermitagewool.views;
 
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.com.hwool.hermitageintelligenceagency.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.Date;
+
+import au.com.hermitagewool.models.News;
+import au.com.hermitagewool.repository.NewsRepositiory;
+import au.com.hermitagewool.repository.NewsRepositoryImpl;
+
 /**
- * This is the main activity of the app
+ * The MainActivity is the entry point.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -39,16 +52,36 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
+        // UI test
+        /*Fragment fragment = new GraphFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.tab_graph, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();*/
+
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
-        Log.d(TAG, "onCreate: Inside Main activity");
 
 
+
+        /*Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+
+        News news1 = new News();
+        news1.setmTitle("THE HERMITAGE STORY");
+        news1.setmBody("Hermitage produces only the highest quality Australian downs wool quilts, while being quintessentially Australian.\n"
+                + "Hermitage’s goal is to create products of which have never existed in the world before. Using a combination of skilled human hands and state-of-the-art technologies, we constantly advance our luxury products in order to improve the quality of people’s lives.\n");
+        news1.setmAuthor("Hermitage");
+        news1.setmCreationDate(formattedDate);
+        NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
+
+        newsRepositiory.saveNews(news1);*/
 
     }
 
 
-    /*
-        Create and shows the overflow menu on top right.
+    /**
+     * Create and shows the overflow menu on top right.
+     * @param menu
+     * @return
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Start the activity depending on the option selected.
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
