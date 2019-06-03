@@ -89,8 +89,6 @@ public class AddressDetailsActivity extends AppCompatActivity {
 
 
 
-
-
     private void spinnerInflate() {
         ArrayAdapter<String> statesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_states));
         statesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -129,7 +127,7 @@ public class AddressDetailsActivity extends AppCompatActivity {
 /**
  * Validate that an option is selected from the state drop down menu*/
     private boolean isValidSelection() {
-        selectedOption =  (String) statesSpinner.getSelectedItem();
+        selectedOption = (String) statesSpinner.getSelectedItem();
 
         if (selectedOption.equalsIgnoreCase("Select State")) {
             TextView errorText = (TextView)statesSpinner.getSelectedView();

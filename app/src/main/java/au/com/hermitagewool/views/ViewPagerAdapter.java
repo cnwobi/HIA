@@ -32,7 +32,7 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
 
     /**
      * Return the number of tabs
-     * @return
+     * @return the number of tabs
      */
     @Override
     public int getCount() {

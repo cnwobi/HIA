@@ -3,8 +3,6 @@ package au.com.hermitagewool.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

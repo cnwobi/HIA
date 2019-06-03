@@ -92,4 +92,6 @@
     <string name="quilt_fake2">Bedroom 2 Quilt</string>
     <string name="quilt_fake3">Bedroom 3 Quilt</string>
 
+    <string name="placeholder">Placeholder</string>
+
 </resources>
