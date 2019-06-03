@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Fragment contains the datepicker logic
@@ -30,7 +31,7 @@ public class DatePickerFragment extends AppCompatDialogFragment implements DateP
         int year  = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day   = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), DatePickerFragment.this, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Objects.requireNonNull(getActivity()), DatePickerFragment.this, year, month, day);
         datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
         // Return a new instance of DatePickerDialog
@@ -51,7 +52,7 @@ public class DatePickerFragment extends AppCompatDialogFragment implements DateP
 
         Log.d(TAG, "onDateSet: " + displayDate);
         // send date back to the target fragment
-        getTargetFragment().onActivityResult(
+        Objects.requireNonNull(getTargetFragment()).onActivityResult(
                 getTargetRequestCode(),
                 Activity.RESULT_OK,
                 intent

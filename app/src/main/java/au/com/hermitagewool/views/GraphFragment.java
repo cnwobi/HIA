@@ -41,6 +41,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import au.com.hermitagewool.repository.FirebaseHelper;
 import au.com.hermitagewool.repository.SensorRepository;
@@ -90,7 +91,7 @@ public class GraphFragment extends Fragment {
 
 
         // get fragment manager so we can launch from fragment
-        final FragmentManager fm = (getActivity()).getSupportFragmentManager();
+        final FragmentManager fm = (Objects.requireNonNull(getActivity())).getSupportFragmentManager();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         currentDate = dateFormat.format(new Date());
@@ -204,7 +205,7 @@ public class GraphFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.read_data_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getResources().getString(R.string.read_data_failed), Toast.LENGTH_LONG).show();
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
