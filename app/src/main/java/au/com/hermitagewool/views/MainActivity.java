@@ -1,31 +1,24 @@
 package au.com.hermitagewool.views;
 
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.com.hwool.hermitageintelligenceagency.R;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import au.com.hermitagewool.models.News;
-import au.com.hermitagewool.repository.NewsRepositiory;
+import au.com.hermitagewool.repository.NewsRepository;
 import au.com.hermitagewool.repository.NewsRepositoryImpl;
 
 /**
@@ -71,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 + "Hermitage’s goal is to create products of which have never existed in the world before. Using a combination of skilled human hands and state-of-the-art technologies, we constantly advance our luxury products in order to improve the quality of people’s lives.\n");
         news1.setmAuthor("Hermitage");
         news1.setmCreationDate(formattedDate);
-        NewsRepositiory newsRepositiory = new NewsRepositoryImpl();
+        NewsRepository newsRepository = new NewsRepositoryImpl();
 
-        newsRepositiory.saveNews(news1);*/
+        newsRepository.saveNews(news1);*/
 
     }
 

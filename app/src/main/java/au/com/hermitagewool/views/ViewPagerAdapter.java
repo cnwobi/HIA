@@ -18,8 +18,8 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
 
     /**
      * Execute the fragment depending on the tab index.
-     * @param i
-     * @return
+     * @param i is the tab index.
+     * @return the fragment to execute
      */
     @Override
     public Fragment getItem(int i) {
@@ -41,8 +41,8 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
 
     /**
      * Return the title depending on the tab index.
-     * @param position
-     * @return
+     * @param position is the tab index.
+     * @return the tab title
      */
     @Override
     public CharSequence getPageTitle(int position) {

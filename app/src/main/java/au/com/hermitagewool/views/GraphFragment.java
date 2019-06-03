@@ -77,7 +77,7 @@ public class GraphFragment extends Fragment {
         btnTemp = rootView.findViewById(R.id.temp_label);
         btnHumi = rootView.findViewById(R.id.humi_label);
         lineTemp = rootView.findViewById(R.id.line_chart);
-        //read defualt local data
+        //read default local data
         readJson();
         // put data into line chart
         if(dataChoice == false){

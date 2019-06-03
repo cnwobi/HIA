@@ -14,7 +14,7 @@ import au.com.hermitagewool.models.Sensor;
  * @author Ye Hung
  */
 public class SensorRepositoryImpl implements SensorRepository {
-    private DatabaseReference sensorReference = FirebaseHelper.getSensorDataReference();
+    private final DatabaseReference sensorReference = FirebaseHelper.getSensorDataReference();
 
     public ArrayList<Sensor> findData(String date) {
         final ArrayList<Sensor> dataSet = new ArrayList<>();

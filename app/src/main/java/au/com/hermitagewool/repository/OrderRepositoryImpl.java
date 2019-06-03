@@ -8,7 +8,7 @@ import au.com.hermitagewool.models.Order;
  * Concrete OrderRepo implementation
  */
 public class OrderRepositoryImpl implements OrderRepository {
-    DatabaseReference databaseReference = FirebaseHelper.getOrderReference();
+    private DatabaseReference databaseReference = FirebaseHelper.getOrderReference();
 
 
     @Override

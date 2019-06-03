@@ -20,7 +20,7 @@ import java.util.Calendar;
  */
 public class DatePickerFragment extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener {
     private static final String TAG = "DatePickerFragment";
-    final Calendar c = Calendar.getInstance();
+    private final Calendar c = Calendar.getInstance();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

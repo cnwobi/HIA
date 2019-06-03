@@ -31,7 +31,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
-    private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     private DatabaseReference qrCodeReference = FirebaseHelper.getQrCodeReference();
     private QrCodeRepository qrCodeRepository;
@@ -71,7 +71,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void handleResult(final Result rawResult) {
 
-         key = rawResult.getText();
+        key = rawResult.getText();
 
         qrCodeReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,9 +97,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                     startActivity(intent);
                 }
 
-
-
-                 else if(qrCode == null && key != null) {
+                else if(qrCode == null && key != null) {
                     Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.invalid_qrcode), Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
@@ -129,7 +127,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     /**
      * This method is used to request permission from android before the camera can be used
      */
-    public void requestPermission(){
+    private void requestPermission(){
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {

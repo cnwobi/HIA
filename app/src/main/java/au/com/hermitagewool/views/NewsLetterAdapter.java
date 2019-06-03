@@ -31,7 +31,7 @@ public class NewsLetterAdapter extends RecyclerView.Adapter<NewsLetterAdapter.Ne
     private DatabaseReference  newsLetterReference;
     private ChildEventListener childEventListener;
 
-    List<News> newsLetter= new ArrayList<>();
+    private List<News> newsLetter= new ArrayList<>();
 
 
     public NewsLetterAdapter() {

@@ -23,7 +23,7 @@ public class Quilt implements Parcelable {
     private String GSM;
     private String size;
 
-    protected Quilt(Parcel in) {
+    private Quilt(Parcel in) {
         size    = in.readString();
         fabric  = in.readString();
         filling = in.readString();
