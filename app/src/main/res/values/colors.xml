@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="primaryLightColor">#949494</color>
-    <color name="primaryDarkColor">#3c3c3c</color>-->
+    <color name="primaryLightColor">#949494</color>
+    <color name="primaryDarkColor">#3c3c3c</color>
     <color name="backgroundColor">#eeeeee</color>
     <color name="darkBackgroundColor">#171825</color>
     <color name="goldTitleColor">#e2b22a</color>

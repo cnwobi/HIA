@@ -33,8 +33,6 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
     @BindView(R.id.spinner_gsm)     Spinner spinnerGSM;
     @BindView(R.id.btn_submit)      Button  btnSubmit;
 
-    private Quilt quilt;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +108,7 @@ public class CustomiseQuiltActivity extends AppCompatActivity {
             return;
         }
 
-        quilt = new Quilt();
+        Quilt quilt = new Quilt();
         quilt.setSize(spinnerSize.getSelectedItem().toString());
         quilt.setFabric(spinnerFabric.getSelectedItem().toString());
         quilt.setFilling(spinnerFilling.getSelectedItem().toString());
