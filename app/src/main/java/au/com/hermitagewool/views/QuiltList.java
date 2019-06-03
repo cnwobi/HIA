@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.com.hwool.hermitageintelligenceagency.R;
 
@@ -39,6 +40,19 @@ public class QuiltList extends AppCompatActivity {
             }
         });
 
+        // Send the user to the smart quilt tab
+        TextView quilt1 = findViewById(R.id.quilt_list_quilt1);
+        quilt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuiltList.this, MainActivity.class);
+                intent.putExtra("tab_index", 1);// One is your argument
+                startActivity(intent);
+            }
+        });
+
+
+        // Send the user to the phone's Bluetooth parameter
         Button buttonConnectQuilt = findViewById(R.id.btn_connect_quilt);
         buttonConnectQuilt.setOnClickListener(new View.OnClickListener() {
             @Override

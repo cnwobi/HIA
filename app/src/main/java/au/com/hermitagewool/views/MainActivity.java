@@ -45,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
-        // UI test
-        /*Fragment fragment = new GraphFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.tab_graph, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();*/
+        // Get the tab_index value and open the corresponding tab.
+        // Newsletter 0, Smart quilt 1
+        int defaultValue = 0;
+        int tab_index = getIntent().getIntExtra("tab_index", defaultValue);
+        viewPager.setCurrentItem(tab_index);
+
 
         FirebaseMessaging.getInstance().subscribeToTopic("NewsLetter");
 
@@ -85,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Start the activity depending on the option selected.
-     * @param item
-     * @return
+     * @param item is depending of the R.id of the item
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
